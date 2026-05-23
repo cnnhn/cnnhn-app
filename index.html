@@ -1,0 +1,2072 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0D0B08">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>CNNHN — Chuyện Của Người Hay Nghĩ Nhiều</title>
+
+<!-- SEO -->
+<meta name="description" content="Truyện ngắn · du ký cảm xúc · overthinking. Viết cho những cảm giác chưa có tên, những nơi chưa đến và những phiên bản mình chưa gặp.">
+<meta name="keywords" content="CNNHN, truyện ngắn, du ký cảm xúc, overthinking, tản văn, đọc truyện online, chuyện của người hay nghĩ nhiều">
+<meta name="author" content="CNNHN">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://cnnhn.netlify.app/">
+
+<!-- Open Graph (Facebook share) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CNNHN">
+<meta property="og:title" content="CNNHN — Chuyện Của Người Hay Nghĩ Nhiều">
+<meta property="og:description" content="Truyện ngắn · du ký cảm xúc · overthinking. Cùng một câu chuyện — bạn chọn đọc bằng ánh sáng nào?">
+<meta property="og:url" content="https://cnnhn.netlify.app/">
+<meta property="og:image" content="https://cnnhn.netlify.app/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="vi_VN">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CNNHN — Chuyện Của Người Hay Nghĩ Nhiều">
+<meta name="twitter:description" content="Truyện ngắn · du ký cảm xúc · overthinking">
+<meta name="twitter:image" content="https://cnnhn.netlify.app/og-cover.jpg">
+
+<!-- Favicon (đặt file vào root khi deploy) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230D0B08'/%3E%3Ctext x='16' y='22' font-size='18' text-anchor='middle' fill='%23C4956A'%3E%E2%98%95%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Be+Vietnam+Pro:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════
+   DESIGN SYSTEM — CARAMEL DUSK 2026
+════════════════════════════════════════ */
+:root {
+  --bg:       #0E0C09;
+  --bg2:      #141008;
+  --card:     #181410;
+  --surf:     #221C14;
+  --hover:    #2A2218;
+  --bord:     rgba(196,149,106,0.11);
+  --bord2:    rgba(196,149,106,0.22);
+  --cara:     #C4956A;
+  --cara-d:   #A07848;
+  --sand:     #E8C8A0;
+  --cream:    #F0E4CC;
+  --cream2:   #D4C4A8;
+  --sage:     #5C7A50;
+  --sage-l:   #8AAA72;
+  --muted:    #7A6A55;
+  --dim:      rgba(240,228,204,0.28);
+  --red:      #C45050;
+  --font-disp: 'Playfair Display', Georgia, serif;
+  --font-body: 'Cormorant Garamond', Georgia, serif;
+  --font-ui:   'Be Vietnam Pro', system-ui, sans-serif;
+  --r:         2px;
+  --nav-h:     58px;
+  --trans:     all .22s cubic-bezier(.4,0,.2,1);
+}
+[data-light] {
+  --bg:     #F5EFE5; --bg2: #EDE5D5; --card: #FDFAF5;
+  --surf:   #EAE0D0; --hover: #E0D5C0; --bord: rgba(107,74,46,0.12);
+  --bord2:  rgba(107,74,46,0.25); --cara: #8B5A2B; --cara-d: #6B3A1B;
+  --sand:   #6B4A2E; --cream: #1C1208; --cream2: #4A3828;
+  --muted:  #9A7B5E; --dim: rgba(28,18,8,0.3);
+}
+
+/* ── RESET ── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { font-size:16px; scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body {
+  background: var(--bg); color: var(--cream);
+  font-family: var(--font-ui); font-weight:300;
+  min-height:100vh; overflow-x:hidden;
+  transition: background .35s, color .35s;
+}
+button, input, textarea, select {
+  font-family: inherit; border:none; outline:none;
+  background:none; color:inherit; cursor:pointer;
+}
+a { text-decoration:none; color:inherit; }
+img { display:block; max-width:100%; }
+ul { list-style:none; }
+
+/* ── NOISE ── */
+body::after {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");
+  background-size:180px;
+}
+
+/* ════════════════════════════
+   VIEWS
+════════════════════════════ */
+.view { display:none; position:relative; z-index:1; animation:fadeIn .4s ease; }
+.view.active { display:block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
+
+/* ════════════════════════════
+   NAVBAR
+════════════════════════════ */
+.nav {
+  position:fixed; inset:0 0 auto; z-index:200; height:var(--nav-h);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 clamp(16px,4vw,40px);
+  background:rgba(14,12,9,.88);
+  backdrop-filter:blur(24px) saturate(1.4);
+  border-bottom:1px solid var(--bord);
+  transition: background .35s;
+}
+[data-light] .nav { background:rgba(245,239,229,.92); }
+
+.nav-logo {
+  display:flex; align-items:center; gap:10px; cursor:pointer;
+  transition: opacity .2s;
+}
+.nav-logo:hover { opacity:.7; }
+.logo-cup { font-size:18px; }
+.logo-text {
+  font-family:var(--font-disp); font-style:italic;
+  font-size:clamp(13px,1.8vw,16px); color:var(--cream);
+}
+.logo-text em { color:var(--cara); font-style:normal; }
+
+.nav-center {
+  display:flex; align-items:center; gap:4px;
+}
+.nav-link {
+  padding:6px 14px; font-size:9px; letter-spacing:2px; text-transform:uppercase;
+  color:var(--muted); border-radius:var(--r); transition:var(--trans);
+}
+.nav-link:hover, .nav-link.active { color:var(--cara); background:rgba(196,149,106,.08); }
+
+.nav-actions { display:flex; align-items:center; gap:8px; }
+.nav-icon-btn {
+  width:34px; height:34px; display:flex; align-items:center; justify-content:center;
+  border:1px solid var(--bord); color:var(--muted); font-size:14px;
+  border-radius:var(--r); transition:var(--trans);
+}
+.nav-icon-btn:hover { border-color:var(--cara); color:var(--cara); }
+.nav-icon-btn.active { background:rgba(196,149,106,.12); border-color:var(--bord2); color:var(--cara); }
+
+.nav-pill {
+  display:flex; align-items:center; gap:6px; padding:7px 16px;
+  background:rgba(196,149,106,.1); border:1px solid var(--bord2);
+  color:var(--cara); font-size:9px; letter-spacing:2.5px; text-transform:uppercase;
+  border-radius:var(--r); transition:var(--trans);
+}
+.nav-pill:hover { background:rgba(196,149,106,.2); }
+.nav-pill-dot { width:5px; height:5px; border-radius:50%; background:var(--cara); animation:dot 2s ease infinite; }
+@keyframes dot { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+/* Mobile nav */
+.nav-burger { display:none; flex-direction:column; gap:5px; padding:6px; }
+.nav-burger span { display:block; width:20px; height:1px; background:var(--cara); transition:var(--trans); }
+
+/* ════════════════════════════
+   SEARCH OVERLAY
+════════════════════════════ */
+.search-overlay {
+  position:fixed; inset:0; z-index:300; display:none;
+  background:rgba(14,12,9,.97);
+  backdrop-filter:blur(32px);
+  flex-direction:column; align-items:center;
+  padding-top:140px;
+  animation:fadeIn .25s ease;
+}
+.search-overlay.open { display:flex; }
+.search-close {
+  position:absolute; top:24px; right:32px;
+  font-size:20px; color:var(--muted); transition:color .2s;
+}
+.search-close:hover { color:var(--cara); }
+.search-label {
+  font-size:8px; letter-spacing:5px; text-transform:uppercase;
+  color:var(--cara); opacity:.55; margin-bottom:24px;
+}
+.search-input-wrap {
+  width:min(680px,90vw); position:relative;
+}
+.search-input {
+  width:100%; background:transparent;
+  border-bottom:1px solid var(--bord2); padding:16px 0;
+  font-family:var(--font-disp); font-style:italic;
+  font-size:clamp(24px,4vw,40px); color:var(--cream);
+}
+.search-input::placeholder { color:var(--muted); opacity:.4; }
+.search-results {
+  width:min(680px,90vw); margin-top:36px;
+  display:flex; flex-direction:column; gap:0;
+  max-height:50vh; overflow-y:auto;
+}
+.sr-item {
+  padding:16px 0; border-bottom:1px solid var(--bord);
+  cursor:pointer; transition:padding .2s;
+  display:flex; align-items:baseline; gap:14px;
+}
+.sr-item:hover { padding-left:8px; }
+.sr-tag { font-size:8px; letter-spacing:2px; text-transform:uppercase; color:var(--cara); opacity:.6; flex-shrink:0; }
+.sr-title { font-family:var(--font-disp); font-style:italic; font-size:18px; color:var(--cream); }
+.sr-excerpt { font-family:var(--font-body); font-size:14px; color:var(--muted); margin-top:4px; }
+
+/* ════════════════════════════
+   HOME — HERO
+════════════════════════════ */
+.hero {
+  min-height:100svh; padding:calc(var(--nav-h) + 60px) clamp(20px,5vw,80px) 80px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  position:relative; overflow:hidden; text-align:center;
+}
+.hero-orb {
+  position:absolute; width:700px; height:700px; border-radius:50%;
+  background:radial-gradient(circle, rgba(196,149,106,.07) 0%, transparent 68%);
+  top:50%; left:50%; transform:translate(-50%,-54%);
+  pointer-events:none;
+  animation:orb 8s ease infinite;
+}
+@keyframes orb { 0%,100%{opacity:.6;transform:translate(-50%,-54%) scale(1)} 50%{opacity:1;transform:translate(-50%,-51%) scale(1.06)} }
+
+.hero-orb2 {
+  position:absolute; width:400px; height:400px; border-radius:50%;
+  background:radial-gradient(circle, rgba(92,122,80,.05) 0%, transparent 65%);
+  bottom:20%; right:10%; pointer-events:none;
+  animation:orb 12s 2s ease infinite;
+}
+
+.hero-eyebrow {
+  display:flex; align-items:center; gap:14px; margin-bottom:28px;
+  font-size:8px; letter-spacing:6px; text-transform:uppercase;
+  color:var(--cara); opacity:.55;
+  animation:rise .9s ease both;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content:''; width:40px; height:1px;
+  background:linear-gradient(90deg, transparent, var(--cara));
+}
+.hero-eyebrow::after { background:linear-gradient(90deg, var(--cara), transparent); }
+
+.hero-h1 {
+  font-family:var(--font-disp); font-style:italic;
+  font-size:clamp(44px,8vw,96px); line-height:1.02;
+  letter-spacing:-2px; color:var(--cream);
+  margin-bottom:22px; animation:rise .9s .1s ease both;
+}
+.hero-h1 .gold { color:var(--cara); }
+.hero-h1 .line2 { display:block; opacity:.75; }
+
+.hero-sub {
+  font-family:var(--font-body); font-style:italic;
+  font-size:clamp(15px,2vw,20px); color:var(--muted);
+  line-height:1.75; max-width:480px; margin-bottom:52px;
+  animation:rise .9s .2s ease both;
+}
+/* Signature line — emotional stamp, không phải định vị chính */
+.hero-sig {
+  display:block;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-style:italic;
+  font-size:clamp(13px,1.5vw,15px);
+  color:var(--cara);
+  opacity:.82;
+  letter-spacing:.03em;
+  margin-top:-18px;
+  margin-bottom:20px;
+  animation:rise .9s .15s ease both;
+}
+/* App footer */
+.app-footer {
+  text-align:center;
+  padding:40px clamp(16px,5vw,60px) 60px;
+  border-top:1px solid var(--bord);
+  margin-top:8px;
+}
+.app-footer-sig {
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-style:italic;
+  font-size:13px;
+  color:var(--muted);
+  opacity:.7;
+  letter-spacing:.04em;
+  line-height:2;
+}
+
+/* ── CONTACT FOOTER ── */
+.contact-footer {
+  padding: 48px clamp(16px,5vw,60px) 40px;
+  border-top: 1px solid var(--bord);
+  margin-top: 0;
+}
+.contact-footer-title {
+  font-family: var(--font-ui);
+  font-size: 8px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--cara);
+  opacity: .55;
+  text-align: center;
+  margin-bottom: 32px;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px 32px;
+  max-width: 880px;
+  margin: 0 auto;
+}
+@media (max-width: 680px) {
+  .contact-grid { grid-template-columns: repeat(2, 1fr); gap: 20px 24px; }
+}
+@media (max-width: 360px) {
+  .contact-grid { grid-template-columns: 1fr; gap: 16px; }
+}
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.contact-label {
+  font-family: var(--font-ui);
+  font-size: 7px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: .7;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.contact-label-icon { font-style: normal; opacity: .8; }
+.contact-value {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--cream2);
+  opacity: .85;
+  line-height: 1.4;
+  word-break: break-word;
+}
+.contact-value a {
+  color: inherit;
+  text-decoration: none;
+  transition: color .2s, opacity .2s;
+}
+.contact-value a:hover { color: var(--cara); opacity: 1; }
+.contact-copy {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--bord);
+  font-family: var(--font-ui);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  opacity: .45;
+}
+
+.hero-btns {
+  display:flex; gap:12px; flex-wrap:wrap; justify-content:center;
+  animation:rise .9s .3s ease both;
+}
+.btn-primary {
+  padding:13px 30px;
+  background:rgba(196,149,106,.12); border:1px solid var(--bord2);
+  color:var(--cara); font-size:9px; letter-spacing:3px; text-transform:uppercase;
+  border-radius:var(--r); transition:var(--trans);
+}
+.btn-primary:hover { background:rgba(196,149,106,.24); transform:translateY(-2px); }
+.btn-ghost {
+  padding:13px 30px;
+  border:1px solid rgba(255,255,255,.08); color:var(--dim);
+  font-size:9px; letter-spacing:3px; text-transform:uppercase;
+  border-radius:var(--r); transition:var(--trans);
+}
+.btn-ghost:hover { border-color:var(--bord2); color:var(--cara); }
+
+.hero-stats {
+  display:flex; gap:48px; margin-top:72px;
+  animation:rise .9s .45s ease both;
+}
+.stat { display:flex; flex-direction:column; align-items:center; gap:5px; }
+.stat-n {
+  font-family:var(--font-disp); font-style:italic;
+  font-size:28px; color:var(--cara);
+}
+.stat-l { font-size:8px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); }
+
+.hero-scroll {
+  position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  animation:rise 1s .6s ease both;
+}
+.scroll-bar { width:1px; height:44px; background:linear-gradient(180deg,var(--cara),transparent); opacity:.4; animation:scrollPulse 2.2s ease infinite; }
+@keyframes scrollPulse { 0%,100%{height:44px;opacity:.35} 50%{height:58px;opacity:.65} }
+.scroll-txt { font-size:7px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); }
+
+@keyframes rise { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
+
+/* ════════════════════════════
+   STORIES SECTION
+════════════════════════════ */
+.sec { padding:80px clamp(16px,5vw,60px); max-width:1280px; margin:0 auto; }
+.sec-hdr {
+  display:flex; align-items:baseline; justify-content:space-between;
+  gap:16px; flex-wrap:wrap; margin-bottom:36px;
+}
+.sec-title { font-family:var(--font-disp); font-style:italic; font-size:clamp(22px,3vw,30px); color:var(--cream); }
+.sec-line { flex:1; height:1px; background:var(--bord); margin:0 20px; align-self:center; min-width:20px; }
+.filter-row { display:flex; gap:6px; flex-wrap:wrap; }
+.flt {
+  padding:5px 14px; border:1px solid rgba(255,255,255,.07);
+  color:var(--dim); font-size:8px; letter-spacing:2px; text-transform:uppercase;
+  border-radius:var(--r); transition:var(--trans);
+}
+.flt:hover { color:var(--cream); border-color:rgba(255,255,255,.15); }
+.flt.on { border-color:var(--bord2); background:rgba(196,149,106,.08); color:var(--cara); }
+
+/* Grid */
+.grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px; background:rgba(255,255,255,.04);
+}
+.card {
+  background:var(--bg); padding:36px 30px;
+  cursor:pointer; position:relative; overflow:hidden;
+  transition:background .22s;
+}
+.card::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,transparent,var(--cara),transparent);
+  opacity:0; transition:opacity .3s;
+}
+.card:hover { background:var(--card); }
+.card:hover::after { opacity:.35; }
+.card:hover .card-arrow { opacity:1; transform:translateX(0); }
+
+.card-featured { grid-column:span 2; background:var(--card); }
+.card-featured .card-title { font-size:clamp(20px,2.5vw,28px); }
+.card-featured::after { opacity:.2; }
+
+.card-num { position:absolute; top:28px; right:26px; font-family:var(--font-disp); font-style:italic; font-size:11px; color:var(--cara); opacity:.2; }
+.card-tag { font-size:7px; letter-spacing:3px; text-transform:uppercase; color:var(--cara); opacity:.6; margin-bottom:12px; }
+.card-title { font-family:var(--font-disp); font-style:italic; font-size:clamp(17px,1.8vw,21px); color:var(--cream); line-height:1.25; margin-bottom:12px; transition:color .2s; }
+.card:hover .card-title { color:var(--sand); }
+.card-excerpt { font-family:var(--font-body); font-size:14px; color:var(--muted); line-height:1.85; margin-bottom:18px; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+.card-footer { display:flex; align-items:center; justify-content:space-between; }
+.card-meta { font-size:8px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); opacity:.55; }
+.card-arrow { font-size:10px; letter-spacing:2px; color:var(--cara); opacity:0; transform:translateX(-8px); transition:var(--trans); }
+
+/* ════════════════════════════
+   READING VIEW
+════════════════════════════ */
+#v-read {
+  padding-top: var(--nav-h);
+}
+.read-hero {
+  height:clamp(220px,35vw,320px);
+  display:flex; align-items:flex-end;
+  padding:0 clamp(20px,5vw,60px) 44px;
+  background:var(--card); position:relative; overflow:hidden;
+}
+.read-hero-glow {
+  position:absolute; inset:0;
+  background:radial-gradient(ellipse 75% 100% at 85% 100%, rgba(196,149,106,.12) 0%, transparent 60%);
+}
+.read-hero-line { position:absolute; bottom:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(196,149,106,.2),transparent); }
+.read-back {
+  position:absolute; top:20px; left:clamp(20px,5vw,60px);
+  font-size:9px; letter-spacing:3px; text-transform:uppercase;
+  color:var(--muted); display:flex; align-items:center; gap:8px;
+  transition:color .2s;
+}
+.read-back:hover { color:var(--cara); }
+.read-tag { font-size:8px; letter-spacing:4px; text-transform:uppercase; color:var(--cara); opacity:.6; margin-bottom:12px; }
+.read-title { font-family:var(--font-disp); font-style:italic; font-size:clamp(26px,4.5vw,52px); color:var(--cream); line-height:1.08; position:relative; z-index:2; }
+
+.read-wrap {
+  max-width:min(700px,92vw); margin:0 auto;
+  padding:56px clamp(16px,3vw,24px) 100px;
+}
+
+.read-topbar {
+  display:flex; align-items:center; gap:16px;
+  padding-bottom:24px; margin-bottom:40px;
+  border-bottom:1px solid var(--bord);
+  flex-wrap:wrap;
+}
+.read-date, .read-time { font-size:8px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); opacity:.55; }
+.topbar-dot { width:3px; height:3px; border-radius:50%; background:var(--cara); opacity:.3; }
+.topbar-spacer { flex:1; }
+.topbar-tools { display:flex; gap:6px; }
+.tool-btn {
+  width:30px; height:30px; display:flex; align-items:center; justify-content:center;
+  border:1px solid var(--bord); color:var(--muted); font-size:11px;
+  border-radius:var(--r); transition:var(--trans);
+}
+.tool-btn:hover, .tool-btn.on { border-color:var(--bord2); color:var(--cara); background:rgba(196,149,106,.08); }
+
+.prose {
+  font-family:var(--font-body);
+  font-size:clamp(18px,2.2vw,21px);
+  line-height:2.05; color:var(--cream2);
+  transition:font-size .2s;
+}
+.prose.sm { font-size:clamp(15px,1.8vw,17px); }
+.prose.lg { font-size:clamp(21px,2.6vw,25px); }
+
+.prose p { margin-bottom:28px; }
+.prose p:first-of-type::first-letter {
+  font-family:var(--font-disp); font-style:italic;
+  font-size:4.2em; float:left; line-height:.72;
+  margin:10px 14px 0 0; color:var(--cara);
+}
+.prose em { font-style:italic; color:var(--sand); }
+.prose .brk { text-align:center; color:var(--cara); opacity:.28; font-size:13px; letter-spacing:10px; margin:36px 0 28px; }
+
+.read-end {
+  margin-top:56px; padding-top:40px; border-top:1px solid var(--bord); text-align:center;
+}
+.end-ornament { display:flex; align-items:center; gap:14px; margin-bottom:22px; }
+.orn-line { flex:1; height:1px; background:var(--bord); }
+.orn-cup { font-size:18px; opacity:.25; }
+.end-brand { font-family:var(--font-body); font-style:italic; font-size:14px; color:var(--muted); margin-bottom:28px; }
+.end-btns { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+.end-btn {
+  padding:8px 20px; border:1px solid var(--bord); color:var(--muted);
+  font-size:8px; letter-spacing:2.5px; text-transform:uppercase;
+  border-radius:var(--r); transition:var(--trans);
+  display:flex; align-items:center; gap:6px;
+}
+.end-btn:hover { border-color:var(--bord2); color:var(--cara); }
+.end-btn.fav-btn.saved { border-color:rgba(196,149,106,.4); color:var(--cara); background:rgba(196,149,106,.08); }
+
+.next-card {
+  margin-top:44px; padding:26px 28px; background:var(--card); border:1px solid var(--bord);
+  cursor:pointer; display:flex; align-items:center; gap:18px;
+  border-radius:var(--r); transition:background .2s;
+}
+.next-card:hover { background:var(--surf); }
+.nc-tag { font-size:8px; letter-spacing:3px; text-transform:uppercase; color:var(--cara); opacity:.55; margin-bottom:6px; }
+.nc-title { font-family:var(--font-disp); font-style:italic; font-size:clamp(16px,2vw,20px); color:var(--cream); }
+.nc-arrow { margin-left:auto; font-size:18px; color:var(--cara); opacity:.4; flex-shrink:0; }
+
+/* ════════════════════════════
+   FAVORITES VIEW
+════════════════════════════ */
+.favs-empty {
+  padding:100px 40px; text-align:center;
+}
+.fe-icon { font-size:36px; opacity:.15; margin-bottom:20px; }
+.fe-t { font-family:var(--font-disp); font-style:italic; font-size:20px; color:var(--cream); margin-bottom:14px; opacity:.75; }
+.fe-s { font-family:var(--font-body); font-style:italic; font-size:15px; color:var(--muted); line-height:1.85; max-width:280px; margin:0 auto; }
+
+/* ════════════════════════════
+   AI WRITE VIEW
+════════════════════════════ */
+.write-wrap { max-width:820px; margin:0 auto; padding:calc(var(--nav-h) + 40px) clamp(16px,4vw,40px) 100px; }
+.write-hdr { text-align:center; margin-bottom:48px; }
+.write-title { font-family:var(--font-disp); font-style:italic; font-size:clamp(28px,4.5vw,44px); color:var(--cream); margin-bottom:10px; }
+.write-sub { font-family:var(--font-body); font-style:italic; font-size:16px; color:var(--muted); }
+
+.write-panel { background:var(--card); border:1px solid var(--bord); padding:36px clamp(20px,4vw,44px); margin-bottom:28px; }
+.wp-title { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--cara); opacity:.6; margin-bottom:20px; }
+
+.field { margin-bottom:22px; }
+.field-lbl { font-size:8px; letter-spacing:2.5px; text-transform:uppercase; color:var(--muted); opacity:.7; margin-bottom:8px; display:block; }
+.field-inp, .field-ta, .field-sel {
+  width:100%; padding:11px 14px;
+  background:rgba(255,255,255,.03); border:1px solid var(--bord);
+  color:var(--cream); font-family:var(--font-body);
+  font-size:clamp(15px,1.6vw,17px); line-height:1.6;
+  border-radius:var(--r); transition:border-color .2s;
+}
+.field-inp::placeholder, .field-ta::placeholder { color:var(--muted); opacity:.35; }
+.field-inp:focus, .field-ta:focus, .field-sel:focus { border-color:var(--bord2); }
+.field-ta { resize:vertical; min-height:80px; }
+.field-sel option { background:#1A1410; color:var(--cream); }
+
+.chip-row { display:flex; flex-wrap:wrap; gap:7px; margin-top:8px; }
+.chip {
+  padding:5px 14px; border:1px solid rgba(255,255,255,.07);
+  color:var(--muted); font-size:9px; letter-spacing:1.5px; text-transform:uppercase;
+  border-radius:var(--r); cursor:pointer; transition:var(--trans);
+}
+.chip.on { border-color:var(--bord2); background:rgba(196,149,106,.08); color:var(--cara); }
+.chip:hover { color:var(--cream); border-color:rgba(255,255,255,.15); }
+
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+.gen-btn {
+  width:100%; padding:15px;
+  background:rgba(196,149,106,.12); border:1px solid var(--bord2);
+  color:var(--cara); font-size:10px; letter-spacing:3.5px; text-transform:uppercase;
+  border-radius:var(--r); transition:var(--trans);
+  display:flex; align-items:center; justify-content:center; gap:10px;
+}
+.gen-btn:hover:not(:disabled) { background:rgba(196,149,106,.22); transform:translateY(-1px); }
+.gen-btn:disabled { opacity:.45; cursor:not-allowed; }
+
+/* Loader */
+.ai-loader { display:none; text-align:center; padding:52px; }
+.ai-loader.show { display:block; animation:fadeIn .3s ease; }
+.ai-cups { font-size:24px; letter-spacing:10px; animation:pulseCups 1.4s ease infinite; }
+@keyframes pulseCups { 0%,100%{opacity:.25} 50%{opacity:1} }
+.ai-lbl { font-family:var(--font-body); font-style:italic; font-size:16px; color:var(--muted); margin-top:14px; }
+
+/* Output */
+.ai-out { display:none; background:var(--card); border:1px solid var(--bord); padding:36px clamp(20px,4vw,44px); }
+.ai-out.show { display:block; animation:fadeIn .5s ease; }
+.ao-hdr { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:28px; flex-wrap:wrap; }
+.ao-title { font-family:var(--font-disp); font-style:italic; font-size:clamp(20px,2.5vw,26px); color:var(--cream); }
+.ao-btns { display:flex; gap:7px; flex-shrink:0; flex-wrap:wrap; }
+.ao-btn {
+  padding:7px 15px; border:1px solid var(--bord); color:var(--muted);
+  font-size:8px; letter-spacing:2px; text-transform:uppercase;
+  border-radius:var(--r); transition:var(--trans);
+}
+.ao-btn:hover { border-color:var(--bord2); color:var(--cara); }
+.ao-btn.primary { border-color:var(--bord2); color:var(--cara); background:rgba(196,149,106,.08); }
+.ao-prose { font-family:var(--font-body); font-size:clamp(16px,1.8vw,18px); line-height:1.95; color:var(--cream2); }
+.ao-prose p { margin-bottom:20px; }
+
+/* ════════════════════════════
+   ADMIN VIEW
+════════════════════════════ */
+.admin-wrap { max-width:1000px; margin:0 auto; padding:calc(var(--nav-h) + 40px) clamp(16px,4vw,40px) 100px; }
+.admin-hdr { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:36px; flex-wrap:wrap; gap:12px; }
+.admin-title { font-family:var(--font-disp); font-style:italic; font-size:clamp(24px,3.5vw,32px); color:var(--cream); }
+.admin-tabs { display:flex; gap:0; border-bottom:1px solid var(--bord); margin-bottom:32px; }
+.adm-tab {
+  padding:12px 20px; font-size:9px; letter-spacing:2.5px; text-transform:uppercase;
+  color:var(--muted); border-bottom:2px solid transparent; margin-bottom:-1px;
+  transition:var(--trans); cursor:pointer;
+}
+.adm-tab:hover { color:var(--cream); }
+.adm-tab.on { color:var(--cara); border-bottom-color:var(--cara); }
+
+/* Story list admin */
+.adm-list { display:flex; flex-direction:column; gap:1px; background:rgba(255,255,255,.04); }
+.adm-row {
+  background:var(--bg); padding:18px 20px;
+  display:grid; grid-template-columns:auto 1fr auto auto auto;
+  align-items:center; gap:16px; transition:background .2s;
+}
+.adm-row:hover { background:var(--card); }
+.adm-idx { font-size:10px; color:var(--cara); opacity:.3; font-family:var(--font-disp); font-style:italic; width:24px; }
+.adm-info { min-width:0; }
+.adm-ttl { font-family:var(--font-disp); font-style:italic; font-size:15px; color:var(--cream); margin-bottom:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.adm-meta { font-size:8px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); opacity:.55; }
+.adm-tag { font-size:7px; letter-spacing:2px; text-transform:uppercase; padding:3px 10px; border:1px solid var(--bord); color:var(--muted); border-radius:var(--r); }
+.adm-action {
+  width:28px; height:28px; display:flex; align-items:center; justify-content:center;
+  border:1px solid var(--bord); color:var(--muted); font-size:12px;
+  border-radius:var(--r); transition:var(--trans);
+}
+.adm-action:hover { border-color:var(--bord2); color:var(--cara); }
+.adm-action.del:hover { border-color:rgba(196,80,80,.3); color:var(--red); }
+
+/* Add form */
+.adm-form { background:var(--card); border:1px solid var(--bord); padding:28px; margin-bottom:24px; display:none; }
+.adm-form.open { display:block; animation:fadeIn .3s ease; }
+.adm-form-title { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--cara); opacity:.6; margin-bottom:20px; }
+.adm-save {
+  margin-top:16px; padding:11px 24px;
+  background:rgba(196,149,106,.12); border:1px solid var(--bord2);
+  color:var(--cara); font-size:9px; letter-spacing:2.5px; text-transform:uppercase;
+  border-radius:var(--r); transition:var(--trans);
+}
+.adm-save:hover { background:rgba(196,149,106,.22); }
+
+/* Stats */
+.stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:32px; }
+.stat-card { background:var(--card); border:1px solid var(--bord); padding:20px; }
+.sc-n { font-family:var(--font-disp); font-style:italic; font-size:32px; color:var(--cara); margin-bottom:4px; }
+.sc-l { font-size:8px; letter-spacing:2.5px; text-transform:uppercase; color:var(--muted); opacity:.6; }
+
+/* ════════════════════════════
+   TOAST
+════════════════════════════ */
+.toast {
+  position:fixed; bottom:32px; left:50%; z-index:900;
+  transform:translateX(-50%) translateY(14px);
+  background:rgba(196,149,106,.97); color:#0E0C09;
+  padding:11px 24px; font-size:11px; font-weight:500; letter-spacing:1.5px;
+  opacity:0; pointer-events:none; transition:all .3s;
+  border-radius:var(--r);
+}
+.toast.on { opacity:1; transform:translateX(-50%) translateY(0); }
+
+/* ════════════════════════════
+   MOBILE
+════════════════════════════ */
+@media (max-width:768px) {
+  .nav-center { display:none; }
+  .nav-burger { display:flex; }
+  .nav-pill span { display:none; }
+  .grid { grid-template-columns:1fr; }
+  .card-featured { grid-column:span 1; }
+  .two-col { grid-template-columns:1fr; }
+  .stats-grid { grid-template-columns:repeat(2,1fr); }
+  .adm-row { grid-template-columns:auto 1fr auto auto; }
+  .hero-stats { gap:28px; }
+  .hero-orb { width:380px; height:380px; }
+}
+
+/* ════════════════════════════
+   MOBILE NAV DRAWER
+════════════════════════════ */
+.drawer {
+  position:fixed; inset:0; z-index:250; display:none;
+  background:rgba(14,12,9,.97); backdrop-filter:blur(32px);
+  flex-direction:column; align-items:center; justify-content:center; gap:6px;
+}
+.drawer.open { display:flex; animation:fadeIn .25s ease; }
+.drawer-link {
+  font-family:var(--font-disp); font-style:italic;
+  font-size:clamp(28px,6vw,42px); color:var(--cream);
+  padding:10px 20px; transition:color .2s; text-align:center;
+}
+.drawer-link:hover { color:var(--cara); }
+.drawer-close { position:absolute; top:24px; right:24px; font-size:22px; color:var(--muted); transition:color .2s; }
+.drawer-close:hover { color:var(--cara); }
+</style>
+</head>
+<body>
+<div id="read-prog"></div>
+
+<div class="toast" id="toast"></div>
+
+<!-- ══════════ SEARCH OVERLAY ══════════ -->
+<div class="search-overlay" id="search-overlay">
+  <button class="search-close" onclick="closeSearch()">✕</button>
+  <div class="search-label">Tìm truyện</div>
+  <div class="search-input-wrap">
+    <input class="search-input" id="search-inp" placeholder="Nhập tên truyện, địa danh..." oninput="doSearch(this.value)" autocomplete="off">
+  </div>
+  <div class="search-results" id="search-results"></div>
+</div>
+
+<!-- ══════════ MOBILE DRAWER ══════════ -->
+<div class="drawer" id="drawer">
+  <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  <a class="drawer-link" onclick="nav('home');closeDrawer()">Trang chủ</a>
+  <a class="drawer-link" onclick="nav('favs');closeDrawer()">Đọc lại ♡</a>
+  <a class="drawer-link" id="dl-write" onclick="requireAdmin('write');closeDrawer()" style="display:none">Viết AI</a>
+  <a class="drawer-link" id="dl-admin" onclick="requireAdmin('admin');closeDrawer()" style="display:none">Admin</a>
+  <!-- Admin login: ẩn khỏi public. Truy cập bằng URL #admin hoặc Ctrl+Shift+A -->
+  <a class="drawer-link" id="dl-login" onclick="openAdminGate();closeDrawer()" style="display:none">🔐 Admin Login</a>
+</div>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<nav class="nav">
+  <div class="nav-logo" onclick="nav('home')">
+    <span class="logo-cup">☕</span>
+    <span class="logo-text">Chuyện Của Người <em>Hay Nghĩ Nhiều</em></span>
+  </div>
+  <div class="nav-center">
+    <a class="nav-link active" id="nl-home" onclick="nav('home')">Trang chủ</a>
+    <a class="nav-link" id="nl-favs" onclick="nav('favs')">Đọc lại ♡ <span id="fav-count-badge"></span></a>
+    <a class="nav-link" id="nl-write" onclick="requireAdmin('write')" style="display:none">✦ Viết AI</a>
+    <a class="nav-link" id="nl-admin" onclick="requireAdmin('admin')" style="display:none">Admin</a>
+  </div>
+  <div class="nav-actions">
+    <button class="nav-icon-btn" onclick="openSearch()" title="Tìm kiếm">🔍</button>
+    <button class="nav-icon-btn" id="theme-btn" onclick="toggleTheme()" title="Đổi theme">☽</button>
+    <div class="nav-pill" id="admin-badge" onclick="logoutAdmin()" style="display:none;cursor:pointer" title="Click để đăng xuất"><div class="nav-pill-dot"></div><span>Admin ✓</span></div>
+    <button class="nav-pill" id="lock-btn" onclick="openAdminGate()" style="display:none;background:rgba(196,149,106,.06)">🔐 <span>Admin</span></button>
+    <button class="nav-burger" onclick="openDrawer()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════
+     VIEW: HOME
+════════════════════════════════════ -->
+<div class="view active" id="v-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-orb"></div>
+    <div class="hero-orb2"></div>
+    <div class="hero-eyebrow">☕ Truyện ngắn · du ký cảm xúc · cảm giác chưa có tên.</div>
+    <h1 class="hero-h1">
+      Chuyện Của Người<br>
+      <span class="gold">Hay Nghĩ</span>
+      <span class="line2">Nhiều</span>
+    </h1>
+    <span class="hero-sig">Cà phê và những điều chưa nói.</span>
+    <p class="hero-sub">Viết cho những cảm giác chưa gọi thành lời,<br>những nơi chưa đến và những phiên bản mình chưa gặp.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="scrollGrid()">Đọc truyện →</button>
+      <button class="btn-ghost" id="hero-admin-btn" onclick="openAdminGate()" style="display:none">🔐 Admin</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-n" id="stat-stories">15</div><div class="stat-l">Truyện</div></div>
+      <div class="stat"><div class="stat-n">☽/☀</div><div class="stat-l">Giao diện</div></div>
+      <div class="stat"><div class="stat-n">☕</div><div class="stat-l">Đọc chậm</div></div>
+    </div>
+    <div class="hero-scroll"><div class="scroll-bar"></div><span class="scroll-txt">Kéo xuống</span></div>
+  </section>
+
+  <!-- STORIES -->
+  <section class="sec" id="stories-sec">
+    <div class="sec-hdr">
+      <h2 class="sec-title">Truyện mới nhất</h2>
+      <div class="sec-line"></div>
+      <div class="filter-row" id="filters">
+        <button class="flt on" onclick="applyFilter('all',this)">Tất cả</button>
+        <button class="flt" onclick="applyFilter('duky',this)">Du ký</button>
+        <button class="flt" onclick="applyFilter('dothi',this)">Đô thị</button>
+        <button class="flt" onclick="applyFilter('camxuc',this)">Cảm xúc</button>
+        <button class="flt" onclick="applyFilter('tinhyeu',this)">Tình yêu</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <!-- APP FOOTER -->
+  <footer class="app-footer">
+    <p class="app-footer-sig">☕ Cà phê và những điều chưa nói.<br>CNNHN — đọc chậm một chút.</p>
+  </footer>
+
+  <!-- CONTACT / SOCIAL FOOTER -->
+  <section class="contact-footer">
+    <div class="contact-footer-title">Kết nối với CNNHN</div>
+    <div class="contact-grid">
+
+      <div class="contact-item">
+        <span class="contact-label"><span class="contact-label-icon">✉</span> Email</span>
+        <span class="contact-value">
+          <a href="mailto:tramdoctruyenvn@gmail.com" target="_blank" rel="noopener noreferrer">
+            tramdoctruyenvn@gmail.com
+          </a>
+        </span>
+      </div>
+
+      <div class="contact-item">
+        <span class="contact-label"><span class="contact-label-icon">f</span> Facebook Page</span>
+        <span class="contact-value">
+          <a href="https://www.facebook.com/cnnhn" target="_blank" rel="noopener noreferrer">
+            Chuyện Của Người Hay Nghĩ Nhiều
+          </a>
+        </span>
+      </div>
+
+      <div class="contact-item">
+        <span class="contact-label"><span class="contact-label-icon">F</span> Nhóm cộng đồng</span>
+        <span class="contact-value">Nhà Có Nhiều Truyện</span>
+      </div>
+
+      <div class="contact-item">
+        <span class="contact-label"><span class="contact-label-icon">📷</span> Instagram</span>
+        <span class="contact-value">
+          <a href="https://www.instagram.com/cnnhn_official" target="_blank" rel="noopener noreferrer">
+            @cnnhn_official
+          </a>
+        </span>
+      </div>
+
+      <div class="contact-item">
+        <span class="contact-label"><span class="contact-label-icon">✦</span> Threads</span>
+        <span class="contact-value">
+          <a href="https://www.threads.net/@cnnhn_official" target="_blank" rel="noopener noreferrer">
+            @cnnhn_official
+          </a>
+        </span>
+      </div>
+
+      <div class="contact-item">
+        <span class="contact-label"><span class="contact-label-icon">𝕏</span> X (Twitter)</span>
+        <span class="contact-value">
+          <a href="https://x.com/cnnhn_official" target="_blank" rel="noopener noreferrer">
+            @cnnhn_official
+          </a>
+        </span>
+      </div>
+
+      <!-- TikTok: giữ @cnnhn.story cho đến khi đủ 30 ngày đổi handle → @cnnhn_official -->
+      <div class="contact-item">
+        <span class="contact-label"><span class="contact-label-icon">▶</span> TikTok</span>
+        <span class="contact-value">
+          <a href="https://www.tiktok.com/@cnnhn.story" target="_blank" rel="noopener noreferrer">
+            @cnnhn.story
+          </a>
+        </span>
+      </div>
+
+      <div class="contact-item">
+        <span class="contact-label"><span class="contact-label-icon">☕</span> App đọc truyện</span>
+        <span class="contact-value">
+          <a href="https://cnnhn.netlify.app/" target="_blank" rel="noopener noreferrer">
+            cnnhn.netlify.app
+          </a>
+        </span>
+      </div>
+
+    </div>
+    <div class="contact-copy">© 2026 CNNHN — Chuyện Của Người Hay Nghĩ Nhiều</div>
+  </section>
+
+</div><!-- /v-home -->
+
+
+<!-- ════════════════════════════════════
+     VIEW: READING
+════════════════════════════════════ -->
+<div class="view" id="v-read">
+  <div class="read-hero">
+    <div class="read-hero-glow"></div>
+    <div class="read-hero-line"></div>
+    <button class="read-back" onclick="nav('home')">← Quay lại</button>
+    <div>
+      <div class="read-tag" id="read-tag"></div>
+      <h1 class="read-title" id="read-title"></h1>
+    </div>
+  </div>
+
+  <div class="read-wrap">
+    <div class="read-topbar">
+      <span class="read-date" id="read-date"></span>
+      <div class="topbar-dot"></div>
+      <span class="read-time" id="read-time"></span>
+      <div class="topbar-spacer"></div>
+      <div class="topbar-tools">
+        <button class="tool-btn" onclick="setSize('sm')" title="Chữ nhỏ">A−</button>
+        <button class="tool-btn on" id="sz-md" onclick="setSize('md')" title="Chữ thường">A</button>
+        <button class="tool-btn" onclick="setSize('lg')" title="Chữ lớn">A+</button>
+        <button class="tool-btn" onclick="toggleTheme()" title="Đổi nền">☽</button>
+      </div>
+    </div>
+
+    <div class="prose" id="prose"></div>
+
+    <div class="read-end">
+      <div class="end-ornament"><div class="orn-line"></div><div class="orn-cup">☕</div><div class="orn-line"></div></div>
+      <p class="end-brand">Chuyện Của Người Hay Nghĩ Nhiều</p>
+      <div class="end-btns">
+        <button class="end-btn fav-btn" id="fav-btn" onclick="toggleFav()">♡ Lưu yêu thích</button>
+        <button class="end-btn" onclick="copyLink()">⎘ Sao chép link</button>
+        <button class="end-btn" onclick="shareStory()">↗ Chia sẻ</button>
+        <button class="end-btn" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'_blank')">f Facebook</button>
+      </div>
+      <!-- Donate after story -->
+      <div class="story-cta">
+        <p>"Nếu truyện này làm bạn dừng lại một giây — cho mình xin 1 like hoặc thả tym để mình có động lực ra thêm nha 🤍"</p>
+        <div class="cta-actions">
+          <button class="cta-share-btn" onclick="shareStory()">↗ Chia sẻ truyện này</button>
+          <button class="cta-share-btn cta-fb" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'_blank')">f Chia sẻ Facebook</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="next-card" id="next-card" onclick="openNext()">
+      <div>
+        <div class="nc-tag">Truyện tiếp theo</div>
+        <div class="nc-title" id="next-title"></div>
+      </div>
+      <div class="nc-arrow">→</div>
+    </div>
+  </div>
+</div><!-- /v-read -->
+
+
+<!-- ════════════════════════════════════
+     VIEW: FAVORITES
+════════════════════════════════════ -->
+<div class="view" id="v-favs">
+  <div class="sec" style="padding-top:calc(var(--nav-h) + 40px)">
+    <div class="sec-hdr">
+      <h2 class="sec-title">Góc đọc lại ♡</h2>
+    </div>
+    <div id="favs-grid"></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════
+     VIEW: AI WRITE
+════════════════════════════════════ -->
+<div class="view" id="v-write">
+  <div class="write-wrap">
+    <div class="write-hdr">
+      <h1 class="write-title">Tạo truyện với AI ✦</h1>
+      <p class="write-sub">Nhập ý tưởng — AI viết đúng giọng văn CNNHN</p>
+    </div>
+
+    <!-- Panel 1: Cài đặt -->
+    <div class="write-panel">
+      <div class="wp-title">Cài đặt truyện</div>
+      <div class="two-col">
+        <div class="field">
+          <label class="field-lbl">Địa điểm</label>
+          <input class="field-inp" id="w-place" placeholder="Paris, Sài Gòn, Đà Lạt...">
+        </div>
+        <div class="field">
+          <label class="field-lbl">Thể loại</label>
+          <select class="field-sel" id="w-genre">
+            <option value="duky">Du ký cảm xúc</option>
+            <option value="dothi">Đô thị & Con người</option>
+            <option value="camxuc">Cảm xúc nội tâm</option>
+            <option value="tinhyeu">Tình yêu & Kỷ niệm</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-lbl">Cảm xúc chủ đạo</label>
+        <div class="chip-row" id="mood-chips">
+          <span class="chip on" onclick="toggleChip(this)">Nhẹ nhàng</span>
+          <span class="chip" onclick="toggleChip(this)">Hoài niệm</span>
+          <span class="chip" onclick="toggleChip(this)">Cô đơn đẹp</span>
+          <span class="chip" onclick="toggleChip(this)">Hy vọng nhỏ</span>
+          <span class="chip" onclick="toggleChip(this)">Thương nhớ</span>
+          <span class="chip" onclick="toggleChip(this)">Buông bỏ</span>
+          <span class="chip" onclick="toggleChip(this)">Tự do</span>
+          <span class="chip" onclick="toggleChip(this)">Bình yên</span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-lbl">Ý tưởng (tuỳ chọn)</label>
+        <textarea class="field-ta" id="w-idea" placeholder="Ví dụ: Một cô gái ngồi cà phê nhớ người cũ qua mùi cà phê..."></textarea>
+      </div>
+    </div>
+
+    <!-- Panel 2: Phong cách -->
+    <div class="write-panel">
+      <div class="wp-title">Phong cách & Độ dài</div>
+      <div class="two-col">
+        <div class="field">
+          <label class="field-lbl">Độ dài</label>
+          <div class="chip-row">
+            <span class="chip on" id="len-s" onclick="setLen('s')">~400 chữ</span>
+            <span class="chip" id="len-m" onclick="setLen('m')">~700 chữ</span>
+            <span class="chip" id="len-l" onclick="setLen('l')">~1000 chữ</span>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-lbl">Giọng văn</label>
+          <div class="chip-row">
+            <span class="chip on" id="tone-light" onclick="setTone('light')">Nhẹ nhàng</span>
+            <span class="chip" id="tone-deep" onclick="setTone('deep')">Sâu lắng</span>
+            <span class="chip" id="tone-poetic" onclick="setTone('poetic')">Thơ ca</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="gen-btn" id="gen-btn" onclick="generateAI()">
+      <span id="gen-icon">✦</span>
+      <span id="gen-txt">Tạo truyện ngay</span>
+    </button>
+
+    <!-- Loader -->
+    <div class="ai-loader" id="ai-loader">
+      <div class="ai-cups">☕ ☕ ☕</div>
+      <div class="ai-lbl">Đang pha truyện... chờ mình một chút ☕</div>
+    </div>
+
+    <!-- Output -->
+    <div class="ai-out" id="ai-out">
+      <div class="ao-hdr">
+        <div class="ao-title" id="ao-title"></div>
+        <div class="ao-btns">
+          <button class="ao-btn" onclick="regenAI()">↺ Viết lại</button>
+          <button class="ao-btn" onclick="copyAI()">⎘ Copy</button>
+          <button class="ao-btn primary" onclick="publishAI()">+ Đăng lên app</button>
+        </div>
+      </div>
+      <div class="ao-prose" id="ao-prose"></div>
+    </div>
+  </div>
+</div><!-- /v-write -->
+
+
+<!-- ════════════════════════════════════
+     VIEW: ADMIN
+════════════════════════════════════ -->
+<div class="view" id="v-admin">
+  <div class="admin-wrap">
+    <div class="admin-hdr">
+      <h1 class="admin-title">Admin Panel</h1>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn-primary" onclick="toggleAddForm()">+ Thêm truyện mới</button>
+        <button class="btn-primary" style="background:rgba(196,149,106,.08);border:1px solid rgba(196,149,106,.3);color:var(--cara)" onclick="exportStories()" title="Tải xuống file JSON backup">⤓ Export JSON</button>
+        <button class="btn-primary" style="background:rgba(196,149,106,.08);border:1px solid rgba(196,149,106,.3);color:var(--cara)" onclick="document.getElementById('import-input').click()" title="Khôi phục từ file JSON">⤒ Import JSON</button>
+        <input type="file" id="import-input" accept="application/json,.json" style="display:none" onchange="importStories(event)">
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid" id="admin-stats"></div>
+
+    <!-- Add form -->
+    <div class="adm-form" id="adm-form">
+      <div class="adm-form-title">Thêm truyện mới</div>
+      <div class="two-col">
+        <div class="field">
+          <label class="field-lbl">Tiêu đề</label>
+          <input class="field-inp" id="adm-title" placeholder="Tên truyện...">
+        </div>
+        <div class="field">
+          <label class="field-lbl">Tag</label>
+          <input class="field-inp" id="adm-tag" placeholder="Du ký · Paris">
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="field">
+          <label class="field-lbl">Thể loại</label>
+          <select class="field-sel" id="adm-cat">
+            <option value="duky">Du ký</option>
+            <option value="dothi">Đô thị</option>
+            <option value="camxuc">Cảm xúc</option>
+            <option value="tinhyeu">Tình yêu</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field-lbl">Thời gian đọc</label>
+          <input class="field-inp" id="adm-readtime" placeholder="3 phút đọc">
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-lbl">Tóm tắt</label>
+        <textarea class="field-ta" id="adm-excerpt" placeholder="2-3 câu mô tả ngắn..."></textarea>
+      </div>
+      <div class="field">
+        <label class="field-lbl">Nội dung (HTML hoặc text thuần)</label>
+        <textarea class="field-ta" id="adm-content" placeholder="Nội dung truyện đầy đủ..." style="min-height:160px;"></textarea>
+      </div>
+      <button class="adm-save" onclick="saveStory()">Lưu truyện</button>
+    </div>
+
+    <!-- Tab bar -->
+    <div class="admin-tabs">
+      <div class="adm-tab on" id="at-list" onclick="admTab('list')">Danh sách truyện</div>
+      <div class="adm-tab" id="at-favs" onclick="admTab('favs')">Thống kê yêu thích</div>
+    </div>
+
+    <!-- List -->
+    <div id="adm-list-panel">
+      <div class="adm-list" id="adm-story-list"></div>
+    </div>
+
+    <!-- Fav stats -->
+    <div id="adm-favs-panel" style="display:none;">
+      <div class="adm-list" id="adm-fav-list"></div>
+    </div>
+  </div>
+</div><!-- /v-admin -->
+
+
+
+<div id="admin-gate" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(14,12,9,.97);backdrop-filter:blur(32px);align-items:center;justify-content:center">
+  <div class="admin-gate-box" style="background:#181410;border:1px solid rgba(196,149,106,.26);padding:40px 44px;width:min(380px,90vw);position:relative">
+    <button onclick="closeAdminGate()" style="position:absolute;top:14px;right:16px;font-size:18px;color:#7A6A55;transition:color .2s" onmouseover="this.style.color='#C4956A'" onmouseout="this.style.color='#7A6A55'">✕</button>
+    <div style="font-size:8px;letter-spacing:4px;text-transform:uppercase;color:#C4956A;opacity:.55;margin-bottom:10px">Khu vực Admin</div>
+    <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:26px;color:#F0E4CC;margin-bottom:6px">Đăng nhập</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:#7A6A55;margin-bottom:22px">Chỉ dành cho chủ trang ☕</div>
+    <label style="font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#7A6A55;opacity:.65;margin-bottom:6px;display:block">Mật khẩu</label>
+    <input id="admin-pw" type="password" placeholder="••••••••" style="width:100%;padding:10px 13px;background:rgba(255,255,255,.04);border:1px solid rgba(196,149,106,.15);color:#F0E4CC;font-size:16px;letter-spacing:3px;border-radius:2px;margin-bottom:8px;outline:none;font-family:inherit" onfocus="this.style.borderColor='rgba(196,149,106,.35)'" onblur="this.style.borderColor='rgba(196,149,106,.15)'">
+    <div id="admin-err" style="display:none;font-size:11px;color:#C45050;margin-bottom:9px">Sai mật khẩu — thử lại</div>
+    <button onclick="doAdminLogin()" style="width:100%;padding:12px;background:rgba(196,149,106,.12);border:1px solid rgba(196,149,106,.28);color:#C4956A;font-size:9px;letter-spacing:3px;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:all .25s" onmouseover="this.style.background='rgba(196,149,106,.22)'" onmouseout="this.style.background='rgba(196,149,106,.12)'">Đăng nhập →</button>
+  </div>
+</div>
+
+<style>
+@keyframes gateShake {
+  0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)}
+  40%{transform:translateX(8px)} 60%{transform:translateX(-5px)} 80%{transform:translateX(5px)}
+}
+.admin-gate-box { animation: gateShake 0s; }
+
+/* ── BADGES ── */
+.badge-new-card {
+  position:absolute; top:14px; left:14px; z-index:10;
+  display:inline-flex; align-items:center; gap:4px;
+  font-size:7px; letter-spacing:2px; text-transform:uppercase;
+  padding:3px 10px; background:rgba(74,138,88,.18);
+  color:#8ABB72; border:1px solid rgba(74,138,88,.28); border-radius:1px;
+  margin-bottom:8px;
+}
+.badge-prem-card {
+  display:inline-flex; align-items:center; gap:4px;
+  font-size:7px; letter-spacing:2px; text-transform:uppercase;
+  padding:2px 9px; background:rgba(200,164,64,.12);
+  color:#C8A840; border:1px solid rgba(200,164,64,.28); border-radius:1px;
+  margin-bottom:8px;
+}
+/* ── READING PROGRESS ── */
+#read-prog {
+  position:fixed; top:0; left:0; z-index:600; height:2px; width:0%;
+  background:linear-gradient(90deg, #A07848, #C4956A, #E8C890);
+  transition:width .12s linear; pointer-events:none;
+}
+/* ── DONATE BANNER ── */
+.donate-bar {
+  background:var(--card); border-top:1px solid var(--bord);
+  border-bottom:1px solid var(--bord);
+  padding:36px clamp(16px,5vw,60px); text-align:center;
+}
+.donate-bar h3 {
+  font-family:'Playfair Display',Georgia,serif; font-style:italic;
+  font-size:clamp(18px,2.5vw,24px); color:var(--cream); margin-bottom:7px;
+}
+.donate-bar p {
+  font-family:'Cormorant Garamond',Georgia,serif; font-style:italic;
+  font-size:15px; color:var(--muted); margin-bottom:20px; line-height:1.75;
+}
+.donate-btns { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.d-btn {
+  padding:10px 22px; font-size:9px; letter-spacing:2.5px; text-transform:uppercase;
+  border-radius:2px; transition:all .25s; cursor:pointer;
+}
+.d-btn-gold {
+  background:rgba(200,164,64,.12); border:1px solid rgba(200,164,64,.3);
+  color:#C8A840;
+}
+.d-btn-gold:hover { background:rgba(200,164,64,.22); transform:translateY(-2px); }
+.d-btn-cara {
+  background:rgba(196,149,106,.1); border:1px solid var(--bord2); color:var(--cara);
+}
+.d-btn-cara:hover { background:rgba(196,149,106,.2); transform:translateY(-2px); }
+/* ── NEWSLETTER ── */
+.nl-bar {
+  padding:44px clamp(16px,5vw,60px); text-align:center;
+  border-bottom:1px solid var(--bord);
+}
+.nl-bar h3 {
+  font-family:'Playfair Display',Georgia,serif; font-style:italic;
+  font-size:clamp(16px,2.2vw,22px); color:var(--cream); margin-bottom:6px;
+}
+.nl-bar p {
+  font-family:'Cormorant Garamond',Georgia,serif; font-style:italic;
+  font-size:14px; color:var(--muted); margin-bottom:18px;
+}
+.nl-form { display:flex; max-width:380px; margin:0 auto; gap:0; }
+.nl-inp {
+  flex:1; padding:10px 14px;
+  background:rgba(255,255,255,.04); border:1px solid var(--bord);
+  color:var(--cream); font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:16px; border-right:none;
+  border-radius:2px 0 0 2px; transition:border-color .2s;
+}
+.nl-inp:focus { border-color:var(--bord2); outline:none; }
+.nl-inp::placeholder { color:var(--muted); opacity:.38; }
+.nl-sub-btn {
+  padding:10px 16px;
+  background:rgba(196,149,106,.12); border:1px solid var(--bord2);
+  color:var(--cara); font-size:9px; letter-spacing:2px; text-transform:uppercase;
+  border-radius:0 2px 2px 0; transition:all .22s; cursor:pointer; white-space:nowrap;
+}
+.nl-sub-btn:hover { background:rgba(196,149,106,.22); }
+/* ── STORY END DONATE ── */
+.story-donate {
+  margin-top:28px; padding:22px 26px; text-align:center;
+  background:var(--card); border:1px solid var(--bord);
+}
+.story-donate p {
+  font-family:'Cormorant Garamond',Georgia,serif; font-style:italic;
+  font-size:15px; color:var(--muted); margin-bottom:14px; line-height:1.7;
+}
+
+/* ── STORY CTA (replaces donate) ── */
+.story-cta {
+  margin-top:28px; padding:22px 26px; text-align:center;
+  background:var(--card); border:1px solid var(--bord);
+}
+.story-cta p {
+  font-family:'Cormorant Garamond',Georgia,serif; font-style:italic;
+  font-size:15px; color:var(--muted); margin-bottom:16px; line-height:1.8;
+}
+.cta-actions { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+.cta-share-btn {
+  padding:9px 20px; font-size:9px; letter-spacing:2px; text-transform:uppercase;
+  border-radius:2px; transition:all .25s; cursor:pointer;
+  background:rgba(196,149,106,.1); border:1px solid var(--bord2); color:var(--cara);
+}
+.cta-share-btn:hover { background:rgba(196,149,106,.2); transform:translateY(-2px); }
+.cta-share-btn.cta-fb {
+  background:rgba(66,103,178,.1); border-color:rgba(66,103,178,.25); color:#7090D8;
+}
+.cta-share-btn.cta-fb:hover { background:rgba(66,103,178,.2); }
+
+/* ── CTA BAR (homepage) ── */
+.cta-bar {
+  background:var(--card); border-top:1px solid var(--bord); border-bottom:1px solid var(--bord);
+  padding:44px clamp(16px,5vw,60px); text-align:center;
+}
+.cta-bar-icon { font-size:32px; margin-bottom:12px; opacity:.55; }
+.cta-bar h3 {
+  font-family:'Playfair Display',Georgia,serif; font-style:italic;
+  font-size:clamp(18px,2.5vw,24px); color:var(--cream); margin-bottom:7px;
+}
+.cta-bar p {
+  font-family:'Cormorant Garamond',Georgia,serif; font-style:italic;
+  font-size:15px; color:var(--muted); margin-bottom:20px; line-height:1.75;
+}
+.cta-bar-btns { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.cta-bar-btn {
+  padding:10px 22px; font-size:9px; letter-spacing:2.5px; text-transform:uppercase;
+  border-radius:2px; transition:all .25s; cursor:pointer;
+  background:rgba(196,149,106,.1); border:1px solid var(--bord2); color:var(--cara);
+}
+.cta-bar-btn:hover { background:rgba(196,149,106,.2); transform:translateY(-2px); }
+.cta-bar-btn.cta-ghost {
+  background:rgba(255,255,255,.04); border-color:var(--bord); color:var(--muted);
+}
+.cta-bar-btn.cta-ghost:hover { border-color:var(--bord2); color:var(--cara); }
+</style>
+<script>
+/* ════════════════════════════════════════
+   DATA
+════════════════════════════════════════ */
+// Version bump busts stale localStorage cache
+const DB_VERSION = 'v3.0'; // bumped to show new badge
+if (localStorage.getItem('cnnhn_db_ver') !== DB_VERSION) {
+  localStorage.removeItem('cnnhn_stories');
+  localStorage.setItem('cnnhn_db_ver', DB_VERSION);
+}
+let DB = JSON.parse(localStorage.getItem('cnnhn_stories') || 'null') || [
+  { id:1, tag:'Du ký · Paris', cat:'duky', title:'Paris Không Có Anh',
+    excerpt:'Tôi đến Paris vào một buổi sáng tháng Mười một, khi thành phố vừa tỉnh giấc và mùi bánh mì từ tiệm góc phố còn chưa kịp tan...',
+    date:'Tháng 4, 2026', readTime:'4 phút đọc', featured:true,
+    content:`<p>Tôi đến Paris vào một buổi sáng tháng Mười một, khi thành phố vừa tỉnh giấc và mùi bánh mì từ tiệm góc phố còn chưa kịp tan.</p><p>Người ta nói Paris lãng mạn nhất khi có đôi. Tôi thì nghĩ — Paris lãng mạn nhất khi bạn đi một mình và trong túi còn đúng một tấm ảnh cũ.</p><p>Tôi ngồi ở một quán nhỏ trên Rue Cler, gọi một ly cà phê đen và nhìn người ta đi qua. Một cặp đôi cãi nhau bằng tiếng Pháp — tôi không hiểu họ nói gì, nhưng nhìn cách người con gái quay mặt đi, tôi hiểu ngay. Cái kiểu quay mặt đó không cần phiên dịch.</p><div class="brk">· · ·</div><p>Anh từng nói muốn đưa tôi đến đây. Tôi từng tin.</p><p>Nhưng thôi — ly cà phê vẫn nóng, bánh croissant vẫn giòn, và Paris vẫn đẹp dù tôi ngồi đây một mình. Có lẽ đó mới là điều thành phố này muốn dạy: <em>rằng vẻ đẹp không cần ai chứng kiến cùng mới thành thật.</em></p><p>Tôi uống hết ly cà phê. Trả tiền. Đi tiếp.</p><p>Và lần đầu tiên sau rất lâu — tôi thấy nhẹ.</p>` },
+  { id:2, tag:'Đô thị · Sài Gòn', cat:'dothi', title:'11 Giờ Đêm Ở Sài Gòn',
+    excerpt:'Quán cà phê đóng cửa lúc 11 giờ. Cô chủ quán nhắc khéo bằng cách lau bàn xung quanh mà không lau bàn tôi đang ngồi...',
+    date:'Tháng 4, 2026', readTime:'3 phút đọc', featured:false,
+    content:`<p>Quán cà phê đóng cửa lúc 11 giờ. Cô chủ quán nhắc khéo bằng cách lau bàn xung quanh mà không lau bàn tôi đang ngồi.</p><p>Tôi hiểu. Nhưng vẫn ngồi thêm năm phút.</p><p>Không phải vì không muốn về. Mà vì về rồi thì làm gì? Căn phòng trọ 25 mét vuông với cái quạt trần kêu vo ve và đống hồ sơ chưa xong. Ở đây ít nhất còn có tiếng nhạc, còn có người — dù là người lạ.</p><div class="brk">· · ·</div><p>Sài Gòn kỳ lạ lắm. Ban ngày chạy như ma đuổi, ban đêm lại làm người ta muốn ngồi yên một chỗ và nghĩ linh tinh.</p><p>Tôi nghĩ về mẹ. Về cuộc điện thoại hồi chiều bà hỏi <em>"ăn cơm chưa"</em> mà tôi trả lời <em>"rồi"</em> trong khi đang ăn mì gói.</p><p><em>Đang trên đường</em> — tôi thích cái cụm từ đó. Nghe như chưa đến nhưng cũng không phải lạc.</p><p>Cô chủ quán lại lau bàn. Lần này lau luôn bàn tôi.</p><p>Tôi đứng dậy, cảm ơn, bước ra đường. Sài Gòn 11 giờ đêm vẫn còn xe chạy, vẫn còn ai đó đang về muộn như tôi.</p><p>Không cô đơn lắm đâu — nếu bạn chịu nhìn xung quanh.</p>` },
+  { id:3, tag:'Cảm xúc · Nội tâm', cat:'camxuc', title:'Người Hay Nghĩ Nhiều',
+    excerpt:'Có những người sinh ra đã không biết cách sống nhẹ. Họ uống cà phê mà nghĩ về người đã mua cho họ ly đầu tiên...',
+    date:'Tháng 3, 2026', readTime:'2 phút đọc', featured:false,
+    content:`<p>Có những người sinh ra đã không biết cách sống nhẹ.</p><p>Họ uống cà phê mà nghĩ về người đã mua cho họ ly đầu tiên. Họ nghe một bài hát mà nhớ lại một buổi chiều không có gì đặc biệt — chỉ là nắng xiên qua cửa sổ và ai đó ngồi bên cạnh. Họ nhìn máy bay ngang trời và tự hỏi người trên đó đang về hay đang đi.</p><div class="brk">· · ·</div><p>Người ta bảo họ: <em>suy nghĩ nhiều quá, buông bớt đi.</em></p><p>Nhưng họ không biết buông kiểu nào. Với họ, nghĩ nhiều không phải gánh nặng — đó là cách họ yêu. Cách họ nhớ. Cách họ giữ những thứ quan trọng khỏi bị thời gian bào mòn.</p><p>Nên họ vẫn ngồi đây, tay cầm ly cà phê nguội, nhìn mưa ngoài cửa sổ.</p><p>Và nghĩ. Về bạn.</p>` },
+  { id:4, tag:'Du ký · Kyoto', cat:'duky', title:'Kyoto Tháng Ba',
+    excerpt:'Hoa anh đào rụng như thể thành phố đang cố quên điều gì đó rất nặng. Tôi đứng giữa con đường trải hoa, lần đầu tiên không thấy cô đơn...',
+    date:'Tháng 3, 2026', readTime:'5 phút đọc', featured:false,
+    content:`<p>Hoa anh đào rụng như thể thành phố đang cố quên điều gì đó rất nặng.</p><p>Tôi đến Kyoto vào cuối tháng Ba, khi mùa sakura còn vài ngày nữa là tàn. Người Nhật gọi khoảnh thời gian này là <em>mono no aware</em> — vẻ đẹp của sự tàn phai. Không phải buồn. Mà là nhận ra rằng mọi thứ đẹp đều có hạn, và chính cái hữu hạn đó mới làm chúng đáng nhớ.</p><div class="brk">· · ·</div><p>Tôi ngồi trên bậc thềm một ngôi đền nhỏ ở Gion, nhìn hoa rụng. Bên cạnh tôi là một bà cụ người Nhật, cũng ngồi im. Chúng tôi không nói gì với nhau, không cần nói.</p><p>Có những khoảnh khắc ngôn ngữ là thừa.</p><p>Khi đứng dậy ra về, bà cụ mỉm cười nhìn tôi. Tôi mỉm cười lại.</p><p><em>Mono no aware.</em> Vẻ đẹp của điều tàn phai. Tôi hiểu rồi.</p>` },
+  { id:5, tag:'Đô thị · Hà Nội', cat:'dothi', title:'Hà Nội Mùa Cây Thay Lá',
+    excerpt:'Hà Nội có một mùa mà người Sài Gòn không có — mùa cây thay lá. Khi những hàng sấu trên phố Phan Đình Phùng bắt đầu đổi màu...',
+    date:'Tháng 2, 2026', readTime:'4 phút đọc', featured:false,
+    content:`<p>Hà Nội có một mùa mà người Sài Gòn không có — mùa cây thay lá.</p><p>Khi những hàng sấu trên phố Phan Đình Phùng bắt đầu đổi màu, cả thành phố như thở ra một hơi thật dài sau mùa hè nóng bức. Người ta đi chậm hơn. Nhìn lên nhiều hơn.</p><div class="brk">· · ·</div><p>Tôi ngồi ở một quán trà cổ trên phố Hàng Gai, nhìn lá vàng rơi ngoài cửa sổ. Người đàn ông bàn bên đang viết gì đó trong một cuốn sổ nhỏ. Một đôi trẻ đang cãi nhau khẽ khàng bằng giọng Hà Nội — không ồn ào như Sài Gòn, nhưng cũng không kém phần quyết liệt.</p><p>Hà Nội hay làm người ta muốn gọi điện cho ai đó mà không biết nói gì. Chỉ muốn kể: <em>hôm nay trời đẹp lắm, lá vàng đầy phố, mình đang nghĩ đến mày.</em></p><p>Nhưng người ta thường không gọi. Chỉ nghĩ thôi. Và lá cứ rơi. Đẹp mà không cần ai xem.</p>` },
+  { id:6, tag:'Tình yêu · Kỷ niệm', cat:'tinhyeu', title:'Cà Phê Và Những Điều Chưa Nói',
+    excerpt:'Có những cuộc trò chuyện kéo dài ba tiếng nhưng không câu nào là câu quan trọng nhất. Câu quan trọng nhất thì không ai nói...',
+    date:'Tháng 1, 2026', readTime:'3 phút đọc', featured:false,
+    content:`<p>Có những cuộc trò chuyện kéo dài ba tiếng nhưng không câu nào là câu quan trọng nhất. Câu quan trọng nhất thì không ai nói.</p><p>Chúng tôi ngồi ở cái quán cà phê quen đó — cái bàn góc, cạnh cửa sổ nhìn ra hàng cây. Như mọi lần. Cà phê vẫn vị đó, nhạc vẫn bài đó, nhưng mọi thứ đã khác từ lúc nào không rõ.</p><div class="brk">· · ·</div><p>Anh hỏi tôi dạo này có ổn không. Tôi nói ổn. Anh gật đầu. Tôi biết anh không tin, anh biết tôi đang nói dối. Nhưng cả hai đều không nói gì thêm.</p><p>Đôi khi im lặng là cách nhân từ nhất để từ biệt.</p><p>Tôi nhìn anh lần cuối khi anh đang nhìn ra cửa sổ. Ánh sáng chiều buông qua tóc anh. Tôi muốn nói rất nhiều thứ.</p><p>Nhưng thôi. Có những điều chỉ nên để trong ly cà phê nguội — <em>biết rồi, hiểu rồi, buông thôi.</em></p><p>Tôi trả tiền trước khi anh kịp phản ứng. Đứng dậy. Mỉm cười. Bước ra ngoài. Không ngoái lại.</p>` },
+  { id:7, tag:'Du ký · London', cat:'duky', title:'London Có Mưa Như Mình Đã Hứa',
+    excerpt:'Anh hứa sẽ đưa tôi đến London. Cơn mưa đến đúng hẹn — anh thì không. Có những lời hứa chỉ thành phố mới giữ được...',
+    date:'Tháng 5, 2026', readTime:'4 phút đọc', featured:false,
+    content:`<p>Anh hứa sẽ đưa tôi đến London.</p><p>Cơn mưa đến đúng hẹn — anh thì không. Và tôi học được rằng: có những lời hứa chỉ thành phố mới giữ được.</p><div class="brk">· · ·</div><p>London mưa suốt 3 ngày tôi ở đó.</p><p>Tôi chui vào một tiệm sách cũ trên Charing Cross Road, ngồi đọc những cuốn sách không định mua. Ông già bán hàng nhìn tôi và nói: <em>"You look like someone who reads to forget."</em></p><p>Tôi mua 3 cuốn. Đọc hết trên tàu điện ngầm. Và trong suốt hành trình đó — tôi không nghĩ đến anh lần nào.</p><div class="brk">· · ·</div><p>Có lẽ đó là cách London giữ lời hứa thay anh. Không xóa đi. Chỉ cho tôi đủ thứ khác để đọc, để thở. Đủ để quên — dù chỉ một lúc thôi.</p><p><em>Và đôi khi chỉ một lúc thôi — là đủ rồi.</em></p>` },
+
+  { id:8, tag:'Du ký · Amsterdam', cat:'duky', title:'Amsterdam — Những Chiếc Xe Đạp Cũ',
+    excerpt:'Dưới đáy kênh Amsterdam có hàng nghìn chiếc xe đạp bị bỏ lại. Tôi đứng trên cầu nhìn xuống và tự hỏi: mình đã bỏ lại gì ở những thành phố mình đã qua?',
+    date:'Tháng 5, 2026', readTime:'4 phút đọc', featured:false,
+    content:`<p>Dưới đáy kênh Amsterdam có hàng nghìn chiếc xe đạp bị bỏ lại.</p><p>Tôi đứng trên cầu nhìn xuống và tự hỏi: mình đã bỏ lại gì ở những thành phố mình đã qua?</p><div class="brk">· · ·</div><p>Amsterdam không có nhiều xe máy. Người ta đi xe đạp — cả người già lẫn trẻ con, cả người mặc vest lẫn người mặc váy dài. Xe đạp ở đây không phải phương tiện. Nó là ngôn ngữ.</p><p>Tôi mượn một chiếc xe đạp cũ từ hostel và đạp dọc kênh đào lúc 7 giờ sáng. Sương còn đọng trên mặt nước. Mùi bánh mì và cà phê len lỏi từ những tiệm nhỏ chưa mở cửa.</p><div class="brk">· · ·</div><p>Rồi tôi dừng lại ở một cây cầu. Nhìn xuống một chiếc xe đạp rỉ sét nằm dưới đáy kênh — có thể ở đó đã nhiều năm. Chủ nhân của nó đang ở đâu bây giờ? Hay đã lâu rồi không còn nhớ tới?</p><p>Thành phố này không có chỗ cho người đứng im quá lâu. Nó chỉ hiểu ngôn ngữ của người đang đi.</p><p><em>Vậy thì tôi đạp tiếp.</em></p>` },
+
+  { id:9, tag:'Cảm xúc · Đêm khuya', cat:'camxuc', title:'2 Giờ Sáng Là Giờ Của Người Thật Thà Nhất',
+    excerpt:'2 giờ sáng là giờ của người thật thà nhất. Không phải vì người ta muốn thật thà. Mà vì không còn đủ sức để diễn nữa...',
+    date:'Tháng 5, 2026', readTime:'3 phút', featured:false, reads:0,
+    content:`<p>2 giờ sáng là giờ của người thật thà nhất.</p><p>Không phải vì người ta muốn thật thà. Mà vì không còn đủ sức để diễn nữa.</p><div class="brk">· · ·</div><p>Ban ngày có quá nhiều thứ phải giữ. Phải ổn. Phải vui. Phải "bình thường" khi người ta hỏi dạo này thế nào.</p><p>Nhưng 2 giờ sáng thì không còn ai hỏi nữa. Chỉ còn bạn và cái điện thoại. Và đôi khi là một ly cà phê nguội từ lúc chiều chưa uống hết.</p><p>Những tin nhắn quan trọng nhất thường được gửi lúc 2 giờ sáng. Những quyết định thay đổi cuộc đời thường được đưa ra lúc 2 giờ sáng. Và những cảm xúc người ta chôn suốt ngày — cũng chờ đến lúc này mới chịu trồi lên.</p><div class="brk">· · ·</div><p>Bạn đang đọc cái này lúc mấy giờ?</p><p>Nếu đang là đêm khuya — thì mình hiểu.</p><p><em>Không cần phải ổn lúc 2 giờ sáng.</em></p>` },
+
+  { id:10, tag:'Tình yêu · Ký ức', cat:'tinhyeu', title:'Mùi Của Ai Đó',
+    excerpt:'Có một mùi cà phê làm tôi nghĩ đến một người cụ thể. Không phải vì người đó thích cà phê. Mà vì lần đầu tiên tôi uống cà phê với ai đó — là với người đó...',
+    date:'Tháng 5, 2026', readTime:'3 phút', featured:false, reads:0,
+    content:`<p>Có một mùi cà phê làm tôi nghĩ đến một người cụ thể.</p><p>Không phải vì người đó thích cà phê. Mà vì lần đầu tiên tôi uống cà phê với ai đó — là với người đó.</p><div class="brk">· · ·</div><p>Khoa học gọi đó là olfactory memory — ký ức khứu giác. Não bộ kết nối mùi hương với cảm xúc mạnh hơn bất kỳ giác quan nào khác. Đó là lý do một mùi nước hoa cũ có thể làm bạn đứng yên giữa đường trong một giây.</p><p>Mùi áo len cũ. Mùi nước mưa trên nhựa đường. Mùi trang sách mới. Mỗi thứ gắn với một người, một khoảnh khắc, một phiên bản của mình đã không còn tồn tại nữa.</p><div class="brk">· · ·</div><p>Người ta đến rồi đi. Nhưng mùi của họ thì ở lại.</p><p>Không hỏi phép. Không báo trước.</p><p><em>Chỉ đột nhiên xuất hiện giữa một buổi chiều bình thường — và làm bạn đứng yên một giây.</em></p><p>Một giây thôi. Rồi tiếp tục đi.</p>` },
+
+  { id:11, tag:'Tình cảm · Gia đình', cat:'tinhyeu', title:'Người Hay Nhắn "Ăn Cơm Chưa"',
+    excerpt:'Có người hay nhắn mình "ăn cơm chưa?" vào đúng lúc 12 giờ trưa. Không phải vì họ đói. Mà vì đó là cách họ nói: mình đang nghĩ đến mày...',
+    date:'Tháng 5, 2026', readTime:'2 phút', featured:false, reads:0,
+    content:`<p>Có người hay nhắn mình "ăn cơm chưa?" vào đúng lúc 12 giờ trưa.</p><p>Không phải vì họ đói. Mà vì đó là cách họ nói: mình đang nghĩ đến mày.</p><div class="brk">· · ·</div><p>Tiếng Việt hay làm vậy. Không nói thẳng "mình nhớ mày" hay "mình care về mày" — mà hỏi ăn cơm chưa, ngủ được không, trời mưa có lạnh không.</p><p>Những câu hỏi nhỏ nhất đôi khi chứa tình cảm lớn nhất.</p><div class="brk">· · ·</div><p>Hôm nay mình ngồi ăn một mình, không có ai nhắn. Và mình mới nhận ra — mình đã quen với tiếng "ting" đó hơn mình nghĩ.</p><p>Quen đến mức khi nó không còn nữa, mình mới biết nó quan trọng thế nào.</p><p><em>Nếu bạn có người hay hỏi "ăn cơm chưa?" — giữ người đó lại nhé.</em></p>` },
+
+  { id:12, tag:'Du ký · Đà Lạt', cat:'duky', title:'Thành Phố Nào Bạn Chỉ Muốn Đến Một Mình',
+    excerpt:'"Đà Lạt thương người đến một mình hơn." Bà chủ quán cà phê nói câu đó và tôi ngồi nghĩ mãi. Không phải vì câu đó đúng — mà vì tôi cảm giác bà đang nói về mình...',
+    date:'Tháng 5, 2026', readTime:'4 phút', featured:false, reads:0,
+    content:`<p>"Đà Lạt thương người đến một mình hơn."</p><p>Bà chủ quán cà phê nói câu đó và tôi ngồi nghĩ mãi. Không phải vì câu đó đúng — mà vì tôi cảm giác bà đang nói về mình.</p><div class="brk">· · ·</div><p>Tôi đến Đà Lạt vào tháng Tám — khi trời hay mưa và thành phố có vẻ mệt mỏi nhất. Ít khách du lịch hơn. Người ta đi chậm hơn. Quán cà phê vắng hơn và chủ quán hay kéo ghế ngồi nói chuyện với khách lạ như tôi.</p><p>Có những thành phố chỉ cho bạn thấy phần thật nhất của chúng khi bạn đến một mình và không vội. Đà Lạt là một trong số đó.</p><div class="brk">· · ·</div><p>Ngồi nghe tiếng mưa rơi trên mái tôn, tay cầm ly cà phê sữa đá, nhìn ra con dốc mờ sương — tôi không nhớ lần cuối mình ngồi yên như thế này là khi nào.</p><p><em>Đôi khi đi một mình không phải vì cô đơn. Mà vì chỉ khi đi một mình, bạn mới thật sự gặp được mình.</em></p>` },
+
+  { id:13, tag:'Tình yêu · Nội tâm', cat:'tinhyeu', title:'Dấu Hiệu Bạn Đang Yêu Kiểu Người Hay Nghĩ Nhiều',
+    excerpt:'Bạn nhớ họ không phải lúc nào cũng vui — mà nhớ cả lúc họ im lặng. Nhớ cái cách họ cầm ly cà phê. Nhớ câu họ nói rồi lại thôi...',
+    date:'Tháng 5, 2026', readTime:'3 phút', featured:false, reads:0,
+    content:`<p>Bạn nhớ họ không phải lúc nào cũng vui — mà nhớ cả lúc họ im lặng.</p><p>Nhớ cái cách họ cầm ly cà phê. Nhớ câu họ nói rồi lại thôi, như thể có điều gì đó họ muốn nói mà không nói được.</p><div class="brk">· · ·</div><p>Bạn hay tự hỏi họ đang nghĩ gì khi nhìn ra cửa sổ.</p><p>Bạn lưu những bài hát họ nhắc đến — dù không hỏi tại sao họ nhắc.</p><p>Và đôi khi bạn viết những thứ không gửi cho họ — chỉ để biết mình đang cảm gì.</p><div class="brk">· · ·</div><p>Yêu kiểu người hay nghĩ nhiều không ồn ào. Không dramatic.</p><p>Nó chỉ là — <em>bạn để ý những thứ người khác không để ý. Và bạn nhớ lâu hơn người ta tưởng.</em></p>`},
+
+  { id:14, tag:'Du ký · Paris', cat:'duky', title:'Paris Chỉ Cần Bạn Có Mặt Ở Đó',
+    excerpt:'Tôi đến Paris không phải để chữa lành. Tôi đến vì vé máy bay rẻ, vì phép năm chưa dùng, và vì một buổi sáng nào đó mình nhận ra mình không biết mình thích gì nữa...',
+    date:'Tháng 5, 2026', readTime:'5 phút', featured:false, reads:0,
+    content:`<p>Tôi đến Paris không phải để chữa lành.</p><p>Tôi đến vì vé máy bay rẻ, vì phép năm chưa dùng, và vì một buổi sáng nào đó mình nhận ra mình không biết mình thích gì nữa.</p><div class="brk">· · ·</div><p>Ngày đầu tiên, tôi lạc.</p><p>Không phải lạc đường theo nghĩa bình thường. Tôi có Google Maps. Tôi biết mình đang ở đâu.</p><p>Nhưng tôi đứng giữa một khu chợ nhỏ ở một con phố không có trong danh sách "top 10 điểm đến Paris", nhìn một bà cụ người Pháp đang chọn từng quả cà chua một — chậm, kỹ, như thể đó là việc quan trọng nhất buổi sáng hôm đó —</p><p>và tôi nghĩ: Mình đã lâu rồi không làm gì chậm như vậy.</p><div class="brk">· · ·</div><p>Tôi gặp anh ở đó. Không phải kiểu gặp trong phim. Không có ánh mắt. Không có nhạc nền.</p><p>Anh chỉ đứng cạnh tôi, tay cầm một ổ bánh mì, và hỏi bằng tiếng Anh giọng lơ lớ: "Bạn biết chỗ nào uống cà phê ngon không? Tôi đã hỏi ba người rồi, mỗi người chỉ một hướng khác nhau."</p><p>Tôi cũng không biết. Nhưng chúng tôi đi tìm cùng nhau.</p><div class="brk">· · ·</div><p>Anh là người Singapore. Làm trong lĩnh vực tài chính. Đang có một tuần nghỉ mà theo lời anh: "Tôi không biết làm gì với một tuần ngoài việc làm việc."</p><p>Tôi nói tôi hiểu cảm giác đó. Anh nhìn tôi như thể tôi vừa nói điều gì đó quan trọng.</p><p>Chúng tôi uống cà phê ở một tiệm nhỏ, không có bảng hiệu to, chỉ có hai chiếc bàn ngoài vỉa hè và một ông chủ người Pháp trông như ông ta thà đóng cửa còn hơn phục vụ khách du lịch. Nhưng cà phê ngon. Và buổi sáng đó dài hơn tôi tưởng.</p><div class="brk">· · ·</div><p>Chúng tôi đi ba ngày. Không có kế hoạch. Không có danh sách điểm đến.</p><p>Có những người mình gặp và ngay lập tức hiểu — không phải vì giống nhau, mà vì cùng đang ở một chỗ giống nhau trong đời.</p><div class="brk">· · ·</div><p>Ngày thứ ba, chúng tôi ngồi trên bậc thềm nhìn ra một quảng trường nhỏ không có trong cuốn guidebook nào.</p><p>Anh hỏi: "Bạn nghĩ người ta đến Paris để tìm gì?"</p><p>Tôi nghĩ một lúc. "Chắc để tìm thứ gì đó mình không biết tên."</p><p>Anh gật đầu. Rồi nói rất khẽ: "Tôi nghĩ tôi vừa tìm thấy."</p><p>Tôi không hỏi đó là gì. Vì tôi cũng không chắc mình muốn biết câu trả lời.</p><div class="brk">· · ·</div><p>Ngày thứ tư, anh bay về Singapore. Tôi bay về Việt Nam. Chúng tôi không xin số điện thoại nhau.</p><p>Không phải vì quên. Không phải vì không muốn.</p><p>Chỉ là có những buổi sáng đẹp vừa đủ để là chính nó — không cần kéo dài thêm.</p><div class="brk">· · ·</div><p>Tôi không biết anh tên gì.</p><p>Sau này, mỗi lần đi qua một khu chợ buổi sáng, nhìn thấy ai đó đang chọn rau chậm rãi — tôi lại nghĩ đến Paris.</p><p>Không phải nghĩ đến anh. Nghĩ đến phiên bản của mình đứng giữa khu chợ đó, lần đầu tiên sau rất lâu không biết mình đang ở đâu — <em>và thấy điều đó ổn.</em></p>` },
+
+  { id:15, tag:'Du ký · Oxford', cat:'duky', title:'Oxford, Một Buổi Chiều, Và Người Tôi Không Kịp Hỏi Tên',
+    excerpt:'Có những người mình gặp đúng một lần. Không đủ lâu để thành kỷ niệm. Nhưng lại đủ để thỉnh thoảng nhớ lại vào những buổi chiều không có lý do gì cả...',
+    date:'Tháng 5, 2026', readTime:'5 phút', featured:false, reads:0,
+    content:`<p>Có những người mình gặp đúng một lần.</p><p>Không đủ lâu để thành kỷ niệm. Nhưng lại đủ để thỉnh thoảng nhớ lại vào những buổi chiều không có lý do gì cả.</p><div class="brk">· · ·</div><p>Hôm đó tôi đến Oxford không phải để học.</p><p>Tôi đến vì bạn tôi đang làm nghiên cứu sinh ở đó và cô ấy muốn có người ăn tối cùng vào đúng ngày cô ấy bảo vệ đề cương — buồn vui gì cũng cần có người ngồi cạnh.</p><p>Bảo vệ xong, cô ấy gọi điện cho gia đình. Tôi đi bộ một mình.</p><div class="brk">· · ·</div><p>Oxford chiều tháng Chín đẹp theo kiểu khiến người ta muốn sống chậm lại. Tôi không có bản đồ. Không có điểm đến. Chỉ đi theo những con đường lát đá và nghĩ linh tinh.</p><p>Đến một lúc trời bắt đầu đổ mưa. Không phải mưa to. Mưa kiểu Oxford — mỏng, lạnh, và rất dai.</p><p>Tôi chạy vào hiên của một tiệm sách cũ. Anh đã đứng ở đó rồi.</p><div class="brk">· · ·</div><p>Không ai nói gì trước. Chúng tôi chỉ đứng cạnh nhau, nhìn mưa, tay anh cầm một cuốn sách mà tôi nhận ra ngay — tôi đã đọc cuốn đó năm ngoái.</p><p>Tôi nói: "Cuốn đó hay. Phần hai hơi chậm nhưng đoạn kết đáng để đợi."</p><p>Anh quay sang: "Bạn đã đọc rồi à? Vậy bạn biết kết thúc. Tiếc không?"</p><p>Tôi nghĩ một chút. "Không. Biết kết thúc rồi mà vẫn đọc — thì mình đọc vì lý do khác."</p><p>Anh im lặng. Rồi gật đầu, kiểu gật của người vừa nghe điều họ đã nghĩ nhưng chưa nói được thành lời.</p><div class="brk">· · ·</div><p>Mưa kéo dài khoảng bốn mươi phút. Chúng tôi nói chuyện đủ thứ.</p><p>Anh đang làm nghiên cứu về quyết định của con người — tại sao người ta chọn thứ này mà không phải thứ kia.</p><p>Tôi nói tôi đang ở giai đoạn không chắc mình đang chọn đúng không. Anh hỏi: "Chọn gì?" Tôi nói: "Mọi thứ. Công việc. Nơi ở. Cách sống. Tất cả."</p><p>Anh cười: "Tôi nghiên cứu về chủ đề này đã ba năm rồi. Và tôi vẫn chưa biết mình đang chọn đúng không."</p><p>Tôi thấy nhẹ hơn một chút.</p><div class="brk">· · ·</div><p>Mưa tạnh. Chúng tôi bước ra. Đi cùng nhau thêm một đoạn đường ngắn. Đến ngã tư, anh rẽ trái. Tôi rẽ phải.</p><p>Không ai hỏi số. Không ai hỏi tên.</p><p>Chỉ là: "Cảm ơn vì buổi chiều này." — "Tôi cũng vậy." — Rồi đi.</p><div class="brk">· · ·</div><p>Tôi kể cho bạn tôi tối hôm đó. Cô ấy hỏi: "Sao không hỏi số?"</p><p>Tôi nghĩ mãi không trả lời được.</p><p>Chỉ biết rằng — có những cuộc gặp đẹp nhất khi nó chỉ là chính nó. Không kéo dài. Không theo dõi mạng xã hội. Không cố giữ lại.</p><p>Chỉ là một buổi chiều mưa ở một thành phố cổ. Một người lạ biết cùng một cuốn sách. Và cảm giác được hiểu trong đúng bốn mươi phút.</p><p><em>Đôi khi vậy là đủ.</em></p>`}
+];
+
+let FAVS   = JSON.parse(localStorage.getItem('cnnhn_favs')   || '[]');
+let curId  = null;
+let curLen = 's', curTone = 'light';
+
+function saveDB()   { localStorage.setItem('cnnhn_stories', JSON.stringify(DB)); }
+function saveFavs() { localStorage.setItem('cnnhn_favs',    JSON.stringify(FAVS)); }
+
+/* ════ NAVIGATION ════ */
+const VIEWS = ['home','read','favs','write','admin'];
+function nav(v) {
+  VIEWS.forEach(x => {
+    document.getElementById('v-'+x)?.classList.toggle('active', x===v);
+  });
+  // Nav links
+  document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
+  const nl = document.getElementById('nl-'+v);
+  if (nl) nl.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+  if (v==='home') {
+    renderGrid('all');
+    // Clear ?story=... khi về home
+    if (location.search.includes('story=')) {
+      history.replaceState({}, '', location.pathname);
+      document.title = 'CNNHN — Chuyện Của Người Hay Nghĩ Nhiều';
+    }
+  }
+  if (v==='favs')  renderFavs();
+  if (v==='admin') renderAdmin();
+}
+function scrollGrid() {
+  document.getElementById('stories-sec')?.scrollIntoView({behavior:'smooth'});
+}
+
+/* ════ SEARCH ════ */
+function openSearch() {
+  document.getElementById('search-overlay').classList.add('open');
+  setTimeout(() => document.getElementById('search-inp').focus(), 100);
+}
+function closeSearch() {
+  document.getElementById('search-overlay').classList.remove('open');
+  document.getElementById('search-inp').value = '';
+  document.getElementById('search-results').innerHTML = '';
+}
+function doSearch(q) {
+  const res = document.getElementById('search-results');
+  if (!q.trim()) { res.innerHTML=''; return; }
+  const hits = DB.filter(s =>
+    s.title.toLowerCase().includes(q.toLowerCase()) ||
+    s.tag.toLowerCase().includes(q.toLowerCase()) ||
+    s.excerpt.toLowerCase().includes(q.toLowerCase())
+  );
+  if (!hits.length) { res.innerHTML=`<div style="padding:20px 0;font-family:var(--font-body);font-style:italic;color:var(--muted)">Không tìm thấy truyện nào...</div>`; return; }
+  res.innerHTML = hits.map(s => `
+    <div class="sr-item" onclick="closeSearch();openStory(${s.id})">
+      <span class="sr-tag">${s.tag}</span>
+      <div><div class="sr-title">${s.title}</div><div class="sr-excerpt">${s.excerpt.substring(0,80)}...</div></div>
+    </div>`).join('');
+}
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeSearch(); });
+
+/* ════ GRID ════ */
+function renderGrid(filter='all') {
+  const g = document.getElementById('grid');
+  const list = filter==='all' ? DB : DB.filter(s=>s.cat===filter);
+  if (!list.length) { g.innerHTML=`<div style="padding:48px;color:var(--muted);font-family:var(--font-body);font-style:italic;font-size:18px;">Chưa có truyện nào...</div>`; return; }
+  g.innerHTML = list.map((s,i) => `
+    <div class="card${s.featured&&filter==='all'?' card-featured':''}" onclick="openStory(${s.id})">
+      ${isNewStory(s.date, s.id) ? '<div class=\"badge-new-card\">✦ Mới</div>' : ''}
+      <div class="card-num">${String(s.id).padStart(2,'0')}</div>
+      <div class="card-tag">${s.tag}</div>
+      <h3 class="card-title">${s.title}</h3>
+      <p class="card-excerpt">${s.excerpt}</p>
+      <div class="card-footer">
+        <span class="card-meta">${s.readTime}</span>
+        <span class="card-arrow">Đọc →</span>
+      </div>
+    </div>`).join('');
+  // update stat
+  const ss = document.getElementById('stat-stories');
+  if (ss) ss.textContent = DB.length;
+}
+
+function applyFilter(f, btn) {
+  document.querySelectorAll('.flt').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderGrid(f);
+}
+
+/* ════ OPEN STORY ════ */
+function slugify(s) {
+  return (s||'').toString()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'') // bỏ dấu
+    .replace(/đ/g,'d').replace(/Đ/g,'d')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g,'')
+    .trim()
+    .replace(/\s+/g,'-')
+    .replace(/-+/g,'-')
+    .substring(0,80);
+}
+function storySlug(s) { return slugify(s.title) || 'truyen-' + s.id; }
+
+function openStory(id, opts={}) {
+  const s = DB.find(x=>x.id===id);
+  if (!s) {
+    showToast('Không tìm thấy truyện');
+    nav('home');
+    return;
+  }
+  curId = id;
+
+  document.getElementById('read-tag').textContent   = s.tag;
+  document.getElementById('read-title').textContent = s.title;
+  document.getElementById('read-date').textContent  = s.date;
+  document.getElementById('read-time').textContent  = s.readTime;
+  document.getElementById('prose').innerHTML        = s.content;
+
+  // Update URL với slug để share được — không dùng pushState chồng nhau
+  if (!opts.fromUrl) {
+    const slug = storySlug(s);
+    const newUrl = `${location.pathname}?story=${slug}`;
+    history.pushState({storyId:id}, '', newUrl);
+  }
+  // Update OG title động (cho người mở DevTools share)
+  document.title = `${s.title} — CNNHN`;
+
+  // fav button
+  updateFavBtn();
+
+  // next story
+  const others = DB.filter(x=>x.id!==id);
+  const next   = others[Math.floor(Math.random()*others.length)];
+  if (next) {
+    document.getElementById('next-title').textContent = next.title;
+    document.getElementById('next-card').dataset.nextId = next.id;
+  }
+
+  nav('read');
+  setTimeout(initReadProgress, 300);
+}
+
+function openNext() {
+  const id = parseInt(document.getElementById('next-card').dataset.nextId);
+  if (id) openStory(id);
+}
+
+// Đọc URL khi init: ?story=<slug> hoặc ?story=<id>
+function openFromUrl() {
+  const params = new URLSearchParams(location.search);
+  const q = params.get('story');
+  if (!q) return false;
+  // Match by slug trước, fallback by id
+  let s = DB.find(x => storySlug(x) === q);
+  if (!s && /^\d+$/.test(q)) s = DB.find(x => x.id === parseInt(q));
+  if (s) {
+    openStory(s.id, {fromUrl:true});
+    return true;
+  }
+  showToast('Truyện không tồn tại — quay về trang chủ');
+  // Xoá query param sai
+  history.replaceState({}, '', location.pathname);
+  return false;
+}
+
+// Browser back/forward
+window.addEventListener('popstate', (e) => {
+  const params = new URLSearchParams(location.search);
+  const q = params.get('story');
+  if (q) { openFromUrl(); }
+  else { document.title = 'CNNHN — Chuyện Của Người Hay Nghĩ Nhiều'; nav('home'); }
+});
+
+/* ════ FONT SIZE ════ */
+function setSize(s) {
+  const p = document.getElementById('prose');
+  p.className = 'prose' + (s!=='md'?' '+s:'');
+  document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('on'));
+  event.target.classList.add('on');
+}
+
+/* ════ FAVORITES ════ */
+function toggleFav() {
+  if (!curId) return;
+  const i = FAVS.indexOf(curId);
+  if (i>-1) FAVS.splice(i,1);
+  else FAVS.push(curId);
+  saveFavs();
+  updateFavBtn();
+  updateFavCount();
+  toast(i>-1 ? 'Đã bỏ khỏi yêu thích' : '♡ Đã lưu vào yêu thích');
+}
+function updateFavBtn() {
+  const btn = document.getElementById('fav-btn');
+  const saved = FAVS.includes(curId);
+  btn.textContent = saved ? '♥ Đã lưu' : '♡ Lưu yêu thích';
+  btn.classList.toggle('saved', saved);
+}
+function updateFavCount() {
+  const n = FAVS.length;
+  document.getElementById('fav-count-badge').textContent = n ? ` (${n})` : '';
+  // stat-favs đã bỏ khỏi hero public — không cần update
+}
+function renderFavs() {
+  const g = document.getElementById('favs-grid');
+  const list = DB.filter(s=>FAVS.includes(s.id));
+  if (!list.length) {
+    g.innerHTML=`<div class="favs-empty"><div class="fe-icon">♡</div><div class="fe-t">Chưa có câu chuyện nào được giữ lại.</div><div class="fe-s">Khi một truyện làm bạn dừng lại,<br>hãy nhấn "Lưu yêu thích"<br>để quay về đọc lại vào một ngày khác.</div></div>`;
+    return;
+  }
+  g.innerHTML=`<div class="grid">${list.map(s=>`
+    <div class="card" onclick="openStory(${s.id})">
+      <div class="card-tag">${s.tag}</div>
+      <h3 class="card-title">${s.title}</h3>
+      <p class="card-excerpt">${s.excerpt}</p>
+      <div class="card-footer"><span class="card-meta">${s.readTime}</span><span class="card-arrow">Đọc →</span></div>
+    </div>`).join('')}</div>`;
+}
+
+/* ════ SHARE ════ */
+function copyLink() { navigator.clipboard.writeText(window.location.href).then(()=>toast('Đã copy link ☕')); }
+function shareStory() {
+  const s = DB.find(x=>x.id===curId);
+  if (navigator.share) navigator.share({title:s?.title, url:window.location.href});
+  else copyLink();
+}
+
+/* ════ THEME ════ */
+function toggleTheme() {
+  const isLight = document.body.hasAttribute('data-light');
+  if (isLight) document.body.removeAttribute('data-light');
+  else document.body.setAttribute('data-light','');
+  document.getElementById('theme-btn').textContent = isLight ? '☽' : '☀';
+}
+
+/* ════ MOBILE DRAWER ════ */
+function openDrawer()  { document.getElementById('drawer').classList.add('open'); }
+function closeDrawer() { document.getElementById('drawer').classList.remove('open'); }
+
+/* ════ AI GENERATE — PHASE 1: DISABLED ════
+   Lý do: không nhúng API key Anthropic/OpenAI/Gemini vào frontend.
+   Phase 2 sẽ chuyển sang Netlify Functions:
+     Admin UI  →  /.netlify/functions/ai-write
+               →  đọc API key từ Netlify ENV  →  gọi provider  →  trả nháp
+   Hiện tại: workflow là dùng Claude/ChatGPT ngoài app, copy nháp vào Admin.
+═══════════════════════════════════════════════════════════════════════ */
+const AI_WRITE_ENABLED = false; // bật khi đã có Netlify Function backend
+
+async function generateAI() {
+  if (!AI_WRITE_ENABLED) {
+    showToast('AI Write đang nâng cấp — dùng Admin → Thêm truyện để dán nội dung');
+    return;
+  }
+  // ───── Code dưới đây để dành cho Phase 2 (gọi qua Netlify Function) ─────
+  const place = document.getElementById('w-place').value.trim() || 'Sài Gòn';
+  const genre = document.getElementById('w-genre').value;
+  const idea  = document.getElementById('w-idea').value.trim();
+  const moods = [...document.querySelectorAll('#mood-chips .chip.on')].map(c=>c.textContent).join(', ');
+
+  document.getElementById('gen-btn').disabled = true;
+  document.getElementById('gen-txt').textContent = 'Đang viết...';
+  document.getElementById('ai-loader').classList.add('show');
+  document.getElementById('ai-out').classList.remove('show');
+
+  try {
+    // Phase 2: gọi backend riêng, KHÔNG gọi thẳng api.anthropic.com từ browser
+    const res = await fetch('/.netlify/functions/ai-write', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ place, genre, idea, moods, len: curLen, tone: curTone })
+    });
+    if (!res.ok) throw new Error('AI service unavailable');
+    const data = await res.json();
+    const text = (data.text || '').trim();
+    const lines = text.split('\n');
+    const aiTitle = lines[0].replace(/^#+\s*/,'').trim();
+    const aiBody  = lines.slice(1).join('\n').trim();
+
+    document.getElementById('ao-title').textContent = aiTitle;
+    document.getElementById('ao-prose').innerHTML = aiBody.split(/\n\n+/).filter(p=>p.trim()).map(p=>`<p>${p.trim()}</p>`).join('');
+    document.getElementById('ai-out').classList.add('show');
+    document.getElementById('ai-out').scrollIntoView({behavior:'smooth',block:'nearest'});
+  } catch(e) {
+    showToast('Lỗi kết nối AI — vui lòng thử lại');
+    console.error(e);
+  } finally {
+    document.getElementById('ai-loader').classList.remove('show');
+    document.getElementById('gen-btn').disabled = false;
+    document.getElementById('gen-txt').textContent = 'Tạo truyện ngay';
+  }
+}
+
+async function regenAI() { await generateAI(); }
+
+function copyAI() {
+  const t = document.getElementById('ao-title').textContent;
+  const c = document.getElementById('ao-prose').innerText;
+  navigator.clipboard.writeText(t+'\n\n'+c).then(()=>toast('Đã copy truyện ☕'));
+}
+
+function publishAI() {
+  const title   = document.getElementById('ao-title').textContent;
+  const content = document.getElementById('ao-prose').innerHTML;
+  const excerpt = document.getElementById('ao-prose').innerText.substring(0,120)+'...';
+  const genre   = document.getElementById('w-genre').value;
+  const genreTagMap = { duky:'Du ký · AI', dothi:'Đô thị · AI', camxuc:'Cảm xúc · AI', tinhyeu:'Tình yêu · AI' };
+  const newS = {
+    id: Date.now(),
+    tag: genreTagMap[genre],
+    cat: genre,
+    title, excerpt,
+    date: new Date().toLocaleDateString('vi-VN',{month:'long',year:'numeric'}),
+    readTime: '3 phút đọc',
+    featured: false,
+    content
+  };
+  DB.unshift(newS);
+  saveDB();
+  toast('✓ Đã đăng truyện lên app');
+  setTimeout(()=>{ nav('home'); renderGrid('all'); }, 1200);
+}
+
+/* ════ WRITE HELPERS ════ */
+function toggleChip(el) { el.classList.toggle('on'); }
+function setLen(l) {
+  curLen = l;
+  ['s','m','l'].forEach(x => document.getElementById('len-'+x)?.classList.toggle('on',x===l));
+}
+function setTone(t) {
+  curTone = t;
+  ['light','deep','poetic'].forEach(x => document.getElementById('tone-'+x)?.classList.toggle('on',x===t));
+}
+
+/* ════ ADMIN ════ */
+function toggleAddForm() {
+  document.getElementById('adm-form').classList.toggle('open');
+}
+function admTab(t) {
+  document.querySelectorAll('.adm-tab').forEach(el=>el.classList.remove('on'));
+  document.getElementById('at-'+t).classList.add('on');
+  document.getElementById('adm-list-panel').style.display = t==='list' ? 'block' : 'none';
+  document.getElementById('adm-favs-panel').style.display = t==='favs' ? 'block' : 'none';
+  if (t==='favs') renderAdminFavs();
+}
+function renderAdmin() {
+  document.getElementById('admin-stats').innerHTML = [
+    { n: DB.length,   l: 'Tổng truyện' },
+    { n: FAVS.length, l: 'Yêu thích' },
+    { n: 2,           l: 'Giao diện' },
+    { n: DB.filter(s=>s.cat==='duky').length, l: 'Du ký' }
+  ].map(s=>`<div class="stat-card"><div class="sc-n">${s.n}</div><div class="sc-l">${s.l}</div></div>`).join('');
+
+  // List
+  document.getElementById('adm-story-list').innerHTML = DB.map((s,i)=>`
+    <div class="adm-row">
+      <div class="adm-idx">${String(i+1).padStart(2,'0')}</div>
+      <div class="adm-info">
+        <div class="adm-ttl">${s.title}</div>
+        <div class="adm-meta">${s.date} · ${s.readTime}</div>
+      </div>
+      <div class="adm-tag">${s.cat}</div>
+      <button class="adm-action" onclick="openStory(${s.id})" title="Đọc">👁</button>
+      <button class="adm-action del" onclick="deleteStory(${s.id})" title="Xoá">🗑</button>
+    </div>`).join('');
+}
+function renderAdminFavs() {
+  document.getElementById('adm-fav-list').innerHTML = FAVS.length
+    ? FAVS.map(id => {
+        const s = DB.find(x=>x.id===id);
+        return s ? `<div class="adm-row"><div class="adm-info"><div class="adm-ttl">${s.title}</div><div class="adm-meta">${s.tag}</div></div><div class="adm-tag">saved</div></div>` : '';
+      }).join('')
+    : `<div style="padding:32px;color:var(--muted);font-family:var(--font-body);font-style:italic;">Chưa có truyện nào được lưu yêu thích.</div>`;
+}
+function deleteStory(id) {
+  if (!confirm('Xác nhận xoá truyện này?')) return;
+  DB = DB.filter(s=>s.id!==id);
+  saveDB();
+  renderAdmin();
+  toast('Đã xoá truyện');
+}
+function saveStory() {
+  const title     = document.getElementById('adm-title').value.trim();
+  const tag       = document.getElementById('adm-tag').value.trim();
+  const cat       = document.getElementById('adm-cat').value;
+  const readTime  = document.getElementById('adm-readtime').value.trim() || '3 phút đọc';
+  const excerpt   = document.getElementById('adm-excerpt').value.trim();
+  const content   = document.getElementById('adm-content').value.trim();
+  if (!title || !content) { showToast('Vui lòng nhập tiêu đề và nội dung'); return; }
+  const s = {
+    id: Date.now(), tag: tag || 'Truyện mới', cat,
+    title, excerpt: excerpt || content.substring(0,120)+'...',
+    date: new Date().toLocaleDateString('vi-VN',{month:'long',year:'numeric'}),
+    readTime, featured:false,
+    content: content.includes('<p>') ? content : content.split('\n\n').filter(p=>p.trim()).map(p=>`<p>${p}</p>`).join('')
+  };
+  DB.unshift(s);
+  saveDB();
+  ['adm-title','adm-tag','adm-readtime','adm-excerpt','adm-content'].forEach(id => document.getElementById(id).value='');
+  document.getElementById('adm-form').classList.remove('open');
+  renderAdmin();
+  showToast('✓ Đã thêm truyện mới');
+}
+
+/* ════ EXPORT / IMPORT JSON (Backup) ════ */
+function exportStories() {
+  const data = {
+    exported_at: new Date().toISOString(),
+    db_version:  DB_VERSION,
+    count:       DB.length,
+    stories:     DB
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  const ymd  = new Date().toISOString().slice(0,10);
+  a.href = url;
+  a.download = `cnnhn-stories-backup-${ymd}.json`;
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+  showToast(`✓ Đã xuất ${DB.length} truyện ra file JSON`);
+}
+
+function importStories(ev) {
+  const file = ev.target.files?.[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const obj = JSON.parse(e.target.result);
+      const arr = Array.isArray(obj) ? obj : obj.stories;
+      if (!Array.isArray(arr) || !arr.length) throw new Error('File không hợp lệ');
+      // Validate tối thiểu
+      const valid = arr.every(s => s && s.id && s.title && s.content);
+      if (!valid) throw new Error('Một số truyện thiếu trường bắt buộc');
+      const mode = confirm(
+        `File chứa ${arr.length} truyện.\n\n` +
+        `OK = THAY THẾ toàn bộ DB hiện tại (${DB.length} truyện)\n` +
+        `Cancel = GỘP thêm vào DB (giữ truyện cũ, thêm truyện mới)`
+      );
+      if (mode) {
+        DB = arr;
+      } else {
+        const existingIds = new Set(DB.map(s => s.id));
+        const added = arr.filter(s => !existingIds.has(s.id));
+        DB = DB.concat(added);
+        showToast(`✓ Đã gộp thêm ${added.length} truyện mới`);
+      }
+      saveDB();
+      renderAdmin();
+      if (mode) showToast(`✓ Đã thay thế DB với ${DB.length} truyện`);
+    } catch (err) {
+      showToast('Lỗi: ' + err.message);
+      console.error(err);
+    } finally {
+      ev.target.value = ''; // reset input
+    }
+  };
+  reader.readAsText(file);
+}
+
+/* ════ TOAST ════ */
+let toastTimer;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('on');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>el.classList.remove('on'), 2600);
+}
+
+/* ════ ADMIN AUTH ════
+   ⚠️ BẢO MẬT:
+   - ADMIN_PASS_HASH = SHA-256 của password thật, KHÔNG phải password
+   - Để đổi password: mở Console (F12) → gõ  cnnhnHashPass('CNNHN@cafe2026')
+                     → copy hash trả về → paste vào ADMIN_PASS_HASH bên dưới
+   - Hash mặc định chỉ dùng để test local. BẮT BUỘC đổi trước khi public.
+   - Lưu ý: client-side auth không phải zero-trust, chỉ là rào cản tối thiểu
+     cho 1 admin duy nhất. Đừng đặt key/secret thật vào HTML.
+═══════════════════════════════════════════════════════════════════════ */
+const ADMIN_PASS_HASH = '9d16243359cd8438ba309bbda434f31a6c7f94867a3415d02378e6677c007837';
+const ADMIN_KEY       = 'cnnhn_admin';
+let IS_ADMIN  = false;
+let _pending  = null;
+
+// Alias để các chỗ gọi showToast() không vỡ
+const showToast = (msg) => toast(msg);
+
+// SHA-256 wrapper — Web Crypto API
+async function sha256Hex(str) {
+  const buf = new TextEncoder().encode(str);
+  const hash = await crypto.subtle.digest('SHA-256', buf);
+  return Array.from(new Uint8Array(hash))
+    .map(b => b.toString(16).padStart(2,'0')).join('');
+}
+// Helper cho admin tự tạo hash mới trong console
+window.cnnhnHashPass = async (pw) => {
+  const h = await sha256Hex(pw);
+  console.log('%cHash của password:', 'color:#C4956A;font-weight:bold');
+  console.log(h);
+  console.log('%cCopy chuỗi trên rồi paste vào ADMIN_PASS_HASH trong code.', 'color:#7A6A55');
+  return h;
+};
+
+async function checkAdminSession() {
+  try {
+    const s = JSON.parse(localStorage.getItem(ADMIN_KEY)||'null');
+    if (s && s.h === ADMIN_PASS_HASH && Date.now()-s.ts < 86400000) {
+      IS_ADMIN = true; return true;
+    }
+  } catch(e) {}
+  return false;
+}
+
+function openAdminGate() {
+  if (IS_ADMIN) { nav('admin'); return; }
+  document.getElementById('admin-gate').style.display = 'flex';
+  setTimeout(() => document.getElementById('admin-pw').focus(), 100);
+}
+
+function closeAdminGate() {
+  document.getElementById('admin-gate').style.display = 'none';
+  document.getElementById('admin-pw').value = '';
+  document.getElementById('admin-err').style.display = 'none';
+}
+
+async function doAdminLogin() {
+  const pw = document.getElementById('admin-pw').value;
+  const h  = await sha256Hex(pw);
+  if (h === ADMIN_PASS_HASH) {
+    IS_ADMIN = true;
+    localStorage.setItem(ADMIN_KEY, JSON.stringify({h:ADMIN_PASS_HASH, ts:Date.now()}));
+    closeAdminGate();
+    updateAdminUI();
+    showToast('✓ Đăng nhập Admin thành công ☕');
+    nav(_pending || 'admin');
+    _pending = null;
+  } else {
+    document.getElementById('admin-err').style.display = 'block';
+    document.getElementById('admin-pw').value = '';
+    document.getElementById('admin-pw').focus();
+    const box = document.querySelector('.admin-gate-box');
+    box.style.animation = 'none';
+    setTimeout(() => { box.style.animation = 'gateShake .4s ease'; }, 10);
+  }
+}
+
+function logoutAdmin() {
+  if (!confirm('Đăng xuất Admin?')) return;
+  IS_ADMIN = false;
+  localStorage.removeItem(ADMIN_KEY);
+  updateAdminUI();
+  nav('home');
+  showToast('Đã đăng xuất Admin');
+}
+
+function requireAdmin(route) {
+  if (IS_ADMIN) { nav(route); return; }
+  _pending = route;
+  openAdminGate();
+}
+
+function updateAdminUI() {
+  const show = IS_ADMIN;
+  ['nl-write','nl-admin','dl-write','dl-admin'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = show ? '' : 'none';
+  });
+  // dl-login & lock-btn: LUÔN ẨN với public. Chỉ hiện admin-badge khi đã login.
+  const dlLogin = document.getElementById('dl-login');
+  if (dlLogin) dlLogin.style.display = 'none'; // không đổi theo show
+  document.getElementById('admin-badge').style.display = show ? 'flex' : 'none';
+  document.getElementById('lock-btn').style.display    = 'none'; // luôn ẩn
+  const heroBtn = document.getElementById('hero-admin-btn');
+  if (heroBtn) heroBtn.style.display = show ? '' : 'none';
+}
+
+// ESC closes gate · Enter logs in · Ctrl/Cmd+Shift+A mở gate (admin shortcut)
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeAdminGate();
+  if (e.key === 'Enter' && document.getElementById('admin-gate').style.display === 'flex') {
+    doAdminLogin();
+  }
+  // Secret shortcut: Ctrl+Shift+A (Win) hoặc Cmd+Shift+A (Mac)
+  if (e.shiftKey && (e.ctrlKey || e.metaKey) && (e.key === 'A' || e.key === 'a')) {
+    e.preventDefault();
+    openAdminGate();
+  }
+});
+document.getElementById('admin-gate')?.addEventListener('click', e => {
+  if (e.target === document.getElementById('admin-gate')) closeAdminGate();
+});
+
+
+/* ════ READING PROGRESS ════ */
+function initReadProgress() {
+  const bar = document.getElementById('read-prog');
+  const pct = document.getElementById('read-pct');
+  if (!bar) return;
+  bar.style.display = 'block';
+  bar.style.width = '0%';
+  function onScroll() {
+    const wrap = document.querySelector('.read-wrap');
+    if (!wrap) return;
+    const top  = wrap.getBoundingClientRect().top + window.scrollY;
+    const h    = wrap.scrollHeight;
+    const p    = Math.min(100, Math.max(0, Math.round(((window.scrollY - top + window.innerHeight) / h) * 100)));
+    bar.style.width = p + '%';
+    if (pct) pct.textContent = p + '%';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+}
+function hideReadProgress() {
+  const bar = document.getElementById('read-prog');
+  if (bar) { bar.style.display = 'none'; bar.style.width = '0%'; }
+}
+
+/* Donate removed — Phase 1: grow first */
+
+/* ════ NEWSLETTER ════ */
+function subNewsletter() {
+  const email = document.getElementById('nl-email')?.value?.trim();
+  if (!email || !email.includes('@')) { showToast('Vui lòng nhập email hợp lệ'); return; }
+  const subs = JSON.parse(localStorage.getItem('cnnhn_subs') || '[]');
+  if (subs.includes(email)) { showToast('Email này đã đăng ký rồi ☕'); return; }
+  subs.push(email);
+  localStorage.setItem('cnnhn_subs', JSON.stringify(subs));
+  const el = document.getElementById('nl-email');
+  if (el) el.value = '';
+  showToast('✓ Đăng ký thành công! Mình sẽ gửi truyện mới mỗi thứ 6 ☕');
+}
+
+/* ════ BADGE NEW HELPER ════ */
+function isNewStory(dateStr, storyId) {
+  // Case 1: Story added via Admin — id is timestamp (13 digits) = always show NEW for 45 days
+  if (storyId && String(storyId).length >= 12) {
+    const diffDays = (Date.now() - Number(storyId)) / (1000 * 60 * 60 * 24);
+    return diffDays <= 45;
+  }
+  // Case 2: Parse "Tháng X, YYYY" date string
+  if (!dateStr) return false;
+  const monthMap = {
+    'Tháng 1':1,'Tháng 2':2,'Tháng 3':3,'Tháng 4':4,
+    'Tháng 5':5,'Tháng 6':6,'Tháng 7':7,'Tháng 8':8,
+    'Tháng 9':9,'Tháng 10':10,'Tháng 11':11,'Tháng 12':12
+  };
+  try {
+    const parts = dateStr.trim().split(', ');
+    const year  = parseInt(parts[1]);
+    const month = monthMap[parts[0].trim()];
+    if (!month || !year) return false;
+    // Use day 1 of month — more generous window
+    // "Tháng 5, 2026" → May 1, 2026 → diff from today
+    const storyDate = new Date(year, month - 1, 1);
+    const diffDays  = (Date.now() - storyDate.getTime()) / (1000 * 60 * 60 * 24);
+    return diffDays <= 60; // Show NEW badge for 60 days from month start
+  } catch(e) { return false; }
+}
+
+/* ════ INIT ════ */
+renderGrid('all');
+updateFavCount();
+
+(async () => {
+  if (await checkAdminSession()) updateAdminUI();
+})();
+
+if (!openFromUrl()) { /* home mặc định */ }
+
+if (location.hash === '#admin' || location.hash === '#login') {
+  setTimeout(() => openAdminGate(), 200);
+  history.replaceState({}, '', location.pathname + location.search);
+}
+</script>
+
+<!-- ADMIN GATE MODAL -->
+</body>
+</html>

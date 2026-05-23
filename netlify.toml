@@ -1,0 +1,46 @@
+# ══════════════════════════════════════════
+#  netlify.toml — CNNHN production config
+# ══════════════════════════════════════════
+
+[build]
+  publish = "."
+
+# ── Redirects ──────────────────────────────────────
+# SPA fallback: mọi path không phải file tĩnh → index.html
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
+
+# Nếu sau này thêm Netlify Functions cho AI Write:
+# [[redirects]]
+#   from   = "/api/ai-write"
+#   to     = "/.netlify/functions/ai-write"
+#   status = 200
+
+# ── Security Headers ────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Không cho iframe (clickjacking)
+    X-Frame-Options        = "SAMEORIGIN"
+    # XSS protection (legacy browsers)
+    X-XSS-Protection       = "1; mode=block"
+    # Không sniff content type
+    X-Content-Type-Options = "nosniff"
+    # Referrer: chỉ gửi origin khi cross-site
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+    # Permissions (tắt những gì không dùng)
+    Permissions-Policy     = "camera=(), microphone=(), geolocation=(), payment=()"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    # Cache ngắn cho HTML để update nhanh
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/*.json"
+  [headers.values]
+    # Cache JSON backup files
+    Cache-Control = "public, max-age=3600"
