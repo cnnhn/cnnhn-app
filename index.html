@@ -420,6 +420,8 @@ body::after {
 }
 .flt:hover { color:var(--cream); border-color:rgba(255,255,255,.15); }
 .flt.on { border-color:var(--bord2); background:rgba(196,149,106,.08); color:var(--cara); }
+.flt-count { opacity:.5; margin-left:3px; font-variant-numeric:tabular-nums; }
+.flt.on .flt-count { opacity:.7; }
 
 /* Grid */
 .grid {
@@ -828,13 +830,7 @@ body::after {
     <div class="sec-hdr">
       <h2 class="sec-title">Truyện mới nhất</h2>
       <div class="sec-line"></div>
-      <div class="filter-row" id="filters">
-        <button class="flt on" onclick="applyFilter('all',this)">Tất cả</button>
-        <button class="flt" onclick="applyFilter('duky',this)">Du ký</button>
-        <button class="flt" onclick="applyFilter('dothi',this)">Đô thị</button>
-        <button class="flt" onclick="applyFilter('camxuc',this)">Cảm xúc</button>
-        <button class="flt" onclick="applyFilter('tinhyeu',this)">Tình yêu</button>
-      </div>
+      <div class="filter-row" id="public-filter-row"></div>
     </div>
     <div class="grid" id="grid"></div>
   </section>
@@ -1335,7 +1331,7 @@ body::after {
    DATA
 ════════════════════════════════════════ */
 // Version bump busts stale localStorage cache
-const DB_VERSION = 'v5.1'; // v5.1: #13 rewrite "Sống Quá Lâu Trong Đầu Mình" (tinhyeu → camxuc) · giảm tỷ lệ tình yêu xuống 13%
+const DB_VERSION = 'v5.2'; // v5.2: public filter pills render động với count · force clear cache
 if (localStorage.getItem('cnnhn_db_ver') !== DB_VERSION) {
   localStorage.removeItem('cnnhn_stories');
   localStorage.setItem('cnnhn_db_ver', DB_VERSION);
@@ -1518,7 +1514,25 @@ function doSearch(q) {
 document.addEventListener('keydown', e => { if (e.key==='Escape') closeSearch(); });
 
 /* ════ GRID ════ */
+let _pubFilter = 'all';
+
+function renderPublicFilterBar() {
+  const cats = [
+    { id:'all',     label:'Tất cả',   count: DB.length },
+    { id:'duky',    label:'Du ký',    count: DB.filter(s=>s.cat==='duky').length },
+    { id:'dothi',   label:'Đô thị',   count: DB.filter(s=>s.cat==='dothi').length },
+    { id:'camxuc',  label:'Cảm xúc',  count: DB.filter(s=>s.cat==='camxuc').length },
+    { id:'tinhyeu', label:'Tình yêu', count: DB.filter(s=>s.cat==='tinhyeu').length },
+  ];
+  const row = document.getElementById('public-filter-row');
+  if (!row) return;
+  row.innerHTML = cats.map(c =>
+    `<button class="flt${c.id===_pubFilter?' on':''}" onclick="applyFilter('${c.id}',this)">${c.label}<span class="flt-count">(${c.count})</span></button>`
+  ).join('');
+}
+
 function renderGrid(filter='all') {
+  _pubFilter = filter;
   const g = document.getElementById('grid');
   const list = filter==='all' ? DB : DB.filter(s=>s.cat===filter);
   if (!list.length) { g.innerHTML=`<div style="padding:48px;color:var(--muted);font-family:var(--font-body);font-style:italic;font-size:18px;">Chưa có truyện nào...</div>`; return; }
@@ -1534,14 +1548,12 @@ function renderGrid(filter='all') {
         <span class="card-arrow">Đọc →</span>
       </div>
     </div>`).join('');
-  // update stat
   const ss = document.getElementById('stat-stories');
   if (ss) ss.textContent = DB.length;
+  renderPublicFilterBar();
 }
 
 function applyFilter(f, btn) {
-  document.querySelectorAll('.flt').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
   renderGrid(f);
 }
 
@@ -2200,6 +2212,9 @@ function isNewStory(dateStr, storyId) {
 }
 
 /* ════ INIT ════ */
+// Init: sync stat + filter + grid từ DB (canonical)
+const _initStat = document.getElementById('stat-stories');
+if (_initStat) _initStat.textContent = DB.length;
 renderGrid('all');
 updateFavCount();
 
