@@ -13,15 +13,15 @@
 <meta name="keywords" content="CNNHN, truyện ngắn, du ký cảm xúc, overthinking, tản văn, đọc truyện online, chuyện của người hay nghĩ nhiều">
 <meta name="author" content="CNNHN">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://cnnhn.netlify.app/">
+<link rel="canonical" href="https://cnnhn.github.io/cnnhn-app/">
 
 <!-- Open Graph (Facebook share) -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="CNNHN">
 <meta property="og:title" content="CNNHN — Chuyện Của Người Hay Nghĩ Nhiều">
 <meta property="og:description" content="Truyện ngắn · du ký cảm xúc · overthinking. Cùng một câu chuyện — bạn chọn đọc bằng ánh sáng nào?">
-<meta property="og:url" content="https://cnnhn.netlify.app/">
-<meta property="og:image" content="https://cnnhn.netlify.app/og-cover.jpg">
+<meta property="og:url" content="https://cnnhn.github.io/cnnhn-app/">
+<meta property="og:image" content="https://cnnhn.github.io/cnnhn-app/og-cover.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="vi_VN">
@@ -30,7 +30,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="CNNHN — Chuyện Của Người Hay Nghĩ Nhiều">
 <meta name="twitter:description" content="Truyện ngắn · du ký cảm xúc · overthinking">
-<meta name="twitter:image" content="https://cnnhn.netlify.app/og-cover.jpg">
+<meta name="twitter:image" content="https://cnnhn.github.io/cnnhn-app/og-cover.jpg">
 
 <!-- Favicon (đặt file vào root khi deploy) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230D0B08'/%3E%3Ctext x='16' y='22' font-size='18' text-anchor='middle' fill='%23C4956A'%3E%E2%98%95%3C/text%3E%3C/svg%3E">
@@ -646,7 +646,7 @@ body::after {
 .adm-list { display:flex; flex-direction:column; gap:1px; background:rgba(255,255,255,.04); }
 .adm-row {
   background:var(--bg); padding:18px 20px;
-  display:grid; grid-template-columns:auto 1fr auto auto auto;
+  display:grid; grid-template-columns:auto 1fr auto auto auto auto;
   align-items:center; gap:16px; transition:background .2s;
 }
 .adm-row:hover { background:var(--card); }
@@ -662,6 +662,21 @@ body::after {
 }
 .adm-action:hover { border-color:var(--bord2); color:var(--cara); }
 .adm-action.del:hover { border-color:rgba(196,80,80,.3); color:var(--red); }
+
+/* Admin filter bar */
+.adm-filter-bar {
+  display:flex; gap:8px; flex-wrap:wrap;
+  padding:0 0 20px; border-bottom:1px solid var(--bord); margin-bottom:4px;
+}
+.adm-filter-pill {
+  font-size:8px; letter-spacing:2px; text-transform:uppercase;
+  padding:5px 14px; border:1px solid var(--bord); border-radius:var(--r);
+  color:var(--muted); cursor:pointer; transition:var(--trans);
+}
+.adm-filter-pill:hover { border-color:var(--bord2); color:var(--cream); }
+.adm-filter-pill.on { border-color:var(--cara); color:var(--cara); background:rgba(196,149,106,.07); }
+.adm-filter-count { opacity:.55; margin-left:3px; font-variant-numeric:tabular-nums; }
+.adm-filter-pill.on .adm-filter-count { opacity:.75; }
 
 /* Add form */
 .adm-form { background:var(--card); border:1px solid var(--bord); padding:28px; margin-bottom:24px; display:none; }
@@ -705,7 +720,8 @@ body::after {
   .card-featured { grid-column:span 1; }
   .two-col { grid-template-columns:1fr; }
   .stats-grid { grid-template-columns:repeat(2,1fr); }
-  .adm-row { grid-template-columns:auto 1fr auto auto; }
+  .adm-row { grid-template-columns:auto 1fr auto auto auto; }
+  .adm-row .adm-tag { display:none; }
   .hero-stats { gap:28px; }
   .hero-orb { width:380px; height:380px; }
 }
@@ -800,7 +816,7 @@ body::after {
       <button class="btn-ghost" id="hero-admin-btn" onclick="openAdminGate()" style="display:none">🔐 Admin</button>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="stat-n" id="stat-stories">15</div><div class="stat-l">Truyện</div></div>
+      <div class="stat"><div class="stat-n" id="stat-stories">23</div><div class="stat-l">Truyện</div></div>
       <div class="stat"><div class="stat-n">☽/☀</div><div class="stat-l">Giao diện</div></div>
       <div class="stat"><div class="stat-n">☕</div><div class="stat-l">Đọc chậm</div></div>
     </div>
@@ -896,8 +912,8 @@ body::after {
       <div class="contact-item">
         <span class="contact-label"><span class="contact-label-icon">☕</span> App đọc truyện</span>
         <span class="contact-value">
-          <a href="https://cnnhn.netlify.app/" target="_blank" rel="noopener noreferrer">
-            cnnhn.netlify.app
+          <a href="https://cnnhn.github.io/cnnhn-app/" target="_blank" rel="noopener noreferrer">
+            cnnhn.github.io/cnnhn-app
           </a>
         </span>
       </div>
@@ -1099,7 +1115,7 @@ body::after {
 
     <!-- Add form -->
     <div class="adm-form" id="adm-form">
-      <div class="adm-form-title">Thêm truyện mới</div>
+      <div class="adm-form-title" id="adm-form-title">Thêm truyện mới</div>
       <div class="two-col">
         <div class="field">
           <label class="field-lbl">Tiêu đề</label>
@@ -1133,7 +1149,7 @@ body::after {
         <label class="field-lbl">Nội dung (HTML hoặc text thuần)</label>
         <textarea class="field-ta" id="adm-content" placeholder="Nội dung truyện đầy đủ..." style="min-height:160px;"></textarea>
       </div>
-      <button class="adm-save" onclick="saveStory()">Lưu truyện</button>
+      <button class="adm-save" id="adm-save-btn" onclick="saveStory()">Lưu truyện</button>
     </div>
 
     <!-- Tab bar -->
@@ -1142,8 +1158,9 @@ body::after {
       <div class="adm-tab" id="at-favs" onclick="admTab('favs')">Thống kê yêu thích</div>
     </div>
 
-    <!-- List -->
+    <!-- Filter bar -->
     <div id="adm-list-panel">
+      <div class="adm-filter-bar" id="adm-filter-bar"></div>
       <div class="adm-list" id="adm-story-list"></div>
     </div>
 
@@ -1318,45 +1335,51 @@ body::after {
    DATA
 ════════════════════════════════════════ */
 // Version bump busts stale localStorage cache
-const DB_VERSION = 'v3.0'; // bumped to show new badge
+const DB_VERSION = 'v5.1'; // v5.1: #13 rewrite "Sống Quá Lâu Trong Đầu Mình" (tinhyeu → camxuc) · giảm tỷ lệ tình yêu xuống 13%
 if (localStorage.getItem('cnnhn_db_ver') !== DB_VERSION) {
   localStorage.removeItem('cnnhn_stories');
   localStorage.setItem('cnnhn_db_ver', DB_VERSION);
 }
 let DB = JSON.parse(localStorage.getItem('cnnhn_stories') || 'null') || [
   { id:1, tag:'Du ký · Paris', cat:'duky', title:'Paris Không Có Anh',
-    excerpt:'Tôi đến Paris vào một buổi sáng tháng Mười một, khi thành phố vừa tỉnh giấc và mùi bánh mì từ tiệm góc phố còn chưa kịp tan...',
+    excerpt:'Paris đẹp nhất lúc 7 giờ tối. Mình biết vì đã đứng đó một mình, nhìn dòng người qua lại. Và nghĩ: nếu anh ở đây, mình sẽ không dám nhìn lâu như vậy...',
     date:'Tháng 4, 2026', readTime:'4 phút đọc', featured:true,
-    content:`<p>Tôi đến Paris vào một buổi sáng tháng Mười một, khi thành phố vừa tỉnh giấc và mùi bánh mì từ tiệm góc phố còn chưa kịp tan.</p><p>Người ta nói Paris lãng mạn nhất khi có đôi. Tôi thì nghĩ — Paris lãng mạn nhất khi bạn đi một mình và trong túi còn đúng một tấm ảnh cũ.</p><p>Tôi ngồi ở một quán nhỏ trên Rue Cler, gọi một ly cà phê đen và nhìn người ta đi qua. Một cặp đôi cãi nhau bằng tiếng Pháp — tôi không hiểu họ nói gì, nhưng nhìn cách người con gái quay mặt đi, tôi hiểu ngay. Cái kiểu quay mặt đó không cần phiên dịch.</p><div class="brk">· · ·</div><p>Anh từng nói muốn đưa tôi đến đây. Tôi từng tin.</p><p>Nhưng thôi — ly cà phê vẫn nóng, bánh croissant vẫn giòn, và Paris vẫn đẹp dù tôi ngồi đây một mình. Có lẽ đó mới là điều thành phố này muốn dạy: <em>rằng vẻ đẹp không cần ai chứng kiến cùng mới thành thật.</em></p><p>Tôi uống hết ly cà phê. Trả tiền. Đi tiếp.</p><p>Và lần đầu tiên sau rất lâu — tôi thấy nhẹ.</p>` },
-  { id:2, tag:'Đô thị · Sài Gòn', cat:'dothi', title:'11 Giờ Đêm Ở Sài Gòn',
-    excerpt:'Quán cà phê đóng cửa lúc 11 giờ. Cô chủ quán nhắc khéo bằng cách lau bàn xung quanh mà không lau bàn tôi đang ngồi...',
-    date:'Tháng 4, 2026', readTime:'3 phút đọc', featured:false,
-    content:`<p>Quán cà phê đóng cửa lúc 11 giờ. Cô chủ quán nhắc khéo bằng cách lau bàn xung quanh mà không lau bàn tôi đang ngồi.</p><p>Tôi hiểu. Nhưng vẫn ngồi thêm năm phút.</p><p>Không phải vì không muốn về. Mà vì về rồi thì làm gì? Căn phòng trọ 25 mét vuông với cái quạt trần kêu vo ve và đống hồ sơ chưa xong. Ở đây ít nhất còn có tiếng nhạc, còn có người — dù là người lạ.</p><div class="brk">· · ·</div><p>Sài Gòn kỳ lạ lắm. Ban ngày chạy như ma đuổi, ban đêm lại làm người ta muốn ngồi yên một chỗ và nghĩ linh tinh.</p><p>Tôi nghĩ về mẹ. Về cuộc điện thoại hồi chiều bà hỏi <em>"ăn cơm chưa"</em> mà tôi trả lời <em>"rồi"</em> trong khi đang ăn mì gói.</p><p><em>Đang trên đường</em> — tôi thích cái cụm từ đó. Nghe như chưa đến nhưng cũng không phải lạc.</p><p>Cô chủ quán lại lau bàn. Lần này lau luôn bàn tôi.</p><p>Tôi đứng dậy, cảm ơn, bước ra đường. Sài Gòn 11 giờ đêm vẫn còn xe chạy, vẫn còn ai đó đang về muộn như tôi.</p><p>Không cô đơn lắm đâu — nếu bạn chịu nhìn xung quanh.</p>` },
+    content:`<p>Paris đẹp nhất lúc 7 giờ tối.</p><p>Mình biết vì đã đứng đó một mình, nhìn dòng người qua lại.</p><p>Và nghĩ: nếu anh ở đây, mình sẽ không dám nhìn lâu như vậy.</p><div class="brk">· · ·</div><p>Mình đến Paris vào một buổi sáng tháng Mười một, khi thành phố vừa tỉnh giấc và mùi bánh mì từ tiệm góc phố còn chưa kịp tan.</p><p>Người ta nói Paris lãng mạn nhất khi có đôi. Mình thì nghĩ — Paris lãng mạn nhất khi bạn đi một mình và trong túi còn đúng một tấm ảnh cũ.</p><p>Mình ngồi ở một quán nhỏ trên Rue Cler, gọi một ly cà phê đen và nhìn người ta đi qua. Một cặp đôi cãi nhau bằng tiếng Pháp — mình không hiểu họ nói gì, nhưng nhìn cách người con gái quay mặt đi, mình hiểu ngay. Cái kiểu quay mặt đó không cần phiên dịch.</p><div class="brk">· · ·</div><p>Anh từng nói muốn đưa mình đến đây. Mình từng tin.</p><p>Nhưng thôi — ly cà phê vẫn nóng, bánh croissant vẫn giòn, và Paris vẫn đẹp dù mình ngồi đây một mình. Có lẽ đó mới là điều thành phố này muốn dạy: <em>rằng vẻ đẹp không cần ai chứng kiến cùng mới thành thật.</em></p><p>Mình uống hết ly cà phê. Trả tiền. Đi tiếp.</p><p>Và lần đầu tiên sau rất lâu — mình thấy nhẹ.</p>` },
+
+  { id:2, tag:'Đô thị · Sài Gòn', cat:'dothi', title:'Sài Gòn Của Người Mới Đến',
+    excerpt:'Tuần đầu tiên ở Sài Gòn, mình không biết đường về nhà trọ nếu không có bản đồ. Không phải vì thành phố phức tạp. Mà vì mình chưa quen gọi nơi đó là nhà...',
+    date:'Tháng 5, 2026', readTime:'3 phút đọc', featured:false,
+    content:`<p>Tuần đầu tiên ở Sài Gòn, mình không biết đường về nhà trọ nếu không có bản đồ.</p><p>Không phải vì thành phố phức tạp. Mà vì mình chưa quen gọi nơi đó là nhà.</p><p>Phòng trọ quận 10. Chủ nhà dặn đóng cổng trước 11 giờ. Buổi sáng đầu tiên thức dậy nghe tiếng xe máy ào ào, cứ tưởng đang ngủ mơ. Ở quê mình, 6 giờ sáng vẫn còn chim hót.</p><div class="brk">· · ·</div><p>Người ta hay nói Sài Gòn hối hả.</p><p>Nhưng với mình tuần đầu tiên — Sài Gòn lạnh. Không phải lạnh nhiệt độ. Lạnh kiểu không ai nhìn mình khi bước vào thang máy. Lạnh kiểu xếp hàng chờ cơm trưa mà xung quanh ai cũng nhìn vào điện thoại.</p><p>Mình gọi về nhà chiều hôm đó. Mẹ hỏi: sao con? Mình nói: bình thường. Và không nói gì thêm.</p><p>Không phải vì không có gì để nói. Mà vì chưa biết bắt đầu từ đâu.</p><div class="brk">· · ·</div><p>Ngày thứ năm, mình lạc.</p><p>Không phải lạc xa — chỉ đi sai một con phố. Nhưng lúc đứng giữa ngã tư không biết rẽ hướng nào, mình nhận ra: đây là lần đầu kể từ khi lên đây mình không cầm điện thoại.</p><p>Chỉ đứng. Nhìn xung quanh. Và lần đầu tiên — thật sự nhìn thành phố này.</p><p>Một bà bán bánh mì trên vỉa hè. Hai đứa trẻ đuổi nhau qua hẻm. Một anh xe ôm ngủ gật trên yên xe. Phía xa — một tòa nhà cao tầng phản chiếu bầu trời chiều, cam và tím lẫn vào nhau.</p><p>Sài Gòn đẹp. Mình đã không kịp nhận ra vì quá bận lo mình có thích nghi được không.</p><div class="brk">· · ·</div><p>Người ta lên Sài Gòn để tìm cơ hội. Mình cũng vậy — nhưng mình không ngờ thứ đầu tiên Sài Gòn dạy lại là: cách nhìn.</p><p>Không phải nhìn vào bản đồ. Không phải nhìn vào màn hình. Mà nhìn ra ngoài — và nhận ra mình đang đứng trong một thành phố đang sống, đang thở, với triệu con người mỗi người một câu chuyện.</p><p>Và mình — với căn phòng trọ quận 10 và chưa quen đóng cổng trước 11 giờ — chỉ là một trong số đó.</p><p><em>Chưa thuộc về. Nhưng đang bắt đầu.</em></p>` },
+
   { id:3, tag:'Cảm xúc · Nội tâm', cat:'camxuc', title:'Người Hay Nghĩ Nhiều',
     excerpt:'Có những người sinh ra đã không biết cách sống nhẹ. Họ uống cà phê mà nghĩ về người đã mua cho họ ly đầu tiên...',
     date:'Tháng 3, 2026', readTime:'2 phút đọc', featured:false,
     content:`<p>Có những người sinh ra đã không biết cách sống nhẹ.</p><p>Họ uống cà phê mà nghĩ về người đã mua cho họ ly đầu tiên. Họ nghe một bài hát mà nhớ lại một buổi chiều không có gì đặc biệt — chỉ là nắng xiên qua cửa sổ và ai đó ngồi bên cạnh. Họ nhìn máy bay ngang trời và tự hỏi người trên đó đang về hay đang đi.</p><div class="brk">· · ·</div><p>Người ta bảo họ: <em>suy nghĩ nhiều quá, buông bớt đi.</em></p><p>Nhưng họ không biết buông kiểu nào. Với họ, nghĩ nhiều không phải gánh nặng — đó là cách họ yêu. Cách họ nhớ. Cách họ giữ những thứ quan trọng khỏi bị thời gian bào mòn.</p><p>Nên họ vẫn ngồi đây, tay cầm ly cà phê nguội, nhìn mưa ngoài cửa sổ.</p><p>Và nghĩ. Về bạn.</p>` },
+
   { id:4, tag:'Du ký · Kyoto', cat:'duky', title:'Kyoto Tháng Ba',
-    excerpt:'Hoa anh đào rụng như thể thành phố đang cố quên điều gì đó rất nặng. Tôi đứng giữa con đường trải hoa, lần đầu tiên không thấy cô đơn...',
+    excerpt:'Mình đến Kyoto đúng ngày hoa anh đào rụng. Không phải nở — rụng. Người ta chen nhau chụp ảnh hoa còn trên cành. Mình ngồi nhìn những cánh hoa rơi xuống mặt hồ...',
     date:'Tháng 3, 2026', readTime:'5 phút đọc', featured:false,
-    content:`<p>Hoa anh đào rụng như thể thành phố đang cố quên điều gì đó rất nặng.</p><p>Tôi đến Kyoto vào cuối tháng Ba, khi mùa sakura còn vài ngày nữa là tàn. Người Nhật gọi khoảnh thời gian này là <em>mono no aware</em> — vẻ đẹp của sự tàn phai. Không phải buồn. Mà là nhận ra rằng mọi thứ đẹp đều có hạn, và chính cái hữu hạn đó mới làm chúng đáng nhớ.</p><div class="brk">· · ·</div><p>Tôi ngồi trên bậc thềm một ngôi đền nhỏ ở Gion, nhìn hoa rụng. Bên cạnh tôi là một bà cụ người Nhật, cũng ngồi im. Chúng tôi không nói gì với nhau, không cần nói.</p><p>Có những khoảnh khắc ngôn ngữ là thừa.</p><p>Khi đứng dậy ra về, bà cụ mỉm cười nhìn tôi. Tôi mỉm cười lại.</p><p><em>Mono no aware.</em> Vẻ đẹp của điều tàn phai. Tôi hiểu rồi.</p>` },
+    content:`<p>Mình đến Kyoto đúng ngày hoa anh đào rụng.</p><p>Không phải nở — rụng.</p><p>Người ta chen nhau chụp ảnh hoa còn trên cành. Mình ngồi nhìn những cánh hoa rơi xuống mặt hồ và nghĩ: đây mới là phần đẹp nhất. Thứ không ai kịp chụp.</p><div class="brk">· · ·</div><p>Mình đến Kyoto vào cuối tháng Ba, khi mùa sakura còn vài ngày nữa là tàn. Người Nhật gọi khoảnh thời gian này là <em>mono no aware</em> — vẻ đẹp của sự tàn phai. Không phải buồn. Mà là nhận ra rằng mọi thứ đẹp đều có hạn, và chính cái hữu hạn đó mới làm chúng đáng nhớ.</p><div class="brk">· · ·</div><p>Mình ngồi trên bậc thềm một ngôi đền nhỏ ở Gion, nhìn hoa rụng. Bên cạnh mình là một bà cụ người Nhật, cũng ngồi im. Hai người không nói gì với nhau, không cần nói.</p><p>Có những khoảnh khắc ngôn ngữ là thừa.</p><p>Khi đứng dậy ra về, bà cụ mỉm cười nhìn mình. Mình mỉm cười lại.</p><p><em>Mono no aware.</em> Vẻ đẹp của điều tàn phai. Mình hiểu rồi.</p>` },
+
   { id:5, tag:'Đô thị · Hà Nội', cat:'dothi', title:'Hà Nội Mùa Cây Thay Lá',
-    excerpt:'Hà Nội có một mùa mà người Sài Gòn không có — mùa cây thay lá. Khi những hàng sấu trên phố Phan Đình Phùng bắt đầu đổi màu...',
+    excerpt:'Hà Nội có một mùi mình không thể mô tả cho người chưa đến. Không phải cà phê. Không phải phở. Là thứ mùi của một thành phố biết mình đang được nhớ...',
     date:'Tháng 2, 2026', readTime:'4 phút đọc', featured:false,
-    content:`<p>Hà Nội có một mùa mà người Sài Gòn không có — mùa cây thay lá.</p><p>Khi những hàng sấu trên phố Phan Đình Phùng bắt đầu đổi màu, cả thành phố như thở ra một hơi thật dài sau mùa hè nóng bức. Người ta đi chậm hơn. Nhìn lên nhiều hơn.</p><div class="brk">· · ·</div><p>Tôi ngồi ở một quán trà cổ trên phố Hàng Gai, nhìn lá vàng rơi ngoài cửa sổ. Người đàn ông bàn bên đang viết gì đó trong một cuốn sổ nhỏ. Một đôi trẻ đang cãi nhau khẽ khàng bằng giọng Hà Nội — không ồn ào như Sài Gòn, nhưng cũng không kém phần quyết liệt.</p><p>Hà Nội hay làm người ta muốn gọi điện cho ai đó mà không biết nói gì. Chỉ muốn kể: <em>hôm nay trời đẹp lắm, lá vàng đầy phố, mình đang nghĩ đến mày.</em></p><p>Nhưng người ta thường không gọi. Chỉ nghĩ thôi. Và lá cứ rơi. Đẹp mà không cần ai xem.</p>` },
+    content:`<p>Hà Nội có một mùi mình không thể mô tả cho người chưa đến.</p><p>Không phải cà phê. Không phải phở. Không phải mùi xăng xe hay mùi mưa trên nhựa đường nóng.</p><p>Là thứ mùi của một thành phố biết mình đang được nhớ.</p><div class="brk">· · ·</div><p>Hà Nội có một mùa mà người Sài Gòn không có — mùa cây thay lá.</p><p>Khi những hàng sấu trên phố Phan Đình Phùng bắt đầu đổi màu, cả thành phố như thở ra một hơi thật dài sau mùa hè nóng bức. Người ta đi chậm hơn. Nhìn lên nhiều hơn.</p><div class="brk">· · ·</div><p>Mình ngồi ở một quán trà cổ trên phố Hàng Gai, nhìn lá vàng rơi ngoài cửa sổ. Người đàn ông bàn bên đang viết gì đó trong một cuốn sổ nhỏ. Một đôi trẻ đang cãi nhau khẽ khàng bằng giọng Hà Nội — không ồn ào như Sài Gòn, nhưng cũng không kém phần quyết liệt.</p><p>Hà Nội hay làm người ta muốn gọi điện cho ai đó mà không biết nói gì. Chỉ muốn kể: <em>hôm nay trời đẹp lắm, lá vàng đầy phố, mình đang nghĩ đến mày.</em></p><p>Nhưng người ta thường không gọi. Chỉ nghĩ thôi. Và lá cứ rơi. Đẹp mà không cần ai xem.</p>` },
+
   { id:6, tag:'Tình yêu · Kỷ niệm', cat:'tinhyeu', title:'Cà Phê Và Những Điều Chưa Nói',
-    excerpt:'Có những cuộc trò chuyện kéo dài ba tiếng nhưng không câu nào là câu quan trọng nhất. Câu quan trọng nhất thì không ai nói...',
+    excerpt:'Hai người ngồi với nhau 3 tiếng. Cà phê nguội lần hai. Và điều quan trọng nhất — vẫn không ai nói...',
     date:'Tháng 1, 2026', readTime:'3 phút đọc', featured:false,
-    content:`<p>Có những cuộc trò chuyện kéo dài ba tiếng nhưng không câu nào là câu quan trọng nhất. Câu quan trọng nhất thì không ai nói.</p><p>Chúng tôi ngồi ở cái quán cà phê quen đó — cái bàn góc, cạnh cửa sổ nhìn ra hàng cây. Như mọi lần. Cà phê vẫn vị đó, nhạc vẫn bài đó, nhưng mọi thứ đã khác từ lúc nào không rõ.</p><div class="brk">· · ·</div><p>Anh hỏi tôi dạo này có ổn không. Tôi nói ổn. Anh gật đầu. Tôi biết anh không tin, anh biết tôi đang nói dối. Nhưng cả hai đều không nói gì thêm.</p><p>Đôi khi im lặng là cách nhân từ nhất để từ biệt.</p><p>Tôi nhìn anh lần cuối khi anh đang nhìn ra cửa sổ. Ánh sáng chiều buông qua tóc anh. Tôi muốn nói rất nhiều thứ.</p><p>Nhưng thôi. Có những điều chỉ nên để trong ly cà phê nguội — <em>biết rồi, hiểu rồi, buông thôi.</em></p><p>Tôi trả tiền trước khi anh kịp phản ứng. Đứng dậy. Mỉm cười. Bước ra ngoài. Không ngoái lại.</p>` },
+    content:`<p>Hai người ngồi với nhau 3 tiếng.</p><p>Cà phê nguội lần hai.</p><p>Và điều quan trọng nhất — vẫn không ai nói.</p><div class="brk">· · ·</div><p>Có những cuộc trò chuyện kéo dài ba tiếng nhưng không câu nào là câu quan trọng nhất. Câu quan trọng nhất thì không ai nói.</p><p>Hai người ngồi ở cái quán cà phê quen đó — cái bàn góc, cạnh cửa sổ nhìn ra hàng cây. Như mọi lần. Cà phê vẫn vị đó, nhạc vẫn bài đó, nhưng mọi thứ đã khác từ lúc nào không rõ.</p><div class="brk">· · ·</div><p>Anh hỏi mình dạo này có ổn không. Mình nói ổn. Anh gật đầu. Mình biết anh không tin, anh biết mình đang nói dối. Nhưng cả hai đều không nói gì thêm.</p><p>Đôi khi im lặng là cách nhân từ nhất để từ biệt.</p><p>Mình nhìn anh lần cuối khi anh đang nhìn ra cửa sổ. Ánh sáng chiều buông qua tóc anh. Mình muốn nói rất nhiều thứ.</p><p>Nhưng thôi. Có những điều chỉ nên để trong ly cà phê nguội — <em>biết rồi, hiểu rồi, buông thôi.</em></p><p>Mình trả tiền trước khi anh kịp phản ứng. Đứng dậy. Mỉm cười. Bước ra ngoài. Không ngoái lại.</p>` },
+
   { id:7, tag:'Du ký · London', cat:'duky', title:'London Có Mưa Như Mình Đã Hứa',
-    excerpt:'Anh hứa sẽ đưa tôi đến London. Cơn mưa đến đúng hẹn — anh thì không. Có những lời hứa chỉ thành phố mới giữ được...',
+    excerpt:'Anh hứa sẽ đưa mình đến London. Cơn mưa đến đúng hẹn — anh thì không. Có những lời hứa chỉ thành phố mới giữ được...',
     date:'Tháng 5, 2026', readTime:'4 phút đọc', featured:false,
-    content:`<p>Anh hứa sẽ đưa tôi đến London.</p><p>Cơn mưa đến đúng hẹn — anh thì không. Và tôi học được rằng: có những lời hứa chỉ thành phố mới giữ được.</p><div class="brk">· · ·</div><p>London mưa suốt 3 ngày tôi ở đó.</p><p>Tôi chui vào một tiệm sách cũ trên Charing Cross Road, ngồi đọc những cuốn sách không định mua. Ông già bán hàng nhìn tôi và nói: <em>"You look like someone who reads to forget."</em></p><p>Tôi mua 3 cuốn. Đọc hết trên tàu điện ngầm. Và trong suốt hành trình đó — tôi không nghĩ đến anh lần nào.</p><div class="brk">· · ·</div><p>Có lẽ đó là cách London giữ lời hứa thay anh. Không xóa đi. Chỉ cho tôi đủ thứ khác để đọc, để thở. Đủ để quên — dù chỉ một lúc thôi.</p><p><em>Và đôi khi chỉ một lúc thôi — là đủ rồi.</em></p>` },
+    content:`<p>Anh hứa sẽ đưa mình đến London.</p><p>Cơn mưa đến đúng hẹn — anh thì không. Và mình học được rằng: có những lời hứa chỉ thành phố mới giữ được.</p><div class="brk">· · ·</div><p>London mưa suốt 3 ngày mình ở đó.</p><p>Mình chui vào một tiệm sách cũ trên Charing Cross Road, ngồi đọc những cuốn sách không định mua. Ông già bán hàng nhìn mình và nói: <em>"You look like someone who reads to forget."</em></p><p>Mình mua 3 cuốn. Đọc hết trên tàu điện ngầm. Và trong suốt hành trình đó — mình không nghĩ đến anh lần nào.</p><div class="brk">· · ·</div><p>Có lẽ đó là cách London giữ lời hứa thay anh. Không xóa đi. Chỉ cho mình đủ thứ khác để đọc, để thở. Đủ để quên — dù chỉ một lúc thôi.</p><p><em>Và đôi khi chỉ một lúc thôi — là đủ rồi.</em></p>` },
 
   { id:8, tag:'Du ký · Amsterdam', cat:'duky', title:'Amsterdam — Những Chiếc Xe Đạp Cũ',
-    excerpt:'Dưới đáy kênh Amsterdam có hàng nghìn chiếc xe đạp bị bỏ lại. Tôi đứng trên cầu nhìn xuống và tự hỏi: mình đã bỏ lại gì ở những thành phố mình đã qua?',
+    excerpt:'Dưới đáy kênh Amsterdam có hàng nghìn chiếc xe đạp bị bỏ lại. Mình đứng trên cầu nhìn xuống và tự hỏi: mình đã bỏ lại gì ở những thành phố mình đã qua?',
     date:'Tháng 5, 2026', readTime:'4 phút đọc', featured:false,
-    content:`<p>Dưới đáy kênh Amsterdam có hàng nghìn chiếc xe đạp bị bỏ lại.</p><p>Tôi đứng trên cầu nhìn xuống và tự hỏi: mình đã bỏ lại gì ở những thành phố mình đã qua?</p><div class="brk">· · ·</div><p>Amsterdam không có nhiều xe máy. Người ta đi xe đạp — cả người già lẫn trẻ con, cả người mặc vest lẫn người mặc váy dài. Xe đạp ở đây không phải phương tiện. Nó là ngôn ngữ.</p><p>Tôi mượn một chiếc xe đạp cũ từ hostel và đạp dọc kênh đào lúc 7 giờ sáng. Sương còn đọng trên mặt nước. Mùi bánh mì và cà phê len lỏi từ những tiệm nhỏ chưa mở cửa.</p><div class="brk">· · ·</div><p>Rồi tôi dừng lại ở một cây cầu. Nhìn xuống một chiếc xe đạp rỉ sét nằm dưới đáy kênh — có thể ở đó đã nhiều năm. Chủ nhân của nó đang ở đâu bây giờ? Hay đã lâu rồi không còn nhớ tới?</p><p>Thành phố này không có chỗ cho người đứng im quá lâu. Nó chỉ hiểu ngôn ngữ của người đang đi.</p><p><em>Vậy thì tôi đạp tiếp.</em></p>` },
+    content:`<p>Dưới đáy kênh Amsterdam có hàng nghìn chiếc xe đạp bị bỏ lại.</p><p>Mình đứng trên cầu nhìn xuống và tự hỏi: mình đã bỏ lại gì ở những thành phố mình đã qua?</p><div class="brk">· · ·</div><p>Amsterdam không có nhiều xe máy. Người ta đi xe đạp — cả người già lẫn trẻ con, cả người mặc vest lẫn người mặc váy dài. Xe đạp ở đây không phải phương tiện. Nó là ngôn ngữ.</p><p>Mình mượn một chiếc xe đạp cũ từ hostel và đạp dọc kênh đào lúc 7 giờ sáng. Sương còn đọng trên mặt nước. Mùi bánh mì và cà phê len lỏi từ những tiệm nhỏ chưa mở cửa.</p><div class="brk">· · ·</div><p>Rồi mình dừng lại ở một cây cầu. Nhìn xuống một chiếc xe đạp rỉ sét nằm dưới đáy kênh — có thể ở đó đã nhiều năm. Chủ nhân của nó đang ở đâu bây giờ? Hay đã lâu rồi không còn nhớ tới?</p><p>Thành phố này không có chỗ cho người đứng im quá lâu. Nó chỉ hiểu ngôn ngữ của người đang đi.</p><p><em>Vậy thì mình đạp tiếp.</em></p>` },
 
   { id:9, tag:'Cảm xúc · Đêm khuya', cat:'camxuc', title:'2 Giờ Sáng Là Giờ Của Người Thật Thà Nhất',
     excerpt:'2 giờ sáng là giờ của người thật thà nhất. Không phải vì người ta muốn thật thà. Mà vì không còn đủ sức để diễn nữa...',
@@ -1364,9 +1387,9 @@ let DB = JSON.parse(localStorage.getItem('cnnhn_stories') || 'null') || [
     content:`<p>2 giờ sáng là giờ của người thật thà nhất.</p><p>Không phải vì người ta muốn thật thà. Mà vì không còn đủ sức để diễn nữa.</p><div class="brk">· · ·</div><p>Ban ngày có quá nhiều thứ phải giữ. Phải ổn. Phải vui. Phải "bình thường" khi người ta hỏi dạo này thế nào.</p><p>Nhưng 2 giờ sáng thì không còn ai hỏi nữa. Chỉ còn bạn và cái điện thoại. Và đôi khi là một ly cà phê nguội từ lúc chiều chưa uống hết.</p><p>Những tin nhắn quan trọng nhất thường được gửi lúc 2 giờ sáng. Những quyết định thay đổi cuộc đời thường được đưa ra lúc 2 giờ sáng. Và những cảm xúc người ta chôn suốt ngày — cũng chờ đến lúc này mới chịu trồi lên.</p><div class="brk">· · ·</div><p>Bạn đang đọc cái này lúc mấy giờ?</p><p>Nếu đang là đêm khuya — thì mình hiểu.</p><p><em>Không cần phải ổn lúc 2 giờ sáng.</em></p>` },
 
   { id:10, tag:'Tình yêu · Ký ức', cat:'tinhyeu', title:'Mùi Của Ai Đó',
-    excerpt:'Có một mùi cà phê làm tôi nghĩ đến một người cụ thể. Không phải vì người đó thích cà phê. Mà vì lần đầu tiên tôi uống cà phê với ai đó — là với người đó...',
+    excerpt:'Có một mùi cà phê làm mình nghĩ đến một người cụ thể. Không phải vì người đó thích cà phê. Mà vì lần đầu tiên mình uống cà phê với ai đó — là với người đó...',
     date:'Tháng 5, 2026', readTime:'3 phút', featured:false, reads:0,
-    content:`<p>Có một mùi cà phê làm tôi nghĩ đến một người cụ thể.</p><p>Không phải vì người đó thích cà phê. Mà vì lần đầu tiên tôi uống cà phê với ai đó — là với người đó.</p><div class="brk">· · ·</div><p>Khoa học gọi đó là olfactory memory — ký ức khứu giác. Não bộ kết nối mùi hương với cảm xúc mạnh hơn bất kỳ giác quan nào khác. Đó là lý do một mùi nước hoa cũ có thể làm bạn đứng yên giữa đường trong một giây.</p><p>Mùi áo len cũ. Mùi nước mưa trên nhựa đường. Mùi trang sách mới. Mỗi thứ gắn với một người, một khoảnh khắc, một phiên bản của mình đã không còn tồn tại nữa.</p><div class="brk">· · ·</div><p>Người ta đến rồi đi. Nhưng mùi của họ thì ở lại.</p><p>Không hỏi phép. Không báo trước.</p><p><em>Chỉ đột nhiên xuất hiện giữa một buổi chiều bình thường — và làm bạn đứng yên một giây.</em></p><p>Một giây thôi. Rồi tiếp tục đi.</p>` },
+    content:`<p>Có một mùi cà phê làm mình nghĩ đến một người cụ thể.</p><p>Không phải vì người đó thích cà phê. Mà vì lần đầu tiên mình uống cà phê với ai đó — là với người đó.</p><div class="brk">· · ·</div><p>Khoa học gọi đó là olfactory memory — ký ức khứu giác. Não bộ kết nối mùi hương với cảm xúc mạnh hơn bất kỳ giác quan nào khác. Đó là lý do một mùi nước hoa cũ có thể làm bạn đứng yên giữa đường trong một giây.</p><p>Mùi áo len cũ. Mùi nước mưa trên nhựa đường. Mùi trang sách mới. Mỗi thứ gắn với một người, một khoảnh khắc, một phiên bản của mình đã không còn tồn tại nữa.</p><div class="brk">· · ·</div><p>Người ta đến rồi đi. Nhưng mùi của họ thì ở lại.</p><p>Không hỏi phép. Không báo trước.</p><p><em>Chỉ đột nhiên xuất hiện giữa một buổi chiều bình thường — và làm bạn đứng yên một giây.</em></p><p>Một giây thôi. Rồi tiếp tục đi.</p>` },
 
   { id:11, tag:'Tình cảm · Gia đình', cat:'tinhyeu', title:'Người Hay Nhắn "Ăn Cơm Chưa"',
     excerpt:'Có người hay nhắn mình "ăn cơm chưa?" vào đúng lúc 12 giờ trưa. Không phải vì họ đói. Mà vì đó là cách họ nói: mình đang nghĩ đến mày...',
@@ -1374,24 +1397,64 @@ let DB = JSON.parse(localStorage.getItem('cnnhn_stories') || 'null') || [
     content:`<p>Có người hay nhắn mình "ăn cơm chưa?" vào đúng lúc 12 giờ trưa.</p><p>Không phải vì họ đói. Mà vì đó là cách họ nói: mình đang nghĩ đến mày.</p><div class="brk">· · ·</div><p>Tiếng Việt hay làm vậy. Không nói thẳng "mình nhớ mày" hay "mình care về mày" — mà hỏi ăn cơm chưa, ngủ được không, trời mưa có lạnh không.</p><p>Những câu hỏi nhỏ nhất đôi khi chứa tình cảm lớn nhất.</p><div class="brk">· · ·</div><p>Hôm nay mình ngồi ăn một mình, không có ai nhắn. Và mình mới nhận ra — mình đã quen với tiếng "ting" đó hơn mình nghĩ.</p><p>Quen đến mức khi nó không còn nữa, mình mới biết nó quan trọng thế nào.</p><p><em>Nếu bạn có người hay hỏi "ăn cơm chưa?" — giữ người đó lại nhé.</em></p>` },
 
   { id:12, tag:'Du ký · Đà Lạt', cat:'duky', title:'Thành Phố Nào Bạn Chỉ Muốn Đến Một Mình',
-    excerpt:'"Đà Lạt thương người đến một mình hơn." Bà chủ quán cà phê nói câu đó và tôi ngồi nghĩ mãi. Không phải vì câu đó đúng — mà vì tôi cảm giác bà đang nói về mình...',
+    excerpt:'Mình có một thành phố không muốn đưa ai đến cùng. Không phải vì ích kỷ. Mà vì ở đó — mình mới là mình nhất. Và mình chưa sẵn sàng để ai nhìn thấy phiên bản đó...',
     date:'Tháng 5, 2026', readTime:'4 phút', featured:false, reads:0,
-    content:`<p>"Đà Lạt thương người đến một mình hơn."</p><p>Bà chủ quán cà phê nói câu đó và tôi ngồi nghĩ mãi. Không phải vì câu đó đúng — mà vì tôi cảm giác bà đang nói về mình.</p><div class="brk">· · ·</div><p>Tôi đến Đà Lạt vào tháng Tám — khi trời hay mưa và thành phố có vẻ mệt mỏi nhất. Ít khách du lịch hơn. Người ta đi chậm hơn. Quán cà phê vắng hơn và chủ quán hay kéo ghế ngồi nói chuyện với khách lạ như tôi.</p><p>Có những thành phố chỉ cho bạn thấy phần thật nhất của chúng khi bạn đến một mình và không vội. Đà Lạt là một trong số đó.</p><div class="brk">· · ·</div><p>Ngồi nghe tiếng mưa rơi trên mái tôn, tay cầm ly cà phê sữa đá, nhìn ra con dốc mờ sương — tôi không nhớ lần cuối mình ngồi yên như thế này là khi nào.</p><p><em>Đôi khi đi một mình không phải vì cô đơn. Mà vì chỉ khi đi một mình, bạn mới thật sự gặp được mình.</em></p>` },
+    content:`<p>Mình có một thành phố không muốn đưa ai đến cùng.</p><p>Không phải vì ích kỷ.</p><p>Mà vì ở đó — mình mới là mình nhất. Và mình chưa sẵn sàng để ai nhìn thấy phiên bản đó.</p><div class="brk">· · ·</div><p>"Đà Lạt thương người đến một mình hơn."</p><p>Bà chủ quán cà phê nói câu đó và mình ngồi nghĩ mãi. Không phải vì câu đó đúng — mà vì mình cảm giác bà đang nói về mình.</p><div class="brk">· · ·</div><p>Mình đến Đà Lạt vào tháng Tám — khi trời hay mưa và thành phố có vẻ mệt mỏi nhất. Ít khách du lịch hơn. Người ta đi chậm hơn. Quán cà phê vắng hơn và chủ quán hay kéo ghế ngồi nói chuyện với khách lạ như mình.</p><p>Có những thành phố chỉ cho bạn thấy phần thật nhất của chúng khi bạn đến một mình và không vội. Đà Lạt là một trong số đó.</p><div class="brk">· · ·</div><p>Ngồi nghe tiếng mưa rơi trên mái tôn, tay cầm ly cà phê sữa đá, nhìn ra con dốc mờ sương — mình không nhớ lần cuối mình ngồi yên như thế này là khi nào.</p><p><em>Đôi khi đi một mình không phải vì cô đơn. Mà vì chỉ khi đi một mình, bạn mới thật sự gặp được mình.</em></p>` },
 
-  { id:13, tag:'Tình yêu · Nội tâm', cat:'tinhyeu', title:'Dấu Hiệu Bạn Đang Yêu Kiểu Người Hay Nghĩ Nhiều',
-    excerpt:'Bạn nhớ họ không phải lúc nào cũng vui — mà nhớ cả lúc họ im lặng. Nhớ cái cách họ cầm ly cà phê. Nhớ câu họ nói rồi lại thôi...',
+  { id:13, tag:'Cảm xúc · Nội tâm', cat:'camxuc', title:'Dấu Hiệu Bạn Đang Sống Quá Lâu Trong Đầu Mình',
+    excerpt:'Mình từng trả lời một tin nhắn chưa ai gửi. Trong đầu. Ba lần. Lần đầu thì nhẹ nhàng. Lần hai thì đanh hơn một chút. Lần ba thì mình đã nghĩ đến cả cách đối phương sẽ phản ứng...',
     date:'Tháng 5, 2026', readTime:'3 phút', featured:false, reads:0,
-    content:`<p>Bạn nhớ họ không phải lúc nào cũng vui — mà nhớ cả lúc họ im lặng.</p><p>Nhớ cái cách họ cầm ly cà phê. Nhớ câu họ nói rồi lại thôi, như thể có điều gì đó họ muốn nói mà không nói được.</p><div class="brk">· · ·</div><p>Bạn hay tự hỏi họ đang nghĩ gì khi nhìn ra cửa sổ.</p><p>Bạn lưu những bài hát họ nhắc đến — dù không hỏi tại sao họ nhắc.</p><p>Và đôi khi bạn viết những thứ không gửi cho họ — chỉ để biết mình đang cảm gì.</p><div class="brk">· · ·</div><p>Yêu kiểu người hay nghĩ nhiều không ồn ào. Không dramatic.</p><p>Nó chỉ là — <em>bạn để ý những thứ người khác không để ý. Và bạn nhớ lâu hơn người ta tưởng.</em></p>`},
+    content:`<p>Mình từng trả lời một tin nhắn chưa ai gửi.</p><p>Trong đầu.</p><p>Ba lần.</p><p>Lần đầu thì nhẹ nhàng. Lần hai thì đanh hơn một chút. Lần ba thì mình đã nghĩ đến cả cách đối phương sẽ phản ứng — và đã chuẩn bị câu trả lời cho cái phản ứng đó luôn.</p><p>Tất cả xảy ra trong khoảng bảy phút, trong khi mình đang rửa bát.</p><div class="brk">· · ·</div><p>Có một phiên bản của mình chỉ tồn tại trong đầu mình.</p><p>Phiên bản đó nói chuyện rất giỏi. Luôn biết cần nói gì, lúc nào nên dừng, lúc nào nên đẩy thêm. Không run giọng, không mất từ giữa chừng, không cười trừ khi không biết làm gì khác.</p><p>Phiên bản đó sống trong những cuộc trò chuyện chưa xảy ra — và có lẽ sẽ không bao giờ xảy ra.</p><p>Mình hay gặp nó nhất vào lúc nằm xuống chuẩn bị ngủ.</p><div class="brk">· · ·</div><p>1 giờ sáng. Phòng tối. Màn hình điện thoại tắt nhưng mình vẫn cầm trong tay — kiểu cầm không phải để xem gì, chỉ để có cái gì đó cầm.</p><p>Ngoài đường vẫn còn tiếng xe. Không nhiều, chỉ đủ để mình biết thế giới vẫn đang chạy mà không cần mình.</p><p>Và mình nằm đó, nhìn lên trần nhà tối, và bắt đầu soạn.</p><p>Không phải soạn tin nhắn. Soạn kịch bản.</p><p>Buổi sáng mai mình sẽ nói gì. Người kia sẽ nói gì. Mình sẽ trả lời ra sao. Nếu người kia làm vậy thì mình làm thế này. Nếu không thì mình làm thế kia. Nếu—</p><p>Mình bắt đầu từ một điểm rất nhỏ và đi rất xa trong khoảng nửa tiếng.</p><p>Khi nhận ra thì đã 1 giờ 47 phút.</p><div class="brk">· · ·</div><p>Mình không biết khi nào mình bắt đầu sống nhiều hơn trong đầu hơn là ở ngoài kia.</p><p>Có lẽ là dần dần. Kiểu như nước ngấm vào tường — không thấy lúc bắt đầu, chỉ thấy khi mốc đã lên rồi.</p><p>Lúc đầu chỉ là chuẩn bị cho những cuộc trò chuyện khó. Hợp lý mà. Rồi mình bắt đầu chuẩn bị cho cả những cuộc bình thường. Rồi những tình huống chưa có. Rồi những tình huống mình không chắc có xảy ra không.</p><p>Rồi một ngày mình đang đứng ngoài đường, nắng đang chiếu, một người đàn ông bán cà phê vỉa hè đang nhìn mình hỏi "em uống gì" — và mình mất ba giây mới trả lời được, vì đang ở giữa một cuộc cãi vã tưởng tượng không liên quan gì đến cà phê hay buổi sáng hôm đó.</p><div class="brk">· · ·</div><p>Vấn đề không phải là mình nghĩ nhiều.</p><p>Vấn đề là mình sống nhiều hơn trong những kịch bản chưa xảy ra hơn là trong cái đang xảy ra.</p><p>Bữa cơm đang ăn thì mình đang ở cuộc họp sáng mai.</p><p>Cuộc họp sáng mai thì mình đang ở cuộc trò chuyện chưa có của tuần tới.</p><p>Và cứ vậy — mình luôn ở một chỗ khác, một thời điểm khác, một phiên bản khác của cuộc sống mình chưa chạm đến.</p><p>Hiện tại thì trống.</p><p>Vì mình không có mặt trong đó.</p><div class="brk">· · ·</div><p>Đêm hôm đó mình để điện thoại xuống.</p><p>Không phải vì quyết định gì to tát. Chỉ vì tay mỏi.</p><p>Nằm yên. Nghe tiếng xe ngoài đường. Tiếng một con mèo kêu đâu đó. Tiếng quạt trong phòng quay đều.</p><p>Mình cố — chỉ nghe. Không soạn gì. Không chuẩn bị gì.</p><p>Chỉ nghe cái tiếng quạt đó quay.</p><p>Khoảng bốn mươi giây sau thì đầu mình bắt đầu soạn tiếp.</p><p>Mình thở ra. Dài.</p><p>Rồi lại nghe tiếng quạt.</p><p>Lần này được năm mươi giây.</p><div class="brk">· · ·</div><p>Mình không biết đây có phải là "trở lại hiện tại" như người ta hay nói không.</p><p>Nghe có vẻ quá gọn cho thứ mình đang làm.</p><p>Mình chỉ đang học cách nhận ra — ồ, mình đang không ở đây.</p><p>Rồi quay lại.</p><p>Rồi lại đi.</p><p>Rồi lại quay lại.</p><p>Không phải một lần là xong.</p><p>Cái tiếng quạt vẫn còn đó. Tiếng xe vẫn còn đó. Và mình — đang cố ở trong phòng này thêm một chút nữa, trước khi đầu mình mở ra kịch bản tiếp theo.</p><p>Năm mươi giây.</p><p>Rồi một phút.</p><p>Chưa nhiều.</p><p><em>Nhưng hơn hôm qua.</em></p>`},
 
   { id:14, tag:'Du ký · Paris', cat:'duky', title:'Paris Chỉ Cần Bạn Có Mặt Ở Đó',
-    excerpt:'Tôi đến Paris không phải để chữa lành. Tôi đến vì vé máy bay rẻ, vì phép năm chưa dùng, và vì một buổi sáng nào đó mình nhận ra mình không biết mình thích gì nữa...',
+    excerpt:'Người ta hay hỏi Paris có gì đặc biệt. Mình không biết trả lời sao cho đúng. Chỉ biết là ở đó — mình không cần là ai khác ngoài mình...',
     date:'Tháng 5, 2026', readTime:'5 phút', featured:false, reads:0,
-    content:`<p>Tôi đến Paris không phải để chữa lành.</p><p>Tôi đến vì vé máy bay rẻ, vì phép năm chưa dùng, và vì một buổi sáng nào đó mình nhận ra mình không biết mình thích gì nữa.</p><div class="brk">· · ·</div><p>Ngày đầu tiên, tôi lạc.</p><p>Không phải lạc đường theo nghĩa bình thường. Tôi có Google Maps. Tôi biết mình đang ở đâu.</p><p>Nhưng tôi đứng giữa một khu chợ nhỏ ở một con phố không có trong danh sách "top 10 điểm đến Paris", nhìn một bà cụ người Pháp đang chọn từng quả cà chua một — chậm, kỹ, như thể đó là việc quan trọng nhất buổi sáng hôm đó —</p><p>và tôi nghĩ: Mình đã lâu rồi không làm gì chậm như vậy.</p><div class="brk">· · ·</div><p>Tôi gặp anh ở đó. Không phải kiểu gặp trong phim. Không có ánh mắt. Không có nhạc nền.</p><p>Anh chỉ đứng cạnh tôi, tay cầm một ổ bánh mì, và hỏi bằng tiếng Anh giọng lơ lớ: "Bạn biết chỗ nào uống cà phê ngon không? Tôi đã hỏi ba người rồi, mỗi người chỉ một hướng khác nhau."</p><p>Tôi cũng không biết. Nhưng chúng tôi đi tìm cùng nhau.</p><div class="brk">· · ·</div><p>Anh là người Singapore. Làm trong lĩnh vực tài chính. Đang có một tuần nghỉ mà theo lời anh: "Tôi không biết làm gì với một tuần ngoài việc làm việc."</p><p>Tôi nói tôi hiểu cảm giác đó. Anh nhìn tôi như thể tôi vừa nói điều gì đó quan trọng.</p><p>Chúng tôi uống cà phê ở một tiệm nhỏ, không có bảng hiệu to, chỉ có hai chiếc bàn ngoài vỉa hè và một ông chủ người Pháp trông như ông ta thà đóng cửa còn hơn phục vụ khách du lịch. Nhưng cà phê ngon. Và buổi sáng đó dài hơn tôi tưởng.</p><div class="brk">· · ·</div><p>Chúng tôi đi ba ngày. Không có kế hoạch. Không có danh sách điểm đến.</p><p>Có những người mình gặp và ngay lập tức hiểu — không phải vì giống nhau, mà vì cùng đang ở một chỗ giống nhau trong đời.</p><div class="brk">· · ·</div><p>Ngày thứ ba, chúng tôi ngồi trên bậc thềm nhìn ra một quảng trường nhỏ không có trong cuốn guidebook nào.</p><p>Anh hỏi: "Bạn nghĩ người ta đến Paris để tìm gì?"</p><p>Tôi nghĩ một lúc. "Chắc để tìm thứ gì đó mình không biết tên."</p><p>Anh gật đầu. Rồi nói rất khẽ: "Tôi nghĩ tôi vừa tìm thấy."</p><p>Tôi không hỏi đó là gì. Vì tôi cũng không chắc mình muốn biết câu trả lời.</p><div class="brk">· · ·</div><p>Ngày thứ tư, anh bay về Singapore. Tôi bay về Việt Nam. Chúng tôi không xin số điện thoại nhau.</p><p>Không phải vì quên. Không phải vì không muốn.</p><p>Chỉ là có những buổi sáng đẹp vừa đủ để là chính nó — không cần kéo dài thêm.</p><div class="brk">· · ·</div><p>Tôi không biết anh tên gì.</p><p>Sau này, mỗi lần đi qua một khu chợ buổi sáng, nhìn thấy ai đó đang chọn rau chậm rãi — tôi lại nghĩ đến Paris.</p><p>Không phải nghĩ đến anh. Nghĩ đến phiên bản của mình đứng giữa khu chợ đó, lần đầu tiên sau rất lâu không biết mình đang ở đâu — <em>và thấy điều đó ổn.</em></p>` },
+    content:`<p>Người ta hay hỏi Paris có gì đặc biệt.</p><p>Mình không biết trả lời sao cho đúng.</p><p>Chỉ biết là ở đó — mình không cần là ai khác ngoài mình.</p><div class="brk">· · ·</div><p>Mình đến Paris không phải để chữa lành.</p><p>Mình đến vì vé máy bay rẻ, vì phép năm chưa dùng, và vì một buổi sáng nào đó mình nhận ra mình không biết mình thích gì nữa.</p><div class="brk">· · ·</div><p>Ngày đầu tiên, mình lạc.</p><p>Không phải lạc đường theo nghĩa bình thường. Mình có Google Maps. Mình biết mình đang ở đâu.</p><p>Nhưng mình đứng giữa một khu chợ nhỏ ở một con phố không có trong danh sách "top 10 điểm đến Paris", nhìn một bà cụ người Pháp đang chọn từng quả cà chua một — chậm, kỹ, như thể đó là việc quan trọng nhất buổi sáng hôm đó —</p><p>và mình nghĩ: Mình đã lâu rồi không làm gì chậm như vậy.</p><div class="brk">· · ·</div><p>Mình gặp anh ở đó. Không phải kiểu gặp trong phim. Không có ánh mắt. Không có nhạc nền.</p><p>Anh chỉ đứng cạnh mình, tay cầm một ổ bánh mì, và hỏi bằng tiếng Anh giọng lơ lớ: "Bạn biết chỗ nào uống cà phê ngon không? Tôi đã hỏi ba người rồi, mỗi người chỉ một hướng khác nhau."</p><p>Mình cũng không biết. Nhưng hai đứa đi tìm cùng nhau.</p><div class="brk">· · ·</div><p>Anh là người Singapore. Làm trong lĩnh vực tài chính. Đang có một tuần nghỉ mà theo lời anh: "Tôi không biết làm gì với một tuần ngoài việc làm việc."</p><p>Mình nói mình hiểu cảm giác đó. Anh nhìn mình như thể mình vừa nói điều gì đó quan trọng.</p><p>Hai đứa uống cà phê ở một tiệm nhỏ, không có bảng hiệu to, chỉ có hai chiếc bàn ngoài vỉa hè và một ông chủ người Pháp trông như ông ta thà đóng cửa còn hơn phục vụ khách du lịch. Nhưng cà phê ngon. Và buổi sáng đó dài hơn mình tưởng.</p><div class="brk">· · ·</div><p>Hai đứa đi ba ngày. Không có kế hoạch. Không có danh sách điểm đến.</p><p>Có những người mình gặp và ngay lập tức hiểu — không phải vì giống nhau, mà vì cùng đang ở một chỗ giống nhau trong đời.</p><div class="brk">· · ·</div><p>Ngày thứ ba, hai đứa ngồi trên bậc thềm nhìn ra một quảng trường nhỏ không có trong cuốn guidebook nào.</p><p>Anh hỏi: "Bạn nghĩ người ta đến Paris để tìm gì?"</p><p>Mình nghĩ một lúc. "Chắc để tìm thứ gì đó mình không biết tên."</p><p>Anh gật đầu. Rồi nói rất khẽ: "Tôi nghĩ tôi vừa tìm thấy."</p><p>Mình không hỏi đó là gì. Vì mình cũng không chắc mình muốn biết câu trả lời.</p><div class="brk">· · ·</div><p>Ngày thứ tư, anh bay về Singapore. Mình bay về Việt Nam. Hai đứa không xin số điện thoại nhau.</p><p>Không phải vì quên. Không phải vì không muốn.</p><p>Chỉ là có những buổi sáng đẹp vừa đủ để là chính nó — không cần kéo dài thêm.</p><div class="brk">· · ·</div><p>Mình không biết anh tên gì.</p><p>Sau này, mỗi lần đi qua một khu chợ buổi sáng, nhìn thấy ai đó đang chọn rau chậm rãi — mình lại nghĩ đến Paris.</p><p>Không phải nghĩ đến anh. Nghĩ đến phiên bản của mình đứng giữa khu chợ đó, lần đầu tiên sau rất lâu không biết mình đang ở đâu — <em>và thấy điều đó ổn.</em></p>` },
 
-  { id:15, tag:'Du ký · Oxford', cat:'duky', title:'Oxford, Một Buổi Chiều, Và Người Tôi Không Kịp Hỏi Tên',
-    excerpt:'Có những người mình gặp đúng một lần. Không đủ lâu để thành kỷ niệm. Nhưng lại đủ để thỉnh thoảng nhớ lại vào những buổi chiều không có lý do gì cả...',
-    date:'Tháng 5, 2026', readTime:'5 phút', featured:false, reads:0,
-    content:`<p>Có những người mình gặp đúng một lần.</p><p>Không đủ lâu để thành kỷ niệm. Nhưng lại đủ để thỉnh thoảng nhớ lại vào những buổi chiều không có lý do gì cả.</p><div class="brk">· · ·</div><p>Hôm đó tôi đến Oxford không phải để học.</p><p>Tôi đến vì bạn tôi đang làm nghiên cứu sinh ở đó và cô ấy muốn có người ăn tối cùng vào đúng ngày cô ấy bảo vệ đề cương — buồn vui gì cũng cần có người ngồi cạnh.</p><p>Bảo vệ xong, cô ấy gọi điện cho gia đình. Tôi đi bộ một mình.</p><div class="brk">· · ·</div><p>Oxford chiều tháng Chín đẹp theo kiểu khiến người ta muốn sống chậm lại. Tôi không có bản đồ. Không có điểm đến. Chỉ đi theo những con đường lát đá và nghĩ linh tinh.</p><p>Đến một lúc trời bắt đầu đổ mưa. Không phải mưa to. Mưa kiểu Oxford — mỏng, lạnh, và rất dai.</p><p>Tôi chạy vào hiên của một tiệm sách cũ. Anh đã đứng ở đó rồi.</p><div class="brk">· · ·</div><p>Không ai nói gì trước. Chúng tôi chỉ đứng cạnh nhau, nhìn mưa, tay anh cầm một cuốn sách mà tôi nhận ra ngay — tôi đã đọc cuốn đó năm ngoái.</p><p>Tôi nói: "Cuốn đó hay. Phần hai hơi chậm nhưng đoạn kết đáng để đợi."</p><p>Anh quay sang: "Bạn đã đọc rồi à? Vậy bạn biết kết thúc. Tiếc không?"</p><p>Tôi nghĩ một chút. "Không. Biết kết thúc rồi mà vẫn đọc — thì mình đọc vì lý do khác."</p><p>Anh im lặng. Rồi gật đầu, kiểu gật của người vừa nghe điều họ đã nghĩ nhưng chưa nói được thành lời.</p><div class="brk">· · ·</div><p>Mưa kéo dài khoảng bốn mươi phút. Chúng tôi nói chuyện đủ thứ.</p><p>Anh đang làm nghiên cứu về quyết định của con người — tại sao người ta chọn thứ này mà không phải thứ kia.</p><p>Tôi nói tôi đang ở giai đoạn không chắc mình đang chọn đúng không. Anh hỏi: "Chọn gì?" Tôi nói: "Mọi thứ. Công việc. Nơi ở. Cách sống. Tất cả."</p><p>Anh cười: "Tôi nghiên cứu về chủ đề này đã ba năm rồi. Và tôi vẫn chưa biết mình đang chọn đúng không."</p><p>Tôi thấy nhẹ hơn một chút.</p><div class="brk">· · ·</div><p>Mưa tạnh. Chúng tôi bước ra. Đi cùng nhau thêm một đoạn đường ngắn. Đến ngã tư, anh rẽ trái. Tôi rẽ phải.</p><p>Không ai hỏi số. Không ai hỏi tên.</p><p>Chỉ là: "Cảm ơn vì buổi chiều này." — "Tôi cũng vậy." — Rồi đi.</p><div class="brk">· · ·</div><p>Tôi kể cho bạn tôi tối hôm đó. Cô ấy hỏi: "Sao không hỏi số?"</p><p>Tôi nghĩ mãi không trả lời được.</p><p>Chỉ biết rằng — có những cuộc gặp đẹp nhất khi nó chỉ là chính nó. Không kéo dài. Không theo dõi mạng xã hội. Không cố giữ lại.</p><p>Chỉ là một buổi chiều mưa ở một thành phố cổ. Một người lạ biết cùng một cuốn sách. Và cảm giác được hiểu trong đúng bốn mươi phút.</p><p><em>Đôi khi vậy là đủ.</em></p>`}
+  { id:15, tag:'Du ký · Oxford', cat:'duky', title:'Bodleian Và Người Đứng Ngoài Cửa',
+    excerpt:'Bodleian Library không cho người ngoài vào đọc sách. Mình đứng trước cửa khoảng mười phút. Nhìn vào bên trong qua ô cửa kính — và lần đầu tiên hiểu tại sao mình đã học...',
+    date:'Tháng 5, 2026', readTime:'4 phút', featured:false, reads:0,
+    content:`<p>Bodleian Library không cho người ngoài vào đọc sách.</p><p>Mình đứng trước cửa khoảng mười phút. Nhìn vào bên trong qua ô cửa kính — và lần đầu tiên hiểu tại sao mình đã học.</p><div class="brk">· · ·</div><p>Oxford tháng mười một. Mình đến như một người du lịch bình thường — không phải sinh viên, không có thẻ thư viện, không có lý do gì đặc biệt ngoài việc đã mơ về thành phố này từ năm mười sáu tuổi.</p><p>Hồi đó mình đọc đâu đó rằng Bodleian là một trong những thư viện cổ nhất thế giới. Rằng muốn vào đọc sách ở đó phải là thành viên của trường. Rằng có những cuốn sách ở đây không được phép mang ra ngoài — chỉ được đọc trong thư viện, trong im lặng, dưới ánh đèn vàng.</p><p>Mình mười sáu tuổi, đọc điều đó, và nghĩ: một ngày nào đó.</p><div class="brk">· · ·</div><p>Một ngày nào đó là mười năm sau.</p><p>Mình đứng trước cửa Bodleian, không có thẻ thành viên, không đọc được bất kỳ cuốn sách nào bên trong. Chỉ đứng. Nhìn.</p><p>Có điều kỳ lạ khi đứng trước một nơi mình đã mơ từ lâu.</p><p>Không hẳn là vỡ mộng. Cũng không hẳn là thỏa mãn. Mà là cảm giác gì đó ở giữa — kiểu như: à, mình đã đến được đây. Không phải bằng con đường mình nghĩ hồi mười sáu tuổi. Nhưng vẫn là ở đây.</p><div class="brk">· · ·</div><p>Buổi chiều mình lang thang qua các con phố cũ của Oxford.</p><p>Sinh viên đạp xe qua — áo gown đen phất phơ, tay cầm cà phê, mặt có vẻ đang nghĩ về điều gì đó quan trọng hơn mình. Mình nhìn họ và không cảm thấy ghen tị như mình nghĩ.</p><p>Chỉ cảm thấy: mỗi người có một cách đến với những thứ mình muốn.</p><p>Họ đến bằng học bổng, bằng điểm số, bằng những năm tháng nỗ lực theo cách của họ. Mình đến bằng vé máy bay và một chiều rảnh giữa chuyến đi dài. Không ai đến sai. Chỉ là đến theo những con đường khác nhau.</p><div class="brk">· · ·</div><p>Trước khi rời đi, mình quay lại Bodleian lần nữa.</p><p>Lần này không đứng lâu. Chỉ nhìn. Và tự nhủ một điều chưa bao giờ nói thành lời:</p><p>Cảm ơn vì đã là nơi mình muốn đến. Dù chưa vào được bên trong — việc muốn đến cũng đã là một lý do để đi xa hơn.</p><p><em>Và đôi khi, một lý do là đủ.</em></p>` },
+
+  { id:16, tag:'Du ký · Tokyo', cat:'duky', title:'Tokyo Không Nói Lời Tạm Biệt',
+    excerpt:'Yanaka. Buổi sáng cuối cùng. Ông bán bánh mì nhìn mình và nói một câu mình không hiểu ngay lúc đó: mata ne. Mình không biết đó là lần mình không quay lại...',
+    date:'Tháng 5, 2026', readTime:'4 phút', featured:false, reads:0,
+    content:`<p>Yanaka. Buổi sáng cuối cùng.</p><p>Ông bán bánh mì nhìn mình và nói một câu mình không hiểu ngay lúc đó: mata ne.</p><p>Mình mỉm cười. Bước ra khỏi cửa. Và không quay lại.</p><p>Mãi về sau mình mới hiểu — mata ne không phải là tạm biệt. Là: gặp lại sau nhé.</p><div class="brk">· · ·</div><p>Tokyo không giữ người.</p><p>Thành phố này không như Paris — Paris nhấc bạn lên và bảo: nhìn tôi đây, đẹp không. Tokyo không làm vậy. Tokyo chỉ để bạn ở đó, lặng lẽ, và bạn tự cảm thấy mình đang sống chậm hơn, đang nghe được tiếng thở của chính mình.</p><p>Mình đến một mình vào tháng mười. Mùa lá đỏ bắt đầu ở Kyoto nhưng Tokyo vẫn còn xanh — cái xanh của người chưa chịu buông tay mùa hè.</p><p>Có những buổi sáng mình ngồi trong quán cà phê nhỏ ở Shimokitazawa, không làm gì cả. Chỉ nghe tiếng tách sứ chạm nhau. Nghe người ta nói chuyện bằng thứ ngôn ngữ mình không hiểu. Và lạ thay — trong cái không hiểu đó, mình cảm thấy nhẹ hơn bình thường rất nhiều.</p><div class="brk">· · ·</div><p>Ngày thứ tư, mình đi lạc.</p><p>Không phải lạc theo nghĩa đen — điện thoại vẫn có bản đồ. Nhưng mình tắt bản đồ đi và chỉ đi. Qua những con phố không tên, ngang những tiệm sách nhỏ chỉ đủ chỗ cho ba người đứng, qua một công viên mà lũ trẻ đang chơi dưới tán lá còn vàng nửa, còn xanh nửa.</p><p>Một cụ bà đang ngồi trên ghế đá. Mình ngồi xuống cạnh bà, không nói gì. Bà cũng không nói gì. Hai người ngồi khoảng mười lăm phút. Rồi bà đứng dậy. Trước khi bước đi, bà quay nhìn mình và nói — mata ne.</p><p>Mình không biết bà có hiểu mình là người nước ngoài không. Mình cũng không quan trọng điều đó.</p><div class="brk">· · ·</div><p>Có những nơi bạn đến và biết mình sẽ trở lại.</p><p>Không phải vì nó hoàn hảo. Mà vì nó còn điều gì đó chưa nói hết với bạn.</p><p>Tokyo là nơi như vậy với mình. Mình rời đi ở cổng Haneda, không cảm thấy buồn — chỉ cảm thấy như còn một câu đang bỏ lửng ở đâu đó giữa thành phố.</p><p>Và cái câu bỏ lửng đó, chính là lý do mình biết sẽ phải quay lại.</p><p><em>Mata ne, Tokyo. Gặp lại sau nhé.</em></p>` },
+
+  { id:17, tag:'Du ký · Đà Lạt', cat:'duky', title:'Đà Lạt Mùa Mưa Và Người Ở Lại',
+    excerpt:'Mình đến Đà Lạt không phải để chữa lành. Mình đến vì đã đặt vé từ trước khi mọi thứ xảy ra. Và sau khi mọi thứ xảy ra — mình không muốn hoàn vé...',
+    date:'Tháng 5, 2026', readTime:'4 phút', featured:false, reads:0,
+    content:`<p>Mình đến Đà Lạt không phải để chữa lành.</p><p>Mình đến vì đã đặt vé từ trước khi mọi thứ xảy ra. Và sau khi mọi thứ xảy ra — mình không muốn hoàn vé.</p><p>Đà Lạt tháng tám. Mưa từ bốn giờ chiều đến chín giờ tối mỗi ngày, đều như hẹn trước. Mình thuê phòng ở một nhà gỗ nhỏ trên đồi, cửa sổ nhìn ra thung lũng. Mỗi buổi chiều ngồi đó, nhìn mưa, và không làm gì cả.</p><div class="brk">· · ·</div><p>Có điều kỳ lạ khi đi một mình.</p><p>Bạn không phải cười khi không muốn cười. Không phải giải thích vì sao hôm nay muốn ngồi yên thay vì đi thêm một chỗ. Không phải là phiên bản vui vẻ hay phiên bản ổn của chính mình.</p><p>Bạn chỉ là bạn. Với tất cả những gì đang có — kể cả những phần chưa biết đặt tên là gì.</p><p>Ngày thứ hai mình đi chợ. Mua một ly cà phê muối và ngồi trên bậc thềm nhìn người qua lại. Không chụp ảnh. Chỉ nhìn. Và lần đầu sau nhiều tuần — mình không nghĩ đến bất cứ điều gì cụ thể.</p><div class="brk">· · ·</div><p>Người Đà Lạt hay nói: mùa mưa mới thấy Đà Lạt thật.</p><p>Mình hiểu câu đó hơn sau chuyến đi này.</p><p>Không phải vì mưa làm Đà Lạt đẹp hơn. Mà vì mưa đẩy người ta vào trong — vào quán cà phê nhỏ, vào góc đọc sách, vào những cuộc trò chuyện không vội. Và trong cái đi vào trong đó, người ta hay gặp lại mình hơn.</p><p>Mình gặp lại mình vào buổi chiều thứ tư. Không có gì đặc biệt xảy ra. Chỉ là mình ngồi, trời mưa, và cảm thấy — ổn. Không phải ổn hoàn toàn. Chỉ là ổn hơn ngày hôm qua một chút.</p><p>Và đôi khi, một chút là đủ.</p><div class="brk">· · ·</div><p>Có những người đến Đà Lạt để trốn.</p><p>Có những người đến để tìm.</p><p>Mình đến để ở lại với chính mình — điều mà mình đã không làm được suốt nhiều tuần trước đó.</p><p>Và Đà Lạt, với mưa của mình, với sương của mình, đã cho mình chỗ để làm điều đó.</p><p><em>Cảm ơn, Đà Lạt. Lần sau mình sẽ mang theo ô.</em></p>` },
+
+  { id:18, tag:'Đô thị · Sài Gòn', cat:'dothi', title:'Sài Gòn 11 Giờ Đêm',
+    excerpt:'11 giờ đêm. Mình ngồi trên xe máy, không biết mình đang về nhà hay chưa muốn về. Đường Võ Thị Sáu lúc này thưa xe, đèn vàng hắt xuống từng ô nhịp nhịp...',
+    date:'Tháng 5, 2026', readTime:'3 phút', featured:false, reads:0,
+    content:`<p>11 giờ đêm.</p><p>Mình ngồi trên xe máy, không biết mình đang về nhà hay chưa muốn về. Đường Võ Thị Sáu lúc này thưa xe, đèn vàng hắt xuống từng ô nhịp nhịp. Gió từ phía sông thổi lên. Lạnh hơn mình nghĩ.</p><p>Sài Gòn 11 giờ đêm không giống Sài Gòn ban ngày.</p><div class="brk">· · ·</div><p>Có một phiên bản của thành phố này chỉ xuất hiện sau 10 giờ tối.</p><p>Không phải phiên bản ồn ào của quán bar, không phải phiên bản tắc đường của 5 giờ chiều. Mà là một Sài Gòn khác — khi những người vẫn còn ngoài đường đều có lý do riêng của mình để chưa về.</p><p>Có người đang trên đường về sau ca làm thêm. Có người vừa kết thúc một cuộc trò chuyện mà không biết sẽ còn cuộc nào nữa không. Có người — như mình — chỉ đang đi, không vội.</p><p>Mình hay làm vậy. Đi vòng vài con phố trước khi về nhà. Không phải vì không muốn về. Mà vì đôi khi cần một khoảng trống nhỏ giữa ngày và đêm — một chỗ không phải là nơi làm việc, không phải là nhà, chỉ là đường.</p><div class="brk">· · ·</div><p>11 giờ đêm ở Sài Gòn, mình hay nghĩ về những thứ không có thời gian để nghĩ ban ngày.</p><p>Kiểu như: mình đang làm đúng không? Hay chỉ đang làm tiếp vì chưa biết dừng lại thì làm gì. Hay: người ta ai cũng trông có vẻ đang đi đâu đó cụ thể — còn mình thì sao.</p><p>Không phải lo lắng. Chỉ là những câu hỏi nổi lên khi tiếng ồn ban ngày ngủ xuống.</p><div class="brk">· · ·</div><p>Mình dừng lại ở một quán nước mía góc phố. Bà chủ đang chuẩn bị đóng cửa nhưng vẫn rót cho mình một ly. Không hỏi gì. Mình cũng không nói gì.</p><p>Ngồi đó khoảng mười lăm phút. Rồi về.</p><p>Sài Gòn có cái hay là thành phố này không cần bạn giải thích. Bạn muốn đi — đi. Bạn muốn dừng — dừng. Và 11 giờ đêm hay 2 giờ sáng, đâu đó vẫn có ánh đèn vàng, vẫn có người đang thức.</p><p><em>Và cái biết mình không cô đơn trong thành phố này — đôi khi chỉ vậy thôi là đủ.</em></p>`},
+
+  { id:19, tag:'Du ký · Bangkok', cat:'duky', title:'Bangkok Và Người Không Về Nhà',
+    excerpt:'Bangkok không bao giờ tắt đèn. Mình sống ở đây 8 tháng và vẫn chưa quen với điều đó. Hay đúng hơn — vẫn chưa quen với việc không có ai chờ mình về...',
+    date:'Tháng 5, 2026', readTime:'4 phút', featured:false, reads:0,
+    content:`<p>Bangkok không bao giờ tắt đèn.</p><p>Mình sống ở đây 8 tháng và vẫn chưa quen với điều đó. Hay đúng hơn — vẫn chưa quen với việc không có ai chờ mình về.</p><p>Phòng mình ở tầng 14. Cửa sổ nhìn xuống Sukhumvit — đường phố Bangkok ban đêm sáng và ồn như ban ngày. Xe tuk-tuk, biển hiệu neon, người đi bộ không bao giờ hết. Và mình, 11 giờ đêm, ngồi nhìn xuống với ly mì gói.</p><div class="brk">· · ·</div><p>Mình đến Bangkok vì công việc. Không phải du lịch, không phải học. Chỉ là cơ hội đến và mình đi.</p><p>Người ta hay nói đi nước ngoài làm việc là may mắn. Mình cũng nghĩ vậy — cho đến khi ngồi một mình trong căn phòng tầng 14, không có ai để kể hôm nay mình làm được điều gì.</p><p>Thành công mà không có người nghe thì nó đặt ở đâu?</p><div class="brk">· · ·</div><p>Cuối tuần mình hay ra chợ Chatuchak. Không phải để mua — chỉ để đi giữa người. Để nghe tiếng ồn, mùi đồ ăn, tiếng mặc cả bằng thứ ngôn ngữ mình không hiểu.</p><p>Có một bà bán xoài dầm quen mặt mình từ tuần thứ ba. Bà không nói được tiếng Anh, mình không nói được tiếng Thái. Nhưng mỗi cuối tuần bà vẫn để sẵn một phần khi thấy mình đi qua.</p><p>Không biết tại sao điều đó làm mình ấm hơn bất kỳ cuộc gọi video nào.</p><div class="brk">· · ·</div><p>8 tháng ở Bangkok, mình học được một điều:</p><p>Cô đơn không phải là không có ai xung quanh. Cô đơn là xung quanh đầy người mà không ai biết mình đang thật sự ổn hay không.</p><p>Bangkok cho mình cơ hội. Bangkok cũng cho mình nhiều đêm nhìn xuống đường phố không tắt đèn và tự hỏi: mình đang xây dựng cuộc sống hay chỉ đang sống tiếp mỗi ngày?</p><p>Câu trả lời vẫn còn bỏ lửng.</p><p>Nhưng bà bán xoài vẫn để sẵn phần của mình mỗi cuối tuần.</p><p><em>Và đôi khi, thế là đủ để tiếp tục.</em></p>`},
+
+  { id:20, tag:'Du ký · Tsinghua', cat:'duky', title:'Đêm Ở Tsinghua',
+    excerpt:'11 giờ đêm. Thư viện Tsinghua vẫn còn người. Mình là người Việt duy nhất ngồi góc này. Và lần đầu tiên từ khi đến đây — mình hiểu tại sao mình đã đến...',
+    date:'Tháng 5, 2026', readTime:'4 phút', featured:false, reads:0,
+    content:`<p>11 giờ đêm. Thư viện Tsinghua vẫn còn người.</p><p>Mình là người Việt duy nhất ngồi góc này. Xung quanh là sinh viên Trung Quốc, vài người Hàn, một người Ấn Độ đang gõ phím liên tục. Không ai nhìn ai. Tất cả đều đang học.</p><p>Và lần đầu tiên từ khi đến đây — mình hiểu tại sao mình đã đến.</p><div class="brk">· · ·</div><p>Mình đậu học bổng Tsinghua năm hai mươi ba tuổi. Khi nhận được thư, mình khóc. Không phải vì mừng — mà vì không biết mình có xứng không.</p><p>Hai năm đầu là hai năm liên tục tự hỏi: mình đang ngồi đây bằng thực lực hay chỉ là may mắn? Xung quanh là những người giỏi hơn, nhanh hơn, làm việc nhiều giờ hơn. Và mình — bắt đầu mỗi sáng bằng cách tự nhắc không được bỏ cuộc.</p><div class="brk">· · ·</div><p>Đêm đó ở thư viện, mình nhìn xung quanh và nhận ra:</p><p>Tất cả mọi người ở đây đều đang cố gắng. Không ai đến Tsinghua mà không có áp lực. Không ai ở đây mà không biết cảm giác ngồi trước bài không hiểu và không dám hỏi vì sợ lộ ra mình không đủ giỏi.</p><p>Mình không đơn độc trong điều đó.</p><p>Mình chỉ chưa biết điều đó đủ lâu.</p><div class="brk">· · ·</div><p>Có một câu khắc trên tường thư viện Tsinghua — tự cường bất tức. Tự mình mạnh mẽ, không ngừng.</p><p>Mình đọc xong và ngồi thêm một tiếng nữa.</p><p>Không phải vì phải làm. Mà vì muốn.</p><p>Và đêm đó — lần đầu tiên mình không thấy mình đang cố gắng chứng minh gì với ai nữa. Chỉ đang học. Chỉ vì mình muốn biết.</p><p><em>Và điều đó — nhẹ hơn mọi thứ mình đã mang hai năm qua rất nhiều.</em></p>`},
+
+  { id:21, tag:'Du ký · Tbilisi', cat:'duky', title:'Tbilisi Và Người Đi Chậm',
+    excerpt:'Mình đến Tbilisi vì vé rẻ. Mình ở lại ba tuần vì không muốn về. Không phải vì thành phố quá đẹp. Mà vì ở đó — mình ngủ được...',
+    date:'Tháng 5, 2026', readTime:'4 phút', featured:false, reads:0,
+    content:`<p>Mình đến Tbilisi vì vé rẻ.</p><p>Mình ở lại ba tuần vì không muốn về. Không phải vì thành phố quá đẹp. Mà vì ở đó — mình ngủ được.</p><div class="brk">· · ·</div><p>Tbilisi ở Georgia — một đất nước nằm giữa châu Âu và châu Á, nơi mình phải giải thích với tất cả mọi người rằng không, không phải bang Georgia của Mỹ.</p><p>Người ta ở đây sống chậm theo kiểu khác với Đà Lạt hay Hội An. Không phải chậm vì không có gì làm. Mà chậm vì họ không thấy cần phải nhanh.</p><p>Sáng uống cà phê một tiếng. Trưa ngủ. Chiều đi bộ trên những con phố lát đá cổ. Tối ngồi ở quán rượu vang địa phương, nghe nhạc, không cần làm gì có ích.</p><p>Mình lần đầu tiên trong hai năm không mở laptop vào buổi sáng.</p><div class="brk">· · ·</div><p>Có một người mình gặp ở quán cà phê góc phố — nhiếp ảnh gia người Pháp đã sống ở Tbilisi 4 năm.</p><p>Mình hỏi: sao anh không về?</p><p>Anh hỏi lại: về để làm gì?</p><p>Mình không trả lời được.</p><p>Không phải vì câu hỏi khó. Mà vì mình nhận ra — mình chưa bao giờ thật sự hỏi mình câu đó.</p><div class="brk">· · ·</div><p>Ba tuần ở Tbilisi, mình không làm được nhiều thứ theo nghĩa thông thường.</p><p>Không học thêm kỹ năng. Không networking. Không đi đủ các điểm trong list.</p><p>Nhưng mình ngủ 8 tiếng mỗi đêm. Mình đọc xong 2 cuốn sách đã mua từ năm ngoái. Mình ngồi nhìn bầu trời chiều ở Narikala và không cảm thấy cần phải chụp ảnh.</p><p>Và mình hiểu — đôi khi hiệu quả nhất là biết dừng lại đúng lúc.</p><p><em>Tbilisi không dạy mình điều đó bằng lời. Nó chỉ cho mình không gian để tự nhận ra.</em></p>`},
+
+  { id:22, tag:'Đô thị · Hà Nội', cat:'dothi', title:'Hà Nội Lúc Không Ai Nhìn',
+    excerpt:'Hà Nội đẹp nhất lúc 5 giờ sáng. Không phải vì sương. Không phải vì yên tĩnh. Mà vì đó là lúc thành phố chưa nhìn ai — và mình được là mình...',
+    date:'Tháng 5, 2026', readTime:'3 phút', featured:false, reads:0,
+    content:`<p>Hà Nội đẹp nhất lúc 5 giờ sáng.</p><p>Không phải vì sương. Không phải vì yên tĩnh.</p><p>Mà vì đó là lúc thành phố chưa nhìn ai — và mình được là mình.</p><div class="brk">· · ·</div><p>Mình biết điều này từ hồi mới ra trường, khi còn thuê phòng trọ ở Cầu Giấy và hay thức đến 4 giờ sáng không vì lý do gì đặc biệt.</p><p>Sáng sớm Hà Nội có thứ mình không thể mô tả cho người chưa thấy. Tiếng chổi quét đường. Mùi xôi từ xe đẩy góc phố. Một người phụ nữ gánh hàng đi qua, tiếng quang gánh kẽo kẹt. Và bầu trời — cái màu xanh chưa hoàn toàn là ngày, chưa hoàn toàn là đêm.</p><p>Hà Nội lúc đó không hỏi mình là ai, đang làm gì, đã thành công chưa.</p><div class="brk">· · ·</div><p>Mình hay ra ngoài đi bộ vào giờ đó.</p><p>Không nghe nhạc. Không cầm điện thoại. Chỉ đi. Quanh Hồ Tây, qua các con phố nhỏ còn đang ngủ, ngang những quán phở vừa bắt đầu nổi lửa.</p><p>Và nghĩ — hay không nghĩ gì. Cả hai đều được.</p><p>Đây là khoảng thời gian duy nhất trong ngày mình không cảm thấy cần phải sản xuất ra thứ gì.</p><div class="brk">· · ·</div><p>Người ta hay nói Hà Nội lạnh lùng với người mới. Hà Nội tắc đường, ồn, khắc nghiệt.</p><p>Đúng — nhưng chỉ với phiên bản ban ngày.</p><p>Phiên bản 5 giờ sáng thì khác. Nó nhẹ. Nó thở được. Nó giống như người quen lâu năm không cần nói gì vẫn hiểu nhau.</p><p>Mình không biết thành phố này có hiểu mình không.</p><p>Nhưng mình biết mỗi sáng đi bộ về, mình cảm thấy sẵn sàng hơn một chút cho ngày sắp đến.</p><p><em>Và đôi khi, một chút là đủ.</em></p>`},
+
+  { id:23, tag:'Cảm xúc · Hành trình', cat:'camxuc', title:'Không Tên Thành Phố',
+    excerpt:'Mình không nhớ thành phố đó tên gì. Chỉ nhớ buổi chiều ngồi ở một con phố không tên. Và lần đầu sau rất lâu — không muốn là ai khác...',
+    date:'Tháng 5, 2026', readTime:'3 phút', featured:false, reads:0,
+    content:`<p>Mình không nhớ thành phố đó tên gì.</p><p>Chỉ nhớ buổi chiều ngồi ở một con phố không tên.</p><p>Và lần đầu sau rất lâu — không muốn là ai khác.</p><div class="brk">· · ·</div><p>Mình đã đi qua nhiều thành phố. Đặt tên cho từng cảm giác, lưu từng khoảnh khắc vào điện thoại, chia sẻ đủ góc ảnh để người ta biết mình đã đến.</p><p>Nhưng có một buổi chiều — ở một thành phố mình không còn nhớ tên, không còn nhớ mình đến đó bằng cách nào — mình ngồi trên bậc thềm một ngôi nhà cũ và không làm gì cả.</p><p>Không chụp ảnh. Không nhắn tin. Không nghĩ về việc phải đi đâu tiếp theo.</p><p>Chỉ ngồi.</p><div class="brk">· · ·</div><p>Và lần đầu tiên sau rất lâu, mình gặp lại chính mình.</p><p>Không phải phiên bản đang cố gắng. Không phải phiên bản đang ổn. Không phải phiên bản đang chứng minh gì đó với ai đó.</p><p>Chỉ là mình — với tất cả những thứ chưa xong, chưa giải quyết, chưa biết đặt vào đâu.</p><p>Kỳ lạ là — mình không thấy sợ.</p><div class="brk">· · ·</div><p>Người ta hay nói phải đến những nơi nổi tiếng, phải có hành trình ý nghĩa, phải về với túi đầy kỷ niệm.</p><p>Nhưng kỷ niệm đáng nhớ nhất của mình lại là buổi chiều không tên ở thành phố không tên đó.</p><p>Vì đó là lần duy nhất mình không cần thành phố phải đặc biệt để mình cảm thấy mình xứng đáng được ngồi đó.</p><div class="brk">· · ·</div><p>Đôi khi mình tự hỏi: nếu giờ này quay lại, mình có nhận ra chỗ đó không?</p><p>Có lẽ không.</p><p>Nhưng mình nghĩ — <em>phiên bản mình đã gặp lại ngày hôm đó, vẫn còn đó. Chờ mình tìm lại, mỗi khi mình lại quên mình là ai.</em></p>`}
 ];
 
 let FAVS   = JSON.parse(localStorage.getItem('cnnhn_favs')   || '[]');
@@ -1727,8 +1790,26 @@ function setTone(t) {
 }
 
 /* ════ ADMIN ════ */
+let _editId = null;    // null = Add mode; id = Edit mode
+let _admFilter = 'all'; // current admin category filter
+
 function toggleAddForm() {
-  document.getElementById('adm-form').classList.toggle('open');
+  const form = document.getElementById('adm-form');
+  const isOpen = form.classList.contains('open');
+  if (isOpen) {
+    form.classList.remove('open');
+  } else {
+    // Reset về Add mode
+    _editId = null;
+    document.getElementById('adm-form-title').textContent = 'Thêm truyện mới';
+    document.getElementById('adm-save-btn').textContent   = 'Lưu truyện';
+    ['adm-title','adm-tag','adm-readtime','adm-excerpt','adm-content'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    document.getElementById('adm-cat').value = 'duky';
+    form.classList.add('open');
+    setTimeout(() => document.getElementById('adm-title').focus(), 150);
+  }
 }
 function admTab(t) {
   document.querySelectorAll('.adm-tab').forEach(el=>el.classList.remove('on'));
@@ -1737,6 +1818,43 @@ function admTab(t) {
   document.getElementById('adm-favs-panel').style.display = t==='favs' ? 'block' : 'none';
   if (t==='favs') renderAdminFavs();
 }
+function admFilter(cat) {
+  _admFilter = cat;
+  renderAdminFilterBar();
+  renderAdminList();
+}
+
+function renderAdminFilterBar() {
+  const cats = [
+    { id:'all',     label:'Tất cả',   count: DB.length },
+    { id:'duky',    label:'Du ký',    count: DB.filter(s=>s.cat==='duky').length },
+    { id:'dothi',   label:'Đô thị',   count: DB.filter(s=>s.cat==='dothi').length },
+    { id:'camxuc',  label:'Cảm xúc',  count: DB.filter(s=>s.cat==='camxuc').length },
+    { id:'tinhyeu', label:'Tình yêu', count: DB.filter(s=>s.cat==='tinhyeu').length },
+  ];
+  document.getElementById('adm-filter-bar').innerHTML = cats.map(c =>
+    `<div class="adm-filter-pill${c.id===_admFilter?' on':''}" onclick="admFilter('${c.id}')">${c.label} <span class="adm-filter-count">(${c.count})</span></div>`
+  ).join('');
+}
+
+function renderAdminList() {
+  const list = _admFilter === 'all' ? DB : DB.filter(s => s.cat === _admFilter);
+  document.getElementById('adm-story-list').innerHTML = list.length
+    ? list.map((s,i) => `
+    <div class="adm-row">
+      <div class="adm-idx">${String(i+1).padStart(2,'0')}</div>
+      <div class="adm-info">
+        <div class="adm-ttl">${s.title}</div>
+        <div class="adm-meta">${s.date} · ${s.readTime}</div>
+      </div>
+      <div class="adm-tag">${s.cat}</div>
+      <button class="adm-action" onclick="editStory(${s.id})" title="Sửa">✎</button>
+      <button class="adm-action" onclick="openStory(${s.id})" title="Đọc">👁</button>
+      <button class="adm-action del" onclick="deleteStory(${s.id})" title="Xoá">🗑</button>
+    </div>`).join('')
+    : `<div style="padding:32px 20px;color:var(--muted);font-family:var(--font-body);font-style:italic;font-size:14px;">Không có truyện nào trong thể loại này.</div>`;
+}
+
 function renderAdmin() {
   document.getElementById('admin-stats').innerHTML = [
     { n: DB.length,   l: 'Tổng truyện' },
@@ -1745,18 +1863,8 @@ function renderAdmin() {
     { n: DB.filter(s=>s.cat==='duky').length, l: 'Du ký' }
   ].map(s=>`<div class="stat-card"><div class="sc-n">${s.n}</div><div class="sc-l">${s.l}</div></div>`).join('');
 
-  // List
-  document.getElementById('adm-story-list').innerHTML = DB.map((s,i)=>`
-    <div class="adm-row">
-      <div class="adm-idx">${String(i+1).padStart(2,'0')}</div>
-      <div class="adm-info">
-        <div class="adm-ttl">${s.title}</div>
-        <div class="adm-meta">${s.date} · ${s.readTime}</div>
-      </div>
-      <div class="adm-tag">${s.cat}</div>
-      <button class="adm-action" onclick="openStory(${s.id})" title="Đọc">👁</button>
-      <button class="adm-action del" onclick="deleteStory(${s.id})" title="Xoá">🗑</button>
-    </div>`).join('');
+  renderAdminFilterBar();
+  renderAdminList();
 }
 function renderAdminFavs() {
   document.getElementById('adm-fav-list').innerHTML = FAVS.length
@@ -1766,6 +1874,23 @@ function renderAdminFavs() {
       }).join('')
     : `<div style="padding:32px;color:var(--muted);font-family:var(--font-body);font-style:italic;">Chưa có truyện nào được lưu yêu thích.</div>`;
 }
+function editStory(id) {
+  const s = DB.find(x => x.id === id);
+  if (!s) return;
+  _editId = id;
+  document.getElementById('adm-title').value    = s.title    || '';
+  document.getElementById('adm-tag').value      = s.tag      || '';
+  document.getElementById('adm-cat').value      = s.cat      || 'duky';
+  document.getElementById('adm-readtime').value = s.readTime || '';
+  document.getElementById('adm-excerpt').value  = s.excerpt  || '';
+  document.getElementById('adm-content').value  = s.content  || '';
+  document.getElementById('adm-form-title').textContent = '✎ Chỉnh sửa truyện';
+  document.getElementById('adm-save-btn').textContent   = 'Lưu chỉnh sửa';
+  document.getElementById('adm-form').classList.add('open');
+  document.getElementById('adm-form').scrollIntoView({ behavior:'smooth', block:'start' });
+  setTimeout(() => document.getElementById('adm-title').focus(), 300);
+}
+
 function deleteStory(id) {
   if (!confirm('Xác nhận xoá truyện này?')) return;
   DB = DB.filter(s=>s.id!==id);
@@ -1773,27 +1898,50 @@ function deleteStory(id) {
   renderAdmin();
   toast('Đã xoá truyện');
 }
+
 function saveStory() {
-  const title     = document.getElementById('adm-title').value.trim();
-  const tag       = document.getElementById('adm-tag').value.trim();
-  const cat       = document.getElementById('adm-cat').value;
-  const readTime  = document.getElementById('adm-readtime').value.trim() || '3 phút đọc';
-  const excerpt   = document.getElementById('adm-excerpt').value.trim();
-  const content   = document.getElementById('adm-content').value.trim();
+  const title    = document.getElementById('adm-title').value.trim();
+  const tag      = document.getElementById('adm-tag').value.trim();
+  const cat      = document.getElementById('adm-cat').value;
+  const readTime = document.getElementById('adm-readtime').value.trim() || '3 phút đọc';
+  const excerpt  = document.getElementById('adm-excerpt').value.trim();
+  const content  = document.getElementById('adm-content').value.trim();
   if (!title || !content) { showToast('Vui lòng nhập tiêu đề và nội dung'); return; }
-  const s = {
-    id: Date.now(), tag: tag || 'Truyện mới', cat,
-    title, excerpt: excerpt || content.substring(0,120)+'...',
-    date: new Date().toLocaleDateString('vi-VN',{month:'long',year:'numeric'}),
-    readTime, featured:false,
-    content: content.includes('<p>') ? content : content.split('\n\n').filter(p=>p.trim()).map(p=>`<p>${p}</p>`).join('')
-  };
-  DB.unshift(s);
+
+  const parsedContent = content.includes('<p>') ? content
+    : content.split('\n\n').filter(p=>p.trim()).map(p=>`<p>${p}</p>`).join('');
+
+  if (_editId !== null) {
+    const idx = DB.findIndex(s => s.id === _editId);
+    if (idx === -1) { showToast('Không tìm thấy truyện để sửa'); return; }
+    DB[idx] = {
+      ...DB[idx],
+      title, tag: tag || DB[idx].tag,
+      cat, readTime,
+      excerpt: excerpt || parsedContent.replace(/<[^>]+>/g,'').substring(0,120)+'...',
+      content: parsedContent
+    };
+    showToast('✓ Đã cập nhật truyện');
+  } else {
+    const s = {
+      id: Date.now(), tag: tag || 'Truyện mới', cat,
+      title, excerpt: excerpt || parsedContent.replace(/<[^>]+>/g,'').substring(0,120)+'...',
+      date: new Date().toLocaleDateString('vi-VN',{month:'long',year:'numeric'}),
+      readTime, featured: false, content: parsedContent
+    };
+    DB.unshift(s);
+    showToast('✓ Đã thêm truyện mới');
+  }
+
   saveDB();
-  ['adm-title','adm-tag','adm-readtime','adm-excerpt','adm-content'].forEach(id => document.getElementById(id).value='');
+  _editId = null;
+  ['adm-title','adm-tag','adm-readtime','adm-excerpt','adm-content'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('adm-form-title').textContent = 'Thêm truyện mới';
+  document.getElementById('adm-save-btn').textContent   = 'Lưu truyện';
   document.getElementById('adm-form').classList.remove('open');
   renderAdmin();
-  showToast('✓ Đã thêm truyện mới');
 }
 
 /* ════ EXPORT / IMPORT JSON (Backup) ════ */
